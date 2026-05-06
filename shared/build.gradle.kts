@@ -10,7 +10,7 @@ kotlin {
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     androidLibrary {
-        namespace = "com.cargo.shared"
+        namespace = "com.cargo.customer.shared"
         compileSdk {
             version = release(36) {
                 minorApiLevel = 1
@@ -35,7 +35,7 @@ kotlin {
     // A step-by-step guide on how to include this library in an XCode
     // project can be found here:
     // https://developer.android.com/kotlin/multiplatform/migrate
-    val xcfName = "sharedKit"
+    val xcfName = "shared2Kit"
 
     iosX64 {
         binaries.framework {

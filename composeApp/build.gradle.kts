@@ -52,7 +52,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.example.cargo_customer"
+        applicationId = "com.cargo.customer"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

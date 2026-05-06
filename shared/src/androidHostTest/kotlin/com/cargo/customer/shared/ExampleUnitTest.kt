@@ -1,4 +1,4 @@
-package com.cargo.shared
+package com.cargo.customer.shared
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

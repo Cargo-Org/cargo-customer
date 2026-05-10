@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -86,6 +88,11 @@ fun LoginScreen(
                 label = "Email or Phone Number",
                 placeholder = "name@gmail.com",
             )
+            ColoredActionButton(
+                modifier = modifier ,
+                onClick = {}
+            )
+
         }
 
     }
@@ -109,6 +116,7 @@ fun WelcomeHeader(modifier: Modifier){
             modifier = modifier.padding(horizontal = 32.dp),)
     }
 }
+
 @Composable
 fun InputField(
     modifier: Modifier,
@@ -165,9 +173,20 @@ fun InputField(
 }
 
 @Composable
-fun ColoredActionButton(modifier: Modifier){
-    Button(modifier=modifier.fillMaxWidth(),onClick = {}){
-        Text("s")
+fun ColoredActionButton(modifier: Modifier , onClick:()->Unit){
+    Button(
+        modifier=modifier.fillMaxWidth(),
+        onClick = onClick,
+        shape = RoundedCornerShape(size = 16.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = AppTheme.colors.primary,
+            contentColor = AppTheme.colors.surface
+        ),
+    ){
+        Text(
+            modifier = modifier.padding(12.dp),
+            text = "Create An Account",
+            style = AppTheme.typography.bodyMd)
     }
 }
 @Composable
@@ -176,7 +195,7 @@ fun OrDivider(){
         verticalAlignment = Alignment.CenterVertically
     ) {
         HorizontalDivider(modifier = Modifier.weight(1f), color = Color.Red)
-        Text(" OR ")
+        Text(" OR SIGN UP WITH ")
         HorizontalDivider(modifier = Modifier.weight(1f), color = Color.Red)
     }
 }

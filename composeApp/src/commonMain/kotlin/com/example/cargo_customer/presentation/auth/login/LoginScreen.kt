@@ -92,6 +92,7 @@ fun LoginScreen(
                 modifier = modifier ,
                 onClick = {}
             )
+            OrDivider()
 
         }
 
@@ -194,9 +195,13 @@ fun OrDivider(){
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        HorizontalDivider(modifier = Modifier.weight(1f), color = Color.Red)
-        Text(" OR SIGN UP WITH ")
-        HorizontalDivider(modifier = Modifier.weight(1f), color = Color.Red)
+        HorizontalDivider(modifier = Modifier.weight(1f), color = AppTheme.colors.outline)
+        Text(
+            modifier = Modifier.padding(horizontal = 12.dp),
+            text = " OR SIGN UP WITH ",
+            style = AppTheme.typography.labelSm,
+            color = AppTheme.colors.outline)
+        HorizontalDivider(modifier = Modifier.weight(1f), color = AppTheme.colors.outline)
     }
 }
 @Preview(showBackground = true, showSystemUi = true)

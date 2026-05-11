@@ -15,24 +15,26 @@ import com.example.cargo_customer.presentation.theme.AppTheme
 @Composable
 fun WelcomeHeader(
     modifier: Modifier = Modifier,
-    headerTitle : String,
-    subTitle : String,
-){
-    Column (
+    headerTitle: String,
+    subTitle: String,
+) {
+    Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier= Modifier.fillMaxWidth()
-    ){
+        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.base),
+        modifier = Modifier.fillMaxWidth()
+    ) {
         Text(
-            text=headerTitle,
+            text = headerTitle,
             style = AppTheme.typography.headlineXl,
             color = AppTheme.colors.primary,
-            textAlign = TextAlign.Center)
+            textAlign = TextAlign.Center
+        )
         Text(
-            text= subTitle,
+            text = subTitle,
             style = AppTheme.typography.bodyStandard,
             color = AppTheme.colors.onSurfaceVariant,
             textAlign = TextAlign.Center,
-            modifier = modifier.padding(horizontal = 32.dp),)
+            modifier = modifier.padding(horizontal = AppTheme.dimens.md),
+        )
     }
 }

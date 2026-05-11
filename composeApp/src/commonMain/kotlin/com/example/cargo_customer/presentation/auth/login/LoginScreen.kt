@@ -36,7 +36,12 @@ import com.example.cargo_customer.presentation.theme.AppTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun LoginScreen(
+fun LoginScreen() {
+    LoginScreenContent()
+}
+
+@Composable
+private fun LoginScreenContent(
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -46,12 +51,12 @@ fun LoginScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = modifier.padding(horizontal = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
+            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
             horizontalAlignment = Alignment.End
         ) {
             WelcomeHeader(
-                modifier = modifier.padding(bottom = 28.dp),
+                modifier = modifier.padding(bottom = AppTheme.dimens.stackLg),
                 headerTitle = stringResource(Res.string.welcome_back),
                 subTitle = stringResource(Res.string.sign_in_subtitle),
             )
@@ -83,7 +88,7 @@ fun LoginScreen(
                 onClick = {}
             )
             OrDivider(
-                modifier = modifier.padding(vertical = 16.dp),
+                modifier = modifier.padding(vertical = AppTheme.dimens.gutter),
                 centerText = stringResource(Res.string.or_sign_in)
             )
             GoogleButton(

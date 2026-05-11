@@ -28,7 +28,7 @@ fun GoogleButton (modifier: Modifier , onClick:()->Unit) {
     OutlinedButton(
         modifier=modifier.fillMaxWidth(),
         onClick = onClick,
-        shape = RoundedCornerShape(size = 16.dp),
+        shape = RoundedCornerShape(size = AppTheme.dimens.gutter),
         colors = ButtonDefaults.buttonColors(
             containerColor = AppTheme.colors.surface,
             contentColor = AppTheme.colors.onSurface

@@ -13,25 +13,28 @@ import com.example.cargo_customer.presentation.theme.AppTheme
 
 @Composable
 fun OrDivider(
-    modifier: Modifier ,
-    centerText : String,
-){
+    modifier: Modifier,
+    centerText: String,
+) {
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            thickness = 1.dp,
-            color = AppTheme.colors.outlineVariant)
+            thickness = AppTheme.dimens.xs / 4,
+            color = AppTheme.colors.outlineVariant
+        )
         Text(
-            modifier = Modifier.padding(horizontal = 12.dp),
+            modifier = Modifier.padding(horizontal = AppTheme.dimens.stackSm),
             text = centerText,
             style = AppTheme.typography.labelSm,
-            color = AppTheme.colors.outline)
+            color = AppTheme.colors.outline
+        )
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            thickness = 1.dp,
-            color = AppTheme.colors.outlineVariant)
+            thickness = AppTheme.dimens.xs / 4,
+            color = AppTheme.colors.outlineVariant
+        )
     }
 }

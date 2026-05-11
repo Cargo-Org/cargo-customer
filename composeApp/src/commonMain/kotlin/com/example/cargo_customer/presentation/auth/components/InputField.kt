@@ -22,21 +22,24 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun InputField(
     modifier: Modifier = Modifier,
-    value:String,
-    onValueChanged :(String)->Unit,
-    label:String,
-    placeholder:String,
+    value: String,
+    onValueChanged: (String) -> Unit,
+    label: String,
+    placeholder: String,
     leadingIconRes: DrawableResource? = null,
-    keyboardType : KeyboardType = KeyboardType.Text
-    ){
-    Column (
-        modifier = modifier.fillMaxWidth().padding(vertical = 6.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ){
+    keyboardType: KeyboardType = KeyboardType.Text
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = AppTheme.dimens.stackSm),
+        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.base)
+    ) {
         Text(
             text = label,
             style = AppTheme.typography.labelMd,
-            color = AppTheme.colors.onSurfaceVariant)
+            color = AppTheme.colors.onSurfaceVariant
+        )
         OutlinedTextField(
             value = value,
             onValueChange = onValueChanged,
@@ -55,7 +58,7 @@ fun InputField(
                         painter = painterResource(icon),
                         contentDescription = null,
                         tint = AppTheme.colors.onSurfaceVariant,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(AppTheme.dimens.md)
                     )
                 }
             },

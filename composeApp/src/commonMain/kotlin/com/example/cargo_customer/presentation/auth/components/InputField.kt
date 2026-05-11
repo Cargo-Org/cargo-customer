@@ -3,14 +3,17 @@ package com.example.cargo_customer.presentation.auth.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.cargo_customer.presentation.theme.AppTheme
 import org.jetbrains.compose.resources.DrawableResource
@@ -23,7 +26,9 @@ fun InputField(
     onValueChanged :(String)->Unit,
     label:String,
     placeholder:String,
-    leadingIconRes: DrawableResource? = null,){
+    leadingIconRes: DrawableResource? = null,
+    keyboardType : KeyboardType = KeyboardType.Text
+    ){
     Column (
         modifier = modifier.fillMaxWidth().padding(vertical = 6.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -43,13 +48,14 @@ fun InputField(
                     color = AppTheme.colors.onSurfaceVariant
                 )
             },
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             leadingIcon = leadingIconRes?.let { icon ->
                 {
                     Icon(
                         painter = painterResource(icon),
                         contentDescription = null,
                         tint = AppTheme.colors.onSurfaceVariant,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                 }
             },

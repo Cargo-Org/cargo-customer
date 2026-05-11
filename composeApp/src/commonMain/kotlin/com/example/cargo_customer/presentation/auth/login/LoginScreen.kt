@@ -42,6 +42,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cargo_customer.composeapp.generated.resources.Res
+import cargo_customer.composeapp.generated.resources.ic_email
+import cargo_customer.composeapp.generated.resources.ic_lock
 import com.example.cargo_customer.presentation.auth.components.AuthFooterText
 import com.example.cargo_customer.presentation.auth.components.ColoredActionButton
 import com.example.cargo_customer.presentation.auth.components.GoogleButton
@@ -78,13 +80,15 @@ fun LoginScreen(
                 onValueChanged = {},
                 label = "Email or Phone Number",
                 placeholder = "name@gmail.com",
+                leadingIconRes = Res.drawable.ic_email
             )
             InputField(
                 modifier = modifier,
                 value = "",
                 onValueChanged = {},
-                label = "Email or Phone Number",
-                placeholder = "name@gmail.com",
+                label = "Password",
+                placeholder = "* * * * *",
+                leadingIconRes = Res.drawable.ic_lock
             )
             TextButton(
                 onClick = {},

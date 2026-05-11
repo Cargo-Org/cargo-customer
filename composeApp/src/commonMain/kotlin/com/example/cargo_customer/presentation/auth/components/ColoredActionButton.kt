@@ -9,7 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cargo_customer.composeapp.generated.resources.Res
+import cargo_customer.composeapp.generated.resources.create_an_account
 import com.example.cargo_customer.presentation.theme.AppTheme
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ColoredActionButton(
@@ -26,7 +29,7 @@ fun ColoredActionButton(
     ){
         Text(
             modifier = modifier.padding(12.dp),
-            text = "Create An Account",
+            text = stringResource(Res.string.create_an_account),
             style = AppTheme.typography.bodyMd)
     }
 }

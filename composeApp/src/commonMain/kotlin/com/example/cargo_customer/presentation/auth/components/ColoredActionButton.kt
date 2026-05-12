@@ -17,6 +17,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun ColoredActionButton(
     modifier: Modifier = Modifier,
+    text: String,
     onClick:()->Unit){
     Button(
         modifier=modifier.fillMaxWidth(),
@@ -29,7 +30,7 @@ fun ColoredActionButton(
     ){
         Text(
             modifier = modifier.padding(12.dp),
-            text = stringResource(Res.string.create_an_account),
+            text = text,
             style = AppTheme.typography.bodyMd)
     }
 }

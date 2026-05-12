@@ -9,23 +9,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import cargo_customer.composeapp.generated.resources.Res
-import cargo_customer.composeapp.generated.resources.already_have_account
-import cargo_customer.composeapp.generated.resources.email_phone_label
-import cargo_customer.composeapp.generated.resources.email_placeholder
-import cargo_customer.composeapp.generated.resources.forget_password
-import cargo_customer.composeapp.generated.resources.ic_email
-import cargo_customer.composeapp.generated.resources.ic_lock
-import cargo_customer.composeapp.generated.resources.or_sign_in
-import cargo_customer.composeapp.generated.resources.password_label
-import cargo_customer.composeapp.generated.resources.password_placeholder
-import cargo_customer.composeapp.generated.resources.sign_in_action
-import cargo_customer.composeapp.generated.resources.sign_in_subtitle
-import cargo_customer.composeapp.generated.resources.welcome_back
+import cargo_customer.composeapp.generated.resources.*
 import com.example.cargo_customer.presentation.auth.components.AuthFooterText
 import com.example.cargo_customer.presentation.auth.components.ColoredActionButton
 import com.example.cargo_customer.presentation.auth.components.GoogleButton
@@ -44,6 +36,8 @@ fun LoginScreen() {
 private fun LoginScreenContent(
     modifier: Modifier = Modifier
 ) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -62,16 +56,16 @@ private fun LoginScreenContent(
             )
             InputField(
                 modifier = modifier,
-                value = "",
-                onValueChanged = {},
+                value = email,
+                onValueChanged = {email = it},
                 label = stringResource(Res.string.email_phone_label),
                 placeholder = stringResource(Res.string.email_placeholder),
                 leadingIconRes = Res.drawable.ic_email
             )
             InputField(
                 modifier = modifier,
-                value = "",
-                onValueChanged = {},
+                value = password,
+                onValueChanged = {password = it},
                 label = stringResource(Res.string.password_label),
                 placeholder = stringResource(Res.string.password_placeholder),
                 leadingIconRes = Res.drawable.ic_lock
@@ -85,11 +79,12 @@ private fun LoginScreenContent(
             }
             ColoredActionButton(
                 modifier = modifier,
+                text = stringResource(Res.string.sign_in_action),
                 onClick = {}
             )
             OrDivider(
                 modifier = modifier.padding(vertical = AppTheme.dimens.gutter),
-                centerText = stringResource(Res.string.or_sign_in)
+                centerText = stringResource(Res.string.or_sign_up)
             )
             GoogleButton(
                 modifier = modifier,
@@ -97,7 +92,7 @@ private fun LoginScreenContent(
             )
             AuthFooterText(
                 promptText = stringResource(Res.string.already_have_account),
-                actionText = stringResource(Res.string.sign_in_action),
+                actionText = stringResource(Res.string.create_an_account),
                 onClick = {}
             )
         }

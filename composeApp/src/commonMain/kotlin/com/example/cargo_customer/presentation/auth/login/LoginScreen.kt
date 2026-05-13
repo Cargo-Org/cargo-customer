@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cargo_customer.composeapp.generated.resources.*
@@ -60,7 +61,8 @@ private fun LoginScreenContent(
                 onValueChanged = {email = it},
                 label = stringResource(Res.string.email_phone_label),
                 placeholder = stringResource(Res.string.email_placeholder),
-                leadingIconRes = Res.drawable.ic_email
+                leadingIconRes = Res.drawable.ic_email,
+                keyboardType = KeyboardType.Email
             )
             InputField(
                 modifier = modifier,
@@ -68,7 +70,8 @@ private fun LoginScreenContent(
                 onValueChanged = {password = it},
                 label = stringResource(Res.string.password_label),
                 placeholder = stringResource(Res.string.password_placeholder),
-                leadingIconRes = Res.drawable.ic_lock
+                leadingIconRes = Res.drawable.ic_lock,
+                keyboardType = KeyboardType.Password
             )
             TextButton(onClick = {}) {
                 Text(

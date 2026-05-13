@@ -4,10 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,31 +15,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import cargo_customer.composeapp.generated.resources.Res
-import cargo_customer.composeapp.generated.resources.already_have_account
-import cargo_customer.composeapp.generated.resources.create_an_account
-import cargo_customer.composeapp.generated.resources.email_label
-import cargo_customer.composeapp.generated.resources.email_phone_label
-import cargo_customer.composeapp.generated.resources.email_placeholder
-import cargo_customer.composeapp.generated.resources.forget_password
-import cargo_customer.composeapp.generated.resources.ic_email
-import cargo_customer.composeapp.generated.resources.ic_lock
-import cargo_customer.composeapp.generated.resources.name_label
-import cargo_customer.composeapp.generated.resources.name_placeholder
-import cargo_customer.composeapp.generated.resources.or_sign_in
-import cargo_customer.composeapp.generated.resources.password_label
-import cargo_customer.composeapp.generated.resources.password_placeholder
-import cargo_customer.composeapp.generated.resources.phone_label
-import cargo_customer.composeapp.generated.resources.phone_placeholder
-import cargo_customer.composeapp.generated.resources.sign_in_action
-import cargo_customer.composeapp.generated.resources.sign_in_subtitle
-import cargo_customer.composeapp.generated.resources.sign_up_subtitle
-import cargo_customer.composeapp.generated.resources.welcome_back
+import cargo_customer.composeapp.generated.resources.*
 import com.example.cargo_customer.presentation.auth.components.AuthFooterText
 import com.example.cargo_customer.presentation.auth.components.ColoredActionButton
-import com.example.cargo_customer.presentation.auth.components.GoogleButton
 import com.example.cargo_customer.presentation.auth.components.InputField
 import com.example.cargo_customer.presentation.auth.components.OrDivider
 import com.example.cargo_customer.presentation.auth.components.WelcomeHeader
@@ -69,7 +50,6 @@ private fun RegisterScreenContent(
         Column(
             modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
             verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
-            horizontalAlignment = Alignment.End
         ) {
             WelcomeHeader(
                 modifier = modifier.padding(bottom = AppTheme.dimens.stackLg),
@@ -82,7 +62,7 @@ private fun RegisterScreenContent(
                 onValueChanged = {name = it},
                 label = stringResource(Res.string.name_label),
                 placeholder = stringResource(Res.string.name_placeholder),
-                leadingIconRes = Res.drawable.ic_email
+                leadingIconRes = Res.drawable.ic_user
             )
             InputField(
                 modifier = modifier,
@@ -90,7 +70,8 @@ private fun RegisterScreenContent(
                 onValueChanged = {email = it},
                 label = stringResource(Res.string.email_label),
                 placeholder = stringResource(Res.string.email_label),
-                leadingIconRes = Res.drawable.ic_email
+                leadingIconRes = Res.drawable.ic_email,
+                keyboardType = KeyboardType.Email
             )
             InputField(
                 modifier = modifier,
@@ -98,7 +79,8 @@ private fun RegisterScreenContent(
                 onValueChanged = {phone = it},
                 label = stringResource(Res.string.phone_label),
                 placeholder = stringResource(Res.string.phone_placeholder),
-                leadingIconRes = Res.drawable.ic_email
+                leadingIconRes = Res.drawable.ic_phone,
+                keyboardType = KeyboardType.Phone
             )
             InputField(
                 modifier = modifier,
@@ -106,15 +88,10 @@ private fun RegisterScreenContent(
                 onValueChanged = {password = it},
                 label = stringResource(Res.string.password_label),
                 placeholder = stringResource(Res.string.password_placeholder),
-                leadingIconRes = Res.drawable.ic_lock
+                leadingIconRes = Res.drawable.ic_lock,
+                keyboardType = KeyboardType.Password
             )
-            TextButton(onClick = {}) {
-                Text(
-                    text = stringResource(Res.string.forget_password),
-                    style = AppTheme.typography.labelMd,
-                    color = AppTheme.colors.primary
-                )
-            }
+            Spacer(modifier.height(30.dp))
             ColoredActionButton(
                 modifier = modifier,
                 text = stringResource(Res.string.create_an_account),
@@ -135,6 +112,6 @@ private fun RegisterScreenContent(
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun LoginScreenPreview() {
+fun RegisterPreview() {
     RegisterScreen()
 }

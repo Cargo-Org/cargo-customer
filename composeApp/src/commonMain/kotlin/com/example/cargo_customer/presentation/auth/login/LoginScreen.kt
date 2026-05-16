@@ -17,12 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import cargo_customer.composeapp.generated.resources.*
 import com.example.cargo_customer.presentation.auth.components.AuthFooterText
-import com.example.cargo_customer.presentation.auth.components.ColoredActionButton
+import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.auth.components.GoogleButton
-import com.example.cargo_customer.presentation.auth.components.InputField
+import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.auth.components.OrDivider
 import com.example.cargo_customer.presentation.auth.components.WelcomeHeader
 import com.example.cargo_customer.presentation.theme.AppTheme

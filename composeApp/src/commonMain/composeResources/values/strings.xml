@@ -6,12 +6,19 @@
     <!-- Login Screen -->
     <string name="welcome_back">Welcome Back</string>
     <string name="sign_in_subtitle">Sign in to manage your shipments and track deliveries in real-time</string>
+    <string name="sign_up_subtitle">Start your journey with Cargo today.</string>
     <string name="email_phone_label">Email or Phone Number</string>
     <string name="email_placeholder">name@gmail.com</string>
     <string name="password_label">Password</string>
+    <string name="name_label">Full Name</string>
+    <string name="name_placeholder">Your Name</string>
+    <string name="email_label">Email Address</string>
+    <string name="phone_label">Phone Number</string>
+    <string name="phone_placeholder">+20 1234567890</string>
     <string name="password_placeholder">* * * * *</string>
     <string name="forget_password">Forget Password ?</string>
     <string name="or_sign_in"> OR SIGN IN </string>
+    <string name="or_sign_up"> OR SIGN UP </string>
     <string name="already_have_account">Already have an account?</string>
     <string name="sign_in_action">Sign In</string>
     <string name="create_an_account">Create An Account</string>

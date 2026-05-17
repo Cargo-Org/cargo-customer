@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.auth.components
+package com.example.cargo_customer.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

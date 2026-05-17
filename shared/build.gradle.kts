@@ -64,6 +64,10 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
+                // Add KMP dependencies here
+
+                // Koin Core
+                implementation(libs.koin.core)
                 //Logger
                 implementation(libs.kermit)
                 // Ktor

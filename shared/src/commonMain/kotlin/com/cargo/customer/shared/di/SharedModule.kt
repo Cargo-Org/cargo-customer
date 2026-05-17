@@ -1,8 +1,10 @@
 package com.cargo.customer.shared.di
 import org.koin.dsl.module
 
+
+// Shared: repositories, use cases, shared ViewModels
 val sharedModule = module {
-    // Use cases
-    // Repositories
-    // ViewModels
+    // provide repositories
+    // provide use cases
+    // provide shared ViewModels
 }

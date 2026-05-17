@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.auth.components
+package com.example.cargo_customer.presentation.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement

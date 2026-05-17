@@ -1,5 +1,4 @@
 package com.example.cargo_customer.presentation.component
-
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape

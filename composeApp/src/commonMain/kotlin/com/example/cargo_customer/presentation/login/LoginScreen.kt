@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.auth.login
+package com.example.cargo_customer.presentation.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,12 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import cargo_customer.composeapp.generated.resources.*
-import com.example.cargo_customer.presentation.auth.components.AuthFooterText
+import com.example.cargo_customer.presentation.component.AuthFooterText
 import com.example.cargo_customer.presentation.component.ColoredActionButton
-import com.example.cargo_customer.presentation.auth.components.GoogleButton
+import com.example.cargo_customer.presentation.component.GoogleButton
 import com.example.cargo_customer.presentation.component.InputField
-import com.example.cargo_customer.presentation.auth.components.OrDivider
-import com.example.cargo_customer.presentation.auth.components.WelcomeHeader
+import com.example.cargo_customer.presentation.component.OrDivider
+import com.example.cargo_customer.presentation.component.WelcomeHeader
 import com.example.cargo_customer.presentation.theme.AppTheme
 import org.jetbrains.compose.resources.stringResource
 

@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.auth.components
+package com.example.cargo_customer.presentation.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

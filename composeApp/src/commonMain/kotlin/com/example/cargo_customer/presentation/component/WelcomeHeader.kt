@@ -24,7 +24,7 @@ fun WelcomeHeader(
     ) {
         Text(
             text = headerTitle,
-            style = AppTheme.typography.headlineXl,
+            style = AppTheme.typography.headlineLg,
             color = AppTheme.colors.primary,
             textAlign = TextAlign.Center
         )

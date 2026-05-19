@@ -27,6 +27,6 @@ fun ColoredActionButton(
         Text(
             modifier = modifier.padding(12.dp),
             text = text,
-            style = AppTheme.typography.bodyMd)
+            style = AppTheme.typography.bodySmall)
     }
 }

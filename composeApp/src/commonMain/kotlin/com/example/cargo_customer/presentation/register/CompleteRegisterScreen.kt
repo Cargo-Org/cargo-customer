@@ -18,13 +18,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cargo_customer.composeapp.generated.resources.Res
+import cargo_customer.composeapp.generated.resources.complete_profile_subtitle
+import cargo_customer.composeapp.generated.resources.complete_your_profile
+import cargo_customer.composeapp.generated.resources.email_label
+import cargo_customer.composeapp.generated.resources.email_placeholder
 import cargo_customer.composeapp.generated.resources.ic_email
 import cargo_customer.composeapp.generated.resources.ic_phone
 import cargo_customer.composeapp.generated.resources.ic_user
+import cargo_customer.composeapp.generated.resources.name_label
+import cargo_customer.composeapp.generated.resources.name_placeholder
+import cargo_customer.composeapp.generated.resources.phone_label
+import cargo_customer.composeapp.generated.resources.phone_placeholder
+import cargo_customer.composeapp.generated.resources.send_otp
 import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.component.WelcomeHeader
 import com.example.cargo_customer.presentation.theme.AppTheme
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CompleteRegisterProfileScreen() {
@@ -49,39 +59,39 @@ private fun CompleteRegisterProfileScreenContent(
         Spacer(modifier=modifier.height(120.dp))
         WelcomeHeader(
             modifier = Modifier.fillMaxWidth(),
-            headerTitle = "Complete your profile",
-            subTitle = "Fill in your details to start ordering with Logistics Pro."
+            headerTitle = stringResource(Res.string.complete_your_profile),
+            subTitle = stringResource(Res.string.complete_profile_subtitle)
         )
         Spacer(modifier = Modifier.height(AppTheme.dimens.xs))
         InputField(
             modifier = Modifier.fillMaxWidth(),
             value = name,
             onValueChanged = {name = it},
-            label = "Full Name",
-            placeholder = "Ahmed Mohamed",
+            label = stringResource(Res.string.name_label),
+            placeholder = stringResource(Res.string.name_placeholder),
             leadingIconRes = Res.drawable.ic_user
         )
         InputField(
             modifier = Modifier.fillMaxWidth(),
             value = phone,
             onValueChanged = {phone = it},
-            label = "Phone Number",
-            placeholder = "+(20) 111 111 1111",
+            label = stringResource(Res.string.phone_label),
+            placeholder = stringResource(Res.string.phone_placeholder),
             leadingIconRes = Res.drawable.ic_phone
         )
         InputField(
             modifier = Modifier.fillMaxWidth(),
             value = email,
             onValueChanged = {email = it},
-            label = "Email Address",
-            placeholder = "googleEmail@google.com",
+            label = stringResource(Res.string.email_label),
+            placeholder = stringResource(Res.string.email_placeholder),
             leadingIconRes = Res.drawable.ic_email
         )
         Spacer(modifier = Modifier.height(AppTheme.dimens.md))
         ColoredActionButton(
             modifier = modifier,
             onClick = {},
-            text = "Send OTP"
+            text = stringResource(Res.string.send_otp)
         )
     }
 }

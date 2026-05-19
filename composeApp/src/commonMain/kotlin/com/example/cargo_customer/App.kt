@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cargo_customer.presentation.login.LoginScreen
+import com.example.cargo_customer.presentation.register.CompleteRegisterProfileScreen
 import com.example.cargo_customer.presentation.register.RegisterScreen
 
 @Composable

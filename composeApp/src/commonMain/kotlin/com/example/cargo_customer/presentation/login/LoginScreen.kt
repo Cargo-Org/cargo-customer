@@ -46,7 +46,6 @@ private fun LoginScreenContent(
     ) {
         Column(
             modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
-            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
             horizontalAlignment = Alignment.End
         ) {
             WelcomeHeader(
@@ -75,7 +74,7 @@ private fun LoginScreenContent(
             TextButton(onClick = {}) {
                 Text(
                     text = stringResource(Res.string.forget_password),
-                    style = AppTheme.typography.labelMd,
+                    style = AppTheme.typography.labelSm,
                     color = AppTheme.colors.primary
                 )
             }

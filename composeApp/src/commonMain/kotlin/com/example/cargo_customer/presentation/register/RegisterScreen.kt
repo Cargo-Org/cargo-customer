@@ -49,9 +49,11 @@ private fun RegisterScreenContent(
     ) {
         Column(
             modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
+            //TODO:Remove this to be match with login
             verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
         ) {
             WelcomeHeader(
+                //TODO: The padding her is very large
                 modifier = modifier.padding(bottom = AppTheme.dimens.stackLg),
                 headerTitle = stringResource(Res.string.create_an_account),
                 subTitle = stringResource(Res.string.sign_up_subtitle),
@@ -91,6 +93,7 @@ private fun RegisterScreenContent(
                 leadingIconRes = Res.drawable.ic_lock,
                 keyboardType = KeyboardType.Password
             )
+            //TODO:DON't SET Height WITH HARDCODED!!
             Spacer(modifier.height(30.dp))
             ColoredActionButton(
                 modifier = modifier,

@@ -48,7 +48,7 @@ fun GoogleButton (modifier: Modifier , onClick:()->Unit) {
             Text(
                 modifier = modifier.padding(12.dp),
                 text = stringResource(Res.string.google_login),
-                style = AppTheme.typography.bodyMd)
+                style = AppTheme.typography.bodySmall)
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.cargo_customer.presentation.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,51 +49,54 @@ private fun CompleteRegisterProfileScreenContent(
     var email by remember { mutableStateOf("")}
     var phone by remember { mutableStateOf("")}
     var name by remember { mutableStateOf("") }
-    Column(
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .background(AppTheme.colors.background)
-            .padding(horizontal = AppTheme.dimens.pageMargin),
-        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(modifier=modifier.height(120.dp))
-        WelcomeHeader(
-            modifier = Modifier.fillMaxWidth(),
-            headerTitle = stringResource(Res.string.complete_your_profile),
-            subTitle = stringResource(Res.string.complete_profile_subtitle)
-        )
-        Spacer(modifier = Modifier.height(AppTheme.dimens.xs))
-        InputField(
-            modifier = Modifier.fillMaxWidth(),
-            value = name,
-            onValueChanged = {name = it},
-            label = stringResource(Res.string.name_label),
-            placeholder = stringResource(Res.string.name_placeholder),
-            leadingIconRes = Res.drawable.ic_user
-        )
-        InputField(
-            modifier = Modifier.fillMaxWidth(),
-            value = phone,
-            onValueChanged = {phone = it},
-            label = stringResource(Res.string.phone_label),
-            placeholder = stringResource(Res.string.phone_placeholder),
-            leadingIconRes = Res.drawable.ic_phone
-        )
-        InputField(
-            modifier = Modifier.fillMaxWidth(),
-            value = email,
-            onValueChanged = {email = it},
-            label = stringResource(Res.string.email_label),
-            placeholder = stringResource(Res.string.email_placeholder),
-            leadingIconRes = Res.drawable.ic_email
-        )
-        Spacer(modifier = Modifier.height(AppTheme.dimens.md))
-        ColoredActionButton(
-            modifier = modifier,
-            onClick = {},
-            text = stringResource(Res.string.send_otp)
-        )
+            .background(AppTheme.colors.background),
+        contentAlignment = Alignment.Center
+    ){
+        Column(
+            modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
+            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            WelcomeHeader(
+                modifier = Modifier.fillMaxWidth(),
+                headerTitle = stringResource(Res.string.complete_your_profile),
+                subTitle = stringResource(Res.string.complete_profile_subtitle)
+            )
+            Spacer(modifier = Modifier.height(AppTheme.dimens.xs))
+            InputField(
+                modifier = Modifier.fillMaxWidth(),
+                value = name,
+                onValueChanged = {name = it},
+                label = stringResource(Res.string.name_label),
+                placeholder = stringResource(Res.string.name_placeholder),
+                leadingIconRes = Res.drawable.ic_user
+            )
+            InputField(
+                modifier = Modifier.fillMaxWidth(),
+                value = phone,
+                onValueChanged = {phone = it},
+                label = stringResource(Res.string.phone_label),
+                placeholder = stringResource(Res.string.phone_placeholder),
+                leadingIconRes = Res.drawable.ic_phone
+            )
+            InputField(
+                modifier = Modifier.fillMaxWidth(),
+                value = email,
+                onValueChanged = {email = it},
+                label = stringResource(Res.string.email_label),
+                placeholder = stringResource(Res.string.email_placeholder),
+                leadingIconRes = Res.drawable.ic_email
+            )
+            Spacer(modifier = Modifier.height(AppTheme.dimens.md))
+            ColoredActionButton(
+                modifier = modifier,
+                onClick = {},
+                text = stringResource(Res.string.send_otp)
+            )
+        }
     }
 }
 

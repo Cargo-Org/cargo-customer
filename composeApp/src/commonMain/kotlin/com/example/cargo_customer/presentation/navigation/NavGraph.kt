@@ -14,6 +14,7 @@ import com.example.cargo_customer.presentation.login.LoginScreen
 @Composable
 fun NavGraph(
     modifier: Modifier = Modifier,
+    startDestination: Route
 ){
     val navController = rememberNavController()
 
@@ -22,7 +23,7 @@ fun NavGraph(
     ) {
         NavHost(
             navController = navController,
-            startDestination = Route.LoginRoute, // this will change to splash screen
+            startDestination = startDestination,
             modifier = modifier
         ) {
             composable<Route.LoginRoute> { LoginScreen() }

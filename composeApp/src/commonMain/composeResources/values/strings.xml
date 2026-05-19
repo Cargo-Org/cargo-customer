@@ -22,4 +22,9 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="sign_in_action">Sign In</string>
     <string name="create_an_account">Create An Account</string>
+    <string name="verify_identity">Verify Identity</string>">
+    <string name="verify_identity_description">We've sent a 5-digit verification code
+to your email address.</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="verify_continue">Verify &amp; Continue</string>
 </resources>

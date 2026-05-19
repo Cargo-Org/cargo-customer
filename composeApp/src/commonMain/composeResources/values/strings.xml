@@ -21,6 +21,6 @@
     <string name="sign_in_action">Sign In</string>
     <string name="create_an_account">Create An Account</string>
     <string name="complete_your_profile">Complete your profile</string>
-    <string name="complete_profile_subtitle">Fill in your details to start ordering with Cargo</string>
+    <string name="complete_profile_subtitle">Fill in your details to start driving with Cargo</string>
     <string name="send_otp">Send OTP</string>
 </resources>

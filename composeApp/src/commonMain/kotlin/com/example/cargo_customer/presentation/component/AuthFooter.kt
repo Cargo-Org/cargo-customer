@@ -24,7 +24,7 @@ fun AuthFooterText(
     ) {
         Text(
             text = promptText,
-            style = AppTheme.typography.bodyMd,
+            style = AppTheme.typography.bodySmall,
             color = AppTheme.colors.onSurfaceVariant
         )
         TextButton(
@@ -32,7 +32,7 @@ fun AuthFooterText(
         ) {
             Text(
                 text = actionText,
-                style = AppTheme.typography.labelMd,
+                style = AppTheme.typography.labelSm,
                 color = AppTheme.colors.primary
             )
         }

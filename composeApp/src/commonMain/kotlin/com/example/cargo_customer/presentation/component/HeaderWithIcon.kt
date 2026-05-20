@@ -18,10 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.ic_email
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -30,22 +29,22 @@ fun HeaderWithIcon(
     title: String,
     description: String,
     modifier: Modifier = Modifier,
-    iconBackgroundColor: Color = AppTheme.colors.primary,
-    iconTintColor: Color = AppTheme.colors.surface
+    iconBackgroundColor: Color = CargoTheme.colorScheme.primary,
+    iconTintColor: Color = CargoTheme.colorScheme.onPrimary
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(AppTheme.dimens.md),
+            .padding(CargoTheme.dimens.spacing.md),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Box(
             modifier = Modifier
-                .size(80.dp)
+                .size(CargoTheme.dimens.sizing.avatarXl)
                 .background(
                     color = iconBackgroundColor,
-                    shape = AppTheme.shapes.component5()
+                    shape = CargoTheme.shapes.extraLarge
                 ),
             contentAlignment = Alignment.Center
         ) {
@@ -53,24 +52,24 @@ fun HeaderWithIcon(
                 painter = painter,
                 contentDescription = null,
                 tint = iconTintColor,
-                modifier = Modifier.size(36.dp)
+                modifier = Modifier.size(CargoTheme.dimens.sizing.iconXl)
             )
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(CargoTheme.dimens.spacing.xxxl))
 
         Text(
             text = title,
-            style = AppTheme.typography.headlineXl,
-            color = AppTheme.colors.primary
+            style = CargoTheme.typography.headlineLarge,
+            color = CargoTheme.colorScheme.primary
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(CargoTheme.dimens.spacing.md))
 
         Text(
             text = description,
-            style = AppTheme.typography.bodyMd,
-            color = AppTheme.colors.outline,
+            style = CargoTheme.typography.bodyMedium,
+            color = CargoTheme.colorScheme.outline,
             textAlign = TextAlign.Center
         )
     }

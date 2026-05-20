@@ -1,52 +1,58 @@
 package com.example.cargo_customer.presentation.theme
+
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+
+// ============================================================================
+// APP SHAPES
+// ============================================================================
+// Consistent corner radius scale aligned with the 4dp grid.
+//
+// WHY:  Shapes should NOT vary between light/dark themes (the previous code
+//       doubled corner radii in dark mode — this is incorrect).
+//       Shapes are spatial, not chromatic.
+//
+// SCALE: 4 → 8 → 12 → 16 → 24 → 28 → full
+//        (follows Material 3's shape scale recommendations)
+// ============================================================================
 
 @Immutable
 data class AppShapes(
-    val extraSmall: RoundedCornerShape,
-    val small: RoundedCornerShape,
-    val medium: RoundedCornerShape,
-    val large: RoundedCornerShape,
-    val extraLarge: RoundedCornerShape,
-    val pill: RoundedCornerShape,
+    /** 4dp — Subtle rounding for small elements (chips, badges) */
+    val extraSmall: RoundedCornerShape = RoundedCornerShape(4.dp),
+    /** 8dp — Default rounding (text fields, small cards) */
+    val small: RoundedCornerShape = RoundedCornerShape(8.dp),
+    /** 12dp — Medium rounding (cards, dialogs) */
+    val medium: RoundedCornerShape = RoundedCornerShape(12.dp),
+    /** 16dp — Large rounding (bottom sheets, images) */
+    val large: RoundedCornerShape = RoundedCornerShape(16.dp),
+    /** 24dp — Extra large rounding (modals) */
+    val extraLarge: RoundedCornerShape = RoundedCornerShape(24.dp),
+    /** 28dp — Near-pill (FABs, navigation bars) */
+    val extraExtraLarge: RoundedCornerShape = RoundedCornerShape(28.dp),
+    /** Full circle — Avatars, circular buttons */
+    val circle: Shape = CircleShape,
+    /** 50% — Pill shape for buttons, tags */
+    val pill: RoundedCornerShape = RoundedCornerShape(percent = 50),
 )
 
-val LightAppShapes = AppShapes(
+// ============================================================================
+// MATERIAL 3 SHAPES
+// ============================================================================
+// Maps our AppShapes → Material Shapes for MaterialTheme integration.
+// ============================================================================
+
+val AppMaterialShapes = Shapes(
     extraSmall = RoundedCornerShape(4.dp),
     small = RoundedCornerShape(8.dp),
     medium = RoundedCornerShape(12.dp),
     large = RoundedCornerShape(16.dp),
     extraLarge = RoundedCornerShape(24.dp),
-    pill = RoundedCornerShape(50.dp),
 )
 
-val DarkAppShapes = AppShapes(
-    extraSmall = RoundedCornerShape(8.dp),
-    small = RoundedCornerShape(16.dp),
-    medium = RoundedCornerShape(24.dp),
-    large = RoundedCornerShape(32.dp),
-    extraLarge = RoundedCornerShape(48.dp),
-    pill = RoundedCornerShape(50.dp),
-)
-
-val LightMaterialShapes = Shapes(
-    extraSmall = LightAppShapes.extraSmall,
-    small = LightAppShapes.small,
-    medium = LightAppShapes.medium,
-    large = LightAppShapes.extraLarge,
-    extraLarge = LightAppShapes.pill,
-)
-
-val DarkMaterialShapes = Shapes(
-    extraSmall = DarkAppShapes.extraSmall,
-    small = DarkAppShapes.small,
-    medium = DarkAppShapes.medium,
-    large = DarkAppShapes.extraLarge,
-    extraLarge = DarkAppShapes.pill,
-)
-
-val LocalAppShapes = staticCompositionLocalOf { LightAppShapes }
+val LocalAppShapes = staticCompositionLocalOf { AppShapes() }

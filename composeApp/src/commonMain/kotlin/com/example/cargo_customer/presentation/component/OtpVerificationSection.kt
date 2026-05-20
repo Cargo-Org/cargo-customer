@@ -29,7 +29,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.resend_code
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -45,11 +45,11 @@ fun OTPVerificationSection(
     Column(
         modifier = Modifier
             .background(
-                AppTheme.colors.inverseOnSurface,
-                shape = AppTheme.shapes.component4()
+                CargoTheme.colorScheme.surfaceContainerLow,
+                shape = CargoTheme.shapes.medium
             )
             .wrapContentHeight()
-            .padding(AppTheme.dimens.md),
+            .padding(CargoTheme.dimens.spacing.lg),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -79,21 +79,21 @@ fun OTPVerificationSection(
             )
         }
 
-        Spacer(modifier = Modifier.height(AppTheme.dimens.md))
+        Spacer(modifier = Modifier.height(CargoTheme.dimens.spacing.lg))
 
         TimerSection(secondsLeft)
 
-        Spacer(modifier = Modifier.height(AppTheme.dimens.base))
+        Spacer(modifier = Modifier.height(CargoTheme.dimens.spacing.sm))
 
         Text(
             text = stringResource(Res.string.resend_code),
-            color = AppTheme.colors.primary,
+            style = CargoTheme.typography.labelLarge,
+            color = CargoTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.clickable { onResendClick() }
         )
     }
 }
-
 
 @Preview
 @Composable

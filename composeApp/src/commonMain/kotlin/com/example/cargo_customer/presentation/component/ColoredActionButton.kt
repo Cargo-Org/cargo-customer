@@ -1,34 +1,35 @@
 package com.example.cargo_customer.presentation.component
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 
 @Composable
 fun ColoredActionButton(
     modifier: Modifier = Modifier,
     text: String,
-    onClick:()->Unit,
-    enabled: Boolean = true){
+    onClick: () -> Unit,
+    enabled: Boolean = true
+) {
     Button(
-        modifier=modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         onClick = onClick,
-        shape = RoundedCornerShape(size = AppTheme.dimens.gutter),
+        shape = CargoTheme.shapes.large,
         colors = ButtonDefaults.buttonColors(
-            containerColor = AppTheme.colors.primary,
-            contentColor = AppTheme.colors.surface
+            containerColor = CargoTheme.colorScheme.primary,
+            contentColor = CargoTheme.colorScheme.onPrimary
         ),
         enabled = enabled
-    ){
+    ) {
         Text(
-            modifier = modifier.padding(12.dp),
+            modifier = Modifier.padding(vertical = CargoTheme.dimens.spacing.md),
             text = text,
-            style = AppTheme.typography.bodyMd)
+            style = CargoTheme.typography.bodyMedium
+        )
     }
 }

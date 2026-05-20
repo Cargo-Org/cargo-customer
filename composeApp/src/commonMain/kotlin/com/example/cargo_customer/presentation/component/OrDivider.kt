@@ -8,11 +8,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.cargo_customer.presentation.theme.AppTheme
+import androidx.compose.ui.unit.dp
+import com.example.cargo_customer.presentation.theme.CargoTheme
 
 @Composable
 fun OrDivider(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     centerText: String,
 ) {
     Row(
@@ -21,19 +22,19 @@ fun OrDivider(
     ) {
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            thickness = AppTheme.dimens.xs / 4,
-            color = AppTheme.colors.outlineVariant
+            thickness = 1.dp,
+            color = CargoTheme.colorScheme.outlineVariant
         )
         Text(
-            modifier = Modifier.padding(horizontal = AppTheme.dimens.stackSm),
+            modifier = Modifier.padding(horizontal = CargoTheme.dimens.spacing.sm),
             text = centerText,
-            style = AppTheme.typography.labelSm,
-            color = AppTheme.colors.outline
+            style = CargoTheme.typography.labelSmall,
+            color = CargoTheme.colorScheme.outline
         )
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            thickness = AppTheme.dimens.xs / 4,
-            color = AppTheme.colors.outlineVariant
+            thickness = 1.dp,
+            color = CargoTheme.colorScheme.outlineVariant
         )
     }
 }

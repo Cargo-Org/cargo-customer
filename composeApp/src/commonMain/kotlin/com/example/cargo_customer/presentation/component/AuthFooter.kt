@@ -8,7 +8,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 
 @Composable
 fun AuthFooterText(
@@ -24,16 +24,16 @@ fun AuthFooterText(
     ) {
         Text(
             text = promptText,
-            style = AppTheme.typography.bodyMd,
-            color = AppTheme.colors.onSurfaceVariant
+            style = CargoTheme.typography.bodyMedium,
+            color = CargoTheme.colorScheme.onSurfaceVariant
         )
         TextButton(
             onClick = onClick,
         ) {
             Text(
                 text = actionText,
-                style = AppTheme.typography.labelMd,
-                color = AppTheme.colors.primary
+                style = CargoTheme.typography.labelMedium,
+                color = CargoTheme.colorScheme.primary
             )
         }
     }

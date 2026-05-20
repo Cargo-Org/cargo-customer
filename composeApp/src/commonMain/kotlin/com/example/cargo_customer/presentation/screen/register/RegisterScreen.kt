@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.register
+package com.example.cargo_customer.presentation.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,14 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import cargo_customer.composeapp.generated.resources.*
 import com.example.cargo_customer.presentation.component.AuthFooterText
 import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.component.OrDivider
 import com.example.cargo_customer.presentation.component.WelcomeHeader
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -44,64 +43,56 @@ private fun RegisterScreenContent(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(AppTheme.colors.background),
+            .background(CargoTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
-            //TODO:Remove this to be match with login
-            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
+            modifier = Modifier.padding(horizontal = CargoTheme.dimens.screenPaddingHorizontal),
+            verticalArrangement = Arrangement.spacedBy(CargoTheme.dimens.spacing.xs),
         ) {
             WelcomeHeader(
-                //TODO: The padding her is very large
-                modifier = modifier.padding(bottom = AppTheme.dimens.stackLg),
+                modifier = Modifier.padding(bottom = CargoTheme.dimens.spacing.xxl),
                 headerTitle = stringResource(Res.string.create_an_account),
                 subTitle = stringResource(Res.string.sign_up_subtitle),
             )
             InputField(
-                modifier = modifier,
                 value = name,
-                onValueChanged = {name = it},
+                onValueChanged = { name = it },
                 label = stringResource(Res.string.name_label),
                 placeholder = stringResource(Res.string.name_placeholder),
                 leadingIconRes = Res.drawable.ic_user
             )
             InputField(
-                modifier = modifier,
                 value = email,
-                onValueChanged = {email = it},
+                onValueChanged = { email = it },
                 label = stringResource(Res.string.email_label),
                 placeholder = stringResource(Res.string.email_label),
                 leadingIconRes = Res.drawable.ic_email,
                 keyboardType = KeyboardType.Email
             )
             InputField(
-                modifier = modifier,
                 value = phone,
-                onValueChanged = {phone = it},
+                onValueChanged = { phone = it },
                 label = stringResource(Res.string.phone_label),
                 placeholder = stringResource(Res.string.phone_placeholder),
                 leadingIconRes = Res.drawable.ic_phone,
                 keyboardType = KeyboardType.Phone
             )
             InputField(
-                modifier = modifier,
                 value = password,
-                onValueChanged = {password = it},
+                onValueChanged = { password = it },
                 label = stringResource(Res.string.password_label),
                 placeholder = stringResource(Res.string.password_placeholder),
                 leadingIconRes = Res.drawable.ic_lock,
                 keyboardType = KeyboardType.Password
             )
-            //TODO:DON't SET Height WITH HARDCODED!!
-            Spacer(modifier.height(30.dp))
+            Spacer(Modifier.height(CargoTheme.dimens.spacing.xxxl))
             ColoredActionButton(
-                modifier = modifier,
                 text = stringResource(Res.string.create_an_account),
                 onClick = {}
             )
             OrDivider(
-                modifier = modifier.padding(vertical = AppTheme.dimens.gutter),
+                modifier = Modifier.padding(vertical = CargoTheme.dimens.spacing.lg),
                 centerText = stringResource(Res.string.or_sign_in)
             )
             AuthFooterText(

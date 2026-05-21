@@ -14,7 +14,8 @@ import com.example.cargo_customer.presentation.theme.AppTheme
 fun ColoredActionButton(
     modifier: Modifier = Modifier,
     text: String,
-    onClick:()->Unit){
+    onClick:()->Unit,
+    enabled: Boolean = true){
     Button(
         modifier=modifier.fillMaxWidth(),
         onClick = onClick,
@@ -23,6 +24,7 @@ fun ColoredActionButton(
             containerColor = AppTheme.colors.primary,
             contentColor = AppTheme.colors.surface
         ),
+        enabled = enabled
     ){
         Text(
             modifier = modifier.padding(12.dp),

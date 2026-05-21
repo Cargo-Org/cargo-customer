@@ -30,12 +30,12 @@ fun InputField(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = AppTheme.dimens.stackSm),
-        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.base)
+            .padding(vertical = AppTheme.dimens.base),
+        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.sm)
     ) {
         Text(
             text = label,
-            style = AppTheme.typography.labelMd,
+            style = AppTheme.typography.labelSm,
             color = AppTheme.colors.onSurfaceVariant
         )
         OutlinedTextField(
@@ -45,7 +45,7 @@ fun InputField(
             placeholder = {
                 Text(
                     text = placeholder,
-                    style = AppTheme.typography.bodyMd,
+                    style = AppTheme.typography.bodySmall,
                     color = AppTheme.colors.onSurfaceVariant
                 )
             },
@@ -61,7 +61,7 @@ fun InputField(
                 }
             },
             shape = AppTheme.shapes.large,
-            textStyle = AppTheme.typography.bodyMd,
+            textStyle = AppTheme.typography.bodySmall,
             singleLine = true,
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = AppTheme.colors.surface,

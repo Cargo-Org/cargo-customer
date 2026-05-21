@@ -2,8 +2,6 @@
 <resources>
     <string name="app_name">Cargo Customer</string>
     <string name="google_login">Google</string>
-
-    <!-- Login Screen -->
     <string name="welcome_back">Welcome Back</string>
     <string name="sign_in_subtitle">Sign in to manage your shipments and track deliveries in real-time</string>
     <string name="sign_up_subtitle">Start your journey with Cargo today.</string>
@@ -27,4 +25,7 @@
 to your email address.</string>
     <string name="resend_code">Resend Code</string>
     <string name="verify_continue">Verify &amp; Continue</string>
+    <string name="complete_your_profile">Complete your profile</string>
+    <string name="complete_profile_subtitle">Fill in your details to start driving with Cargo</string>
+    <string name="send_otp">Send OTP</string>
 </resources>

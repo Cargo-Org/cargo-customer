@@ -3,12 +3,15 @@ package com.example.cargo_customer
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.cargo_customer.presentation.verify_email.EmailVerificationScreen
+import com.example.cargo_customer.presentation.navigation.NavGraph
+import com.example.cargo_customer.presentation.navigation.Route
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        EmailVerificationScreen()
+        NavGraph(
+            startDestination = Route.LoginRoute //this will change according to start screen
+        )
     }
 }

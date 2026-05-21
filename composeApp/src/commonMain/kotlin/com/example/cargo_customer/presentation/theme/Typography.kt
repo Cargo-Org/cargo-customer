@@ -8,64 +8,32 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// ============================================================================
-// FONT FAMILIES
-// ============================================================================
-// Centralize font family declarations so swapping fonts is a single change.
-// In Compose Multiplatform, you can load platform-specific fonts here.
-// Until custom fonts are bundled, we alias to system sans-serif.
-// ============================================================================
-
 private val DisplayFont: FontFamily = FontFamily.SansSerif
 private val BodyFont: FontFamily = FontFamily.SansSerif
 
-// ============================================================================
-// APP TEXT STYLES
-// ============================================================================
-// Semantic typography scale following Material 3 naming conventions:
-//   Display → Headlines → Title → Body → Label
-// Each level has Large / Medium / Small variants.
-//
-// WHY:  A consistent scale avoids ad-hoc font sizes scattered across the app.
-//       Semantic names make intent clear — `titleLarge` tells you *where*
-//       a style should be used, not *how big* it is.
-// ============================================================================
-
 @Immutable
 data class AppTypography(
-    // — Display —  (Hero / Splash / Marketing screens)
     val displayLarge: TextStyle,
     val displayMedium: TextStyle,
     val displaySmall: TextStyle,
 
-    // — Headline —  (Top-level section headings)
     val headlineLarge: TextStyle,
     val headlineMedium: TextStyle,
     val headlineSmall: TextStyle,
 
-    // — Title —  (Card titles, dialog titles, toolbar)
     val titleLarge: TextStyle,
     val titleMedium: TextStyle,
     val titleSmall: TextStyle,
 
-    // — Body —  (Paragraphs, descriptions, primary content)
     val bodyLarge: TextStyle,
     val bodyMedium: TextStyle,
     val bodySmall: TextStyle,
 
-    // — Label —  (Buttons, chips, captions, metadata)
     val labelLarge: TextStyle,
     val labelMedium: TextStyle,
     val labelSmall: TextStyle,
 )
 
-// ============================================================================
-// TYPOGRAPHY INSTANCE
-// ============================================================================
-// Single instance — typography does NOT change between light/dark modes.
-// Only *color* changes per theme; sizes and weights stay identical.
-// Colors are applied at the composable level via `color = CargoTheme.colorScheme.onSurface`.
-// ============================================================================
 
 val AppTypographyInstance = AppTypography(
     // Display
@@ -183,12 +151,6 @@ val AppTypographyInstance = AppTypography(
         letterSpacing = 0.5.sp,
     ),
 )
-
-// ============================================================================
-// MATERIAL 3 TYPOGRAPHY
-// ============================================================================
-// Maps our AppTypography → Material Typography for MaterialTheme integration.
-// ============================================================================
 
 val AppMaterialTypography = Typography(
     displayLarge = AppTypographyInstance.displayLarge,

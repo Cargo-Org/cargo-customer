@@ -7,10 +7,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 
-// ============================================================================
-// DARK-THEME SIGNAL
-// ============================================================================
-
 private val LocalIsDarkTheme = compositionLocalOf { false }
 
 // ============================================================================
@@ -28,53 +24,32 @@ private val LocalIsDarkTheme = compositionLocalOf { false }
 //   CargoTheme.elevation.sm                 → Shadow elevation
 //   CargoTheme.isDarkTheme                  → Current mode check
 //
-// WHY an object?
-//   Provides a discoverable, IDE-friendly namespace for all tokens.
-//   Developers type `CargoTheme.` and get autocomplete for every
-//   design system token — no need to memorize composition locals.
-// ============================================================================
+
 
 object CargoTheme {
 
-    /** Whether the current composition is in dark mode */
     val isDarkTheme: Boolean
         @Composable @ReadOnlyComposable get() = LocalIsDarkTheme.current
 
-    /** Material 3 color scheme (primary, surface, error, etc.) */
     val colorScheme
         @Composable @ReadOnlyComposable get() = MaterialTheme.colorScheme
 
-    /** Extended semantic colors (success, warning, info, brand, etc.) */
     val extendedColors: ExtendedColorScheme
         @Composable @ReadOnlyComposable get() = LocalExtendedColors.current
 
-    /** App typography scale */
     val typography: AppTypography
         @Composable @ReadOnlyComposable get() = LocalAppTypography.current
 
-    /** Shape tokens */
     val shapes: AppShapes
         @Composable @ReadOnlyComposable get() = LocalAppShapes.current
 
-    /** Spacing, sizing, and layout dimensions */
     val dimens: AppDimensions
         @Composable @ReadOnlyComposable get() = LocalAppDimensions.current
 
-    /** Elevation tokens */
     val elevation: AppElevation
         @Composable @ReadOnlyComposable get() = LocalAppElevation.current
 }
 
-// ============================================================================
-// CARGO THEME COMPOSABLE
-// ============================================================================
-// Wraps MaterialTheme and injects all custom composition locals.
-//
-// USAGE (in App.kt):
-//   CargoCustomerTheme {
-//       // your screens here
-//   }
-// ============================================================================
 
 @Composable
 fun CargoCustomerTheme(

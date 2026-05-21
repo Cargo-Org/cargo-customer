@@ -7,6 +7,8 @@ import com.example.cargo_customer.presentation.verify_email.EmailVerificationScr
 @Composable
 fun App() {
     CargoCustomerTheme {
-        EmailVerificationScreen()
+        NavGraph(
+            startDestination = Route.LoginRoute //this will change according to start screen
+        )
     }
 }

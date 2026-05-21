@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.register
+package com.example.cargo_customer.presentation.screen.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,7 +17,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.complete_profile_subtitle
 import cargo_customer.composeapp.generated.resources.complete_your_profile

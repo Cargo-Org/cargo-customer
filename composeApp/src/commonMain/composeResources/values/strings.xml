@@ -25,7 +25,6 @@
 to your email address.</string>
     <string name="resend_code">Resend Code</string>
     <string name="verify_continue">Verify &amp; Continue</string>
-</resources>
     <string name="complete_your_profile">Complete your profile</string>
     <string name="complete_profile_subtitle">Fill in your details to start driving with Cargo</string>
     <string name="send_otp">Send OTP</string>

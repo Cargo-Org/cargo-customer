@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.verify_email
+package com.example.cargo_customer.presentation.screen.verify_email
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

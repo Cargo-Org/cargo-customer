@@ -19,11 +19,11 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 class NetworkClient(
     private val engine: HttpClientEngine,
+    private val cargoInterceptor: CargoInterceptor
 ) {
 
     private val client: HttpClient by lazy { buildClient() }
@@ -83,6 +83,7 @@ class NetworkClient(
             }
         }
 
+        cargoInterceptor.install(client)
         return client
     }
 

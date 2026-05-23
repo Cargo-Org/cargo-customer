@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -45,7 +47,8 @@ private fun LoginScreenContent(
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = Modifier.padding(horizontal = CargoTheme.dimens.screenPaddingHorizontal),
+            modifier = Modifier.padding(horizontal = CargoTheme.dimens.screenPaddingHorizontal)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(CargoTheme.dimens.spacing.xs),
             horizontalAlignment = Alignment.End
         ) {
@@ -57,7 +60,7 @@ private fun LoginScreenContent(
             InputField(
                 value = email,
                 onValueChanged = { email = it },
-                label = stringResource(Res.string.email_phone_label),
+                label = stringResource(Res.string.email_label),
                 placeholder = stringResource(Res.string.email_placeholder),
                 leadingIconRes = Res.drawable.ic_email,
                 keyboardType = KeyboardType.Email

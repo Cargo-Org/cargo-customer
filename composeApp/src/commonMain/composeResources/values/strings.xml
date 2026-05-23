@@ -28,4 +28,10 @@ to your email address.</string>
     <string name="complete_your_profile">Complete your profile</string>
     <string name="complete_profile_subtitle">Fill in your details to start driving with Cargo</string>
     <string name="send_otp">Send OTP</string>
+    <string name="upload_complete">Upload Complete</string>
+    <string name="front_face_image_description">Front face of National ID card</string>
+    <string name="back_face_image_description">Back face of National ID card</string>
+    <string name="front_face_capture_instruction">Tap to Take Front Face Pic.</string>
+    <string name="back_face_capture_instruction">Tap to Take Back Face Pic.</string>
+    <string name="face_illustration_description">Face Illustration Scanner Overlay</string>
 </resources>

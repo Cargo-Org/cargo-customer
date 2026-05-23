@@ -1,4 +1,5 @@
 package com.cargo.customer.shared.di
+
 import com.cargo.customer.shared.data.local.datasource.AuthLocalDataSource
 import com.cargo.customer.shared.data.local.datasource.AuthLocalDataSourceImp
 import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSource
@@ -17,7 +18,7 @@ val sharedModule = module {
 
     //datasource
     single<AuthRemoteDataSource> {
-        AuthRemoteDataSourceImp()
+        AuthRemoteDataSourceImp(get(), get())
     }
 
     single<AuthLocalDataSource> {

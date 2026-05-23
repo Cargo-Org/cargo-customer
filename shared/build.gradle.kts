@@ -71,11 +71,14 @@ kotlin {
                 //Logger
                 implementation(libs.kermit)
                 // Ktor
-                implementation(libs.ktor.client.core.v313)
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.bundles.ktor)
                 // IO
                 implementation(libs.kotlinx.io.core)
+                // DataStore library
+                implementation(libs.androidx.datastore)
+                // The Preferences DataStore library
+                implementation(libs.androidx.datastore.preferences)
+
             }
         }
 

@@ -3,7 +3,7 @@ package com.cargo.customer.shared.di
 import com.cargo.customer.shared.data.local.datasource.AuthLocalDataSource
 import com.cargo.customer.shared.data.local.datasource.AuthLocalDataSourceImp
 import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSource
-import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSourceImp
+import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSourceImpl
 import com.cargo.customer.shared.data.repository.AuthRepositoryImp
 import com.cargo.customer.shared.domain.repository.AuthRepository
 import org.koin.dsl.module
@@ -18,7 +18,7 @@ val sharedModule = module {
 
     //datasource
     single<AuthRemoteDataSource> {
-        AuthRemoteDataSourceImp(get(), get())
+        AuthRemoteDataSourceImpl(get(), get())
     }
 
     single<AuthLocalDataSource> {

@@ -48,6 +48,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(libs.navigation.compose)
+            implementation(libs.lucide.icons)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -49,6 +49,7 @@ kotlin {
             implementation(libs.koin.compose.viewModel)
 
             implementation(libs.navigation.compose)
+            implementation(libs.lucide.icons)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

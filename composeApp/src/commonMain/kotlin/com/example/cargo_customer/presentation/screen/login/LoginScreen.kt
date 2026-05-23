@@ -82,6 +82,7 @@ private fun LoginScreenContent(
             }
             ColoredActionButton(
                 text = stringResource(Res.string.sign_in_action),
+                isLoading = true,
                 onClick = {}
             )
             OrDivider(

@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 
 @Composable
 fun WelcomeHeader(
@@ -19,21 +19,21 @@ fun WelcomeHeader(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.base),
-        modifier = Modifier.fillMaxWidth()
+        verticalArrangement = Arrangement.spacedBy(CargoTheme.dimens.spacing.sm),
+        modifier = modifier.fillMaxWidth()
     ) {
         Text(
             text = headerTitle,
-            style = AppTheme.typography.headlineLg,
-            color = AppTheme.colors.primary,
+            style = CargoTheme.typography.headlineLarge,
+            color = CargoTheme.colorScheme.primary,
             textAlign = TextAlign.Center
         )
         Text(
             text = subTitle,
-            style = AppTheme.typography.bodyStandard,
-            color = AppTheme.colors.onSurfaceVariant,
+            style = CargoTheme.typography.bodyLarge,
+            color = CargoTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
-            modifier = modifier.padding(horizontal = AppTheme.dimens.md),
+            modifier = Modifier.padding(horizontal = CargoTheme.dimens.spacing.md),
         )
     }
 }

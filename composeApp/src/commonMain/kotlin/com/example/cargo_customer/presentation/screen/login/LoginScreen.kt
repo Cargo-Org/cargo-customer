@@ -1,6 +1,7 @@
-package com.example.cargo_customer.presentation.screen.login
+package com.example.cargo_customer.presentation.login
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +24,7 @@ import com.example.cargo_customer.presentation.component.GoogleButton
 import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.component.OrDivider
 import com.example.cargo_customer.presentation.component.WelcomeHeader
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -40,31 +41,30 @@ private fun LoginScreenContent(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(AppTheme.colors.background),
+            .background(CargoTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
+            modifier = Modifier.padding(horizontal = CargoTheme.dimens.screenPaddingHorizontal),
+            verticalArrangement = Arrangement.spacedBy(CargoTheme.dimens.spacing.xs),
             horizontalAlignment = Alignment.End
         ) {
             WelcomeHeader(
-                modifier = modifier.padding(bottom = AppTheme.dimens.stackLg),
+                modifier = Modifier.padding(bottom = CargoTheme.dimens.spacing.xxl),
                 headerTitle = stringResource(Res.string.welcome_back),
                 subTitle = stringResource(Res.string.sign_in_subtitle),
             )
             InputField(
-                modifier = modifier,
                 value = email,
-                onValueChanged = {email = it},
+                onValueChanged = { email = it },
                 label = stringResource(Res.string.email_phone_label),
                 placeholder = stringResource(Res.string.email_placeholder),
                 leadingIconRes = Res.drawable.ic_email,
                 keyboardType = KeyboardType.Email
             )
             InputField(
-                modifier = modifier,
                 value = password,
-                onValueChanged = {password = it},
+                onValueChanged = { password = it },
                 label = stringResource(Res.string.password_label),
                 placeholder = stringResource(Res.string.password_placeholder),
                 leadingIconRes = Res.drawable.ic_lock,
@@ -73,21 +73,19 @@ private fun LoginScreenContent(
             TextButton(onClick = {}) {
                 Text(
                     text = stringResource(Res.string.forget_password),
-                    style = AppTheme.typography.labelSm,
-                    color = AppTheme.colors.primary
+                    style = CargoTheme.typography.labelMedium,
+                    color = CargoTheme.colorScheme.primary
                 )
             }
             ColoredActionButton(
-                modifier = modifier,
                 text = stringResource(Res.string.sign_in_action),
                 onClick = {}
             )
             OrDivider(
-                modifier = modifier.padding(vertical = AppTheme.dimens.gutter),
+                modifier = Modifier.padding(vertical = CargoTheme.dimens.spacing.lg),
                 centerText = stringResource(Res.string.or_sign_up)
             )
             GoogleButton(
-                modifier = modifier,
                 onClick = {}
             )
             AuthFooterText(

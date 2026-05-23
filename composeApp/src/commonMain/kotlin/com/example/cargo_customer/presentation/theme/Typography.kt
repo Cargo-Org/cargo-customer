@@ -1,4 +1,5 @@
 package com.example.cargo_customer.presentation.theme
+
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -7,206 +8,166 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-private val PlusJakartaSans = FontFamily.SansSerif
-private val Inter = FontFamily.SansSerif
+private val DisplayFont: FontFamily = FontFamily.SansSerif
+private val BodyFont: FontFamily = FontFamily.SansSerif
 
 @Immutable
-data class AppTextStyles(
-    val displayHero: TextStyle,
-    val sectionTitle: TextStyle,
-    val headlineXl: TextStyle,
-    val headlineLg: TextStyle,
-    val bodyStandard: TextStyle,
-    val bodyLg: TextStyle,
-    val bodyMd: TextStyle,
+data class AppTypography(
+    val displayLarge: TextStyle,
+    val displayMedium: TextStyle,
+    val displaySmall: TextStyle,
+
+    val headlineLarge: TextStyle,
+    val headlineMedium: TextStyle,
+    val headlineSmall: TextStyle,
+
+    val titleLarge: TextStyle,
+    val titleMedium: TextStyle,
+    val titleSmall: TextStyle,
+
+    val bodyLarge: TextStyle,
+    val bodyMedium: TextStyle,
     val bodySmall: TextStyle,
-    val buttonLabel: TextStyle,
-    val labelMuted: TextStyle,
-    val labelMd: TextStyle,
-    val labelSm: TextStyle,
+
+    val labelLarge: TextStyle,
+    val labelMedium: TextStyle,
+    val labelSmall: TextStyle,
 )
 
-private fun lightStyles() = AppTextStyles(
-    displayHero = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 32.sp,
-        fontWeight = FontWeight.ExtraBold,
-        lineHeight = 38.sp,
-        letterSpacing = (-0.02).sp,
+
+val AppTypographyInstance = AppTypography(
+    // Display
+    displayLarge = TextStyle(
+        fontFamily = DisplayFont,
+        fontSize = 57.sp,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 64.sp,
+        letterSpacing = (-0.25).sp,
     ),
-    sectionTitle = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 20.sp,
-        fontWeight = FontWeight.SemiBold,
-        lineHeight = 28.sp,
-        letterSpacing = (-0.01).sp,
+    displayMedium = TextStyle(
+        fontFamily = DisplayFont,
+        fontSize = 45.sp,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 52.sp,
+        letterSpacing = 0.sp,
     ),
-    headlineXl = TextStyle(
-        fontFamily = PlusJakartaSans,
+    displaySmall = TextStyle(
+        fontFamily = DisplayFont,
+        fontSize = 36.sp,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 44.sp,
+        letterSpacing = 0.sp,
+    ),
+
+    // Headline
+    headlineLarge = TextStyle(
+        fontFamily = DisplayFont,
         fontSize = 32.sp,
         fontWeight = FontWeight.Bold,
         lineHeight = 40.sp,
         letterSpacing = (-0.02).sp,
     ),
-    headlineLg = TextStyle(
-        fontFamily = PlusJakartaSans,
+    headlineMedium = TextStyle(
+        fontFamily = DisplayFont,
+        fontSize = 28.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 36.sp,
+        letterSpacing = 0.sp,
+    ),
+    headlineSmall = TextStyle(
+        fontFamily = DisplayFont,
         fontSize = 24.sp,
         fontWeight = FontWeight.SemiBold,
         lineHeight = 32.sp,
+        letterSpacing = 0.sp,
     ),
-    bodyStandard = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 15.sp,
-        fontWeight = FontWeight.Normal,
-        lineHeight = 23.sp,
-    ),
-    bodyLg = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Normal,
+
+    // Title
+    titleLarge = TextStyle(
+        fontFamily = DisplayFont,
+        fontSize = 22.sp,
+        fontWeight = FontWeight.SemiBold,
         lineHeight = 28.sp,
+        letterSpacing = 0.sp,
     ),
-    bodyMd = TextStyle(
-        fontFamily = PlusJakartaSans,
+    titleMedium = TextStyle(
+        fontFamily = BodyFont,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 24.sp,
+        letterSpacing = 0.15.sp,
+    ),
+    titleSmall = TextStyle(
+        fontFamily = BodyFont,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp,
+    ),
+
+    // Body
+    bodyLarge = TextStyle(
+        fontFamily = BodyFont,
         fontSize = 16.sp,
         fontWeight = FontWeight.Normal,
         lineHeight = 24.sp,
+        letterSpacing = 0.5.sp,
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = BodyFont,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp,
     ),
     bodySmall = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 13.sp,
+        fontFamily = BodyFont,
+        fontSize = 12.sp,
         fontWeight = FontWeight.Normal,
-        lineHeight = 18.sp,
-    ),
-    buttonLabel = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.SemiBold,
         lineHeight = 16.sp,
-        letterSpacing = 0.01.sp,
+        letterSpacing = 0.4.sp,
     ),
-    labelMuted = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 13.sp,
-        fontWeight = FontWeight.Medium,
-        lineHeight = 16.sp,
-    ),
-    labelMd = TextStyle(
-        fontFamily = PlusJakartaSans,
+
+    // Label
+    labelLarge = TextStyle(
+        fontFamily = BodyFont,
         fontSize = 14.sp,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Medium,
         lineHeight = 20.sp,
-        letterSpacing = 0.01.sp,
+        letterSpacing = 0.1.sp,
     ),
-    labelSm = TextStyle(
-        fontFamily = PlusJakartaSans,
+    labelMedium = TextStyle(
+        fontFamily = BodyFont,
         fontSize = 12.sp,
         fontWeight = FontWeight.Medium,
         lineHeight = 16.sp,
-        letterSpacing = 0.05.sp,
+        letterSpacing = 0.5.sp,
     ),
-)
-
-private fun darkStyles() = AppTextStyles(
-    displayHero = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 32.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 40.sp,
-        letterSpacing = (-0.02).sp,
-    ),
-    sectionTitle = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 24.sp,
-        fontWeight = FontWeight.SemiBold,
-        lineHeight = 32.sp,
-    ),
-    headlineXl = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 32.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 40.sp,
-        letterSpacing = (-0.02).sp,
-    ),
-    headlineLg = TextStyle(
-        fontFamily = PlusJakartaSans,
-        fontSize = 24.sp,
-        fontWeight = FontWeight.SemiBold,
-        lineHeight = 32.sp,
-    ),
-    bodyStandard = TextStyle(
-        fontFamily = Inter,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Normal,
-        lineHeight = 24.sp,
-    ),
-    bodyLg = TextStyle(
-        fontFamily = Inter,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Normal,
-        lineHeight = 28.sp,
-    ),
-    bodyMd = TextStyle(
-        fontFamily = Inter,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Normal,
-        lineHeight = 24.sp,
-    ),
-    bodySmall = TextStyle(
-        fontFamily = Inter,
-        fontSize = 12.sp,
-        fontWeight = FontWeight.Normal,
-        lineHeight = 16.sp,
-    ),
-    buttonLabel = TextStyle(
-        fontFamily = Inter,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.SemiBold,
-        lineHeight = 20.sp,
-        letterSpacing = 0.01.sp,
-    ),
-    labelMuted = TextStyle(
-        fontFamily = Inter,
-        fontSize = 12.sp,
+    labelSmall = TextStyle(
+        fontFamily = BodyFont,
+        fontSize = 11.sp,
         fontWeight = FontWeight.Medium,
         lineHeight = 16.sp,
-        letterSpacing = 0.05.sp,
-    ),
-    labelMd = TextStyle(
-        fontFamily = Inter,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.SemiBold,
-        lineHeight = 20.sp,
-        letterSpacing = 0.01.sp,
-    ),
-    labelSm = TextStyle(
-        fontFamily = Inter,
-        fontSize = 12.sp,
-        fontWeight = FontWeight.Medium,
-        lineHeight = 16.sp,
-        letterSpacing = 0.05.sp,
+        letterSpacing = 0.5.sp,
     ),
 )
 
-val LightAppTypography = lightStyles()
-val DarkAppTypography = darkStyles()
-
-val LightMaterialTypography = Typography(
-    displayLarge = LightAppTypography.headlineXl,
-    headlineLarge = LightAppTypography.headlineLg,
-    bodyLarge = LightAppTypography.bodyLg,
-    bodyMedium = LightAppTypography.bodyStandard,
-    labelLarge = LightAppTypography.labelMd,
-    labelSmall = LightAppTypography.labelSm,
+val AppMaterialTypography = Typography(
+    displayLarge = AppTypographyInstance.displayLarge,
+    displayMedium = AppTypographyInstance.displayMedium,
+    displaySmall = AppTypographyInstance.displaySmall,
+    headlineLarge = AppTypographyInstance.headlineLarge,
+    headlineMedium = AppTypographyInstance.headlineMedium,
+    headlineSmall = AppTypographyInstance.headlineSmall,
+    titleLarge = AppTypographyInstance.titleLarge,
+    titleMedium = AppTypographyInstance.titleMedium,
+    titleSmall = AppTypographyInstance.titleSmall,
+    bodyLarge = AppTypographyInstance.bodyLarge,
+    bodyMedium = AppTypographyInstance.bodyMedium,
+    bodySmall = AppTypographyInstance.bodySmall,
+    labelLarge = AppTypographyInstance.labelLarge,
+    labelMedium = AppTypographyInstance.labelMedium,
+    labelSmall = AppTypographyInstance.labelSmall,
 )
 
-val DarkMaterialTypography = Typography(
-    displayLarge = DarkAppTypography.headlineXl,
-    headlineLarge = DarkAppTypography.headlineLg,
-    bodyLarge = DarkAppTypography.bodyLg,
-    bodyMedium = DarkAppTypography.bodyStandard,
-    labelLarge = DarkAppTypography.labelMd,
-    labelSmall = DarkAppTypography.labelSm,
-)
-
-val LocalAppTypography = staticCompositionLocalOf { LightAppTypography }
+val LocalAppTypography = staticCompositionLocalOf { AppTypographyInstance }

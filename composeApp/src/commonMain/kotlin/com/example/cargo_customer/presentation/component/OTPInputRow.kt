@@ -11,10 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 
 @Composable
 fun OTPInputRow(
@@ -23,7 +21,7 @@ fun OTPInputRow(
     onBoxClick: () -> Unit
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalArrangement = Arrangement.spacedBy(CargoTheme.dimens.spacing.sm),
         verticalAlignment = Alignment.CenterVertically
     ) {
         repeat(codeLength) { index ->
@@ -33,27 +31,27 @@ fun OTPInputRow(
 
             Box(
                 modifier = Modifier
-                    .size(48.dp)
+                    .size(CargoTheme.dimens.sizing.minTouchTarget)
                     .background(
-                        color = if (isFilled) AppTheme.colors.surfaceContainerHigh else AppTheme.colors.surface,
-                        shape = AppTheme.shapes.component4()
+                        color = if (isFilled) CargoTheme.colorScheme.surfaceContainerHigh else CargoTheme.colorScheme.surface,
+                        shape = CargoTheme.shapes.medium
                     )
                     .border(
                         width = if (isActive) 2.dp else 1.dp,
                         color = when {
-                            isActive -> AppTheme.colors.primary
-                            isFilled -> AppTheme.colors.primary.copy(alpha = 0.4f)
-                            else -> AppTheme.colors.outline.copy(alpha = 0.4f)
+                            isActive -> CargoTheme.colorScheme.primary
+                            isFilled -> CargoTheme.colorScheme.primary.copy(alpha = 0.4f)
+                            else -> CargoTheme.colorScheme.outline.copy(alpha = 0.4f)
                         },
-                        shape = AppTheme.shapes.component4()
+                        shape = CargoTheme.shapes.medium
                     )
                     .clickable { onBoxClick() },
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = char,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
+                    style = CargoTheme.typography.titleMedium,
+                    color = CargoTheme.colorScheme.onSurface
                 )
             }
         }

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
@@ -19,36 +18,37 @@ import androidx.compose.ui.unit.dp
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.google_login
 import cargo_customer.composeapp.generated.resources.ic_google
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun GoogleButton (modifier: Modifier , onClick:()->Unit) {
+fun GoogleButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     OutlinedButton(
-        modifier=modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         onClick = onClick,
-        shape = RoundedCornerShape(size = AppTheme.dimens.gutter),
+        shape = CargoTheme.shapes.large,
         colors = ButtonDefaults.buttonColors(
-            containerColor = AppTheme.colors.surface,
-            contentColor = AppTheme.colors.onSurface
+            containerColor = CargoTheme.colorScheme.surface,
+            contentColor = CargoTheme.colorScheme.onSurface
         ),
-        border = BorderStroke(1.dp, AppTheme.colors.outlineVariant)
-    ){
-        Row (
+        border = BorderStroke(1.dp, CargoTheme.colorScheme.outlineVariant)
+    ) {
+        Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
             Icon(
-                contentDescription = "",
+                contentDescription = null,
                 painter = painterResource(Res.drawable.ic_google),
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier.size(CargoTheme.dimens.sizing.iconMd),
                 tint = Color.Unspecified
             )
             Text(
-                modifier = modifier.padding(12.dp),
+                modifier = Modifier.padding(vertical = CargoTheme.dimens.spacing.md),
                 text = stringResource(Res.string.google_login),
-                style = AppTheme.typography.bodySmall)
+                style = CargoTheme.typography.bodyMedium
+            )
         }
     }
 }

@@ -1,4 +1,5 @@
 package com.example.cargo_customer.presentation.theme
+
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -6,200 +7,342 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-private val LightSurface = Color(0xFFFBF8FF)
-private val LightSurfaceDim = Color(0xFFD9D8F0)
-private val LightSurfaceBright = Color(0xFFFBF8FF)
-private val LightSurfaceContainerLowest = Color(0xFFFFFFFF)
-private val LightSurfaceContainerLow = Color(0xFFF5F2FF)
-private val LightSurfaceContainer = Color(0xFFEEECFF)
-private val LightSurfaceContainerHigh = Color(0xFFE7E6FF)
-private val LightSurfaceContainerHighest = Color(0xFFE1E0F9)
-private val LightOnSurface = Color(0xFF191A2B)
-private val LightOnSurfaceVariant = Color(0xFF474651)
-private val LightInverseSurface = Color(0xFF2E2F41)
-private val LightInverseOnSurface = Color(0xFFF1EFFF)
-private val LightOutline = Color(0xFF777682)
-private val LightOutlineVariant = Color(0xFFC8C5D2)
-private val LightSurfaceTint = Color(0xFF5855A3)
-private val LightPrimary = Color(0xFF05003E)
-private val LightOnPrimary = Color(0xFFFFFFFF)
-private val LightPrimaryContainer = Color(0xFF1A1464)
-private val LightOnPrimaryContainer = Color(0xFF8481D3)
-private val LightInversePrimary = Color(0xFFC3C0FF)
-private val LightSecondary = Color(0xFF264BDD)
-private val LightOnSecondary = Color(0xFFFFFFFF)
-private val LightSecondaryContainer = Color(0xFF4666F7)
-private val LightOnSecondaryContainer = Color(0xFFFFFBFF)
-private val LightTertiary = Color(0xFF150A00)
-private val LightOnTertiary = Color(0xFFFFFFFF)
-private val LightTertiaryContainer = Color(0xFF331E00)
-private val LightOnTertiaryContainer = Color(0xFFBD7C00)
-private val LightError = Color(0xFFBA1A1A)
-private val LightOnError = Color(0xFFFFFFFF)
-private val LightErrorContainer = Color(0xFFFFDAD6)
-private val LightOnErrorContainer = Color(0xFF93000A)
-private val LightPrimaryFixed = Color(0xFFE2DFFF)
-private val LightPrimaryFixedDim = Color(0xFFC3C0FF)
-private val LightOnPrimaryFixed = Color(0xFF12095E)
-private val LightOnPrimaryFixedVariant = Color(0xFF403D8A)
-private val LightSecondaryFixed = Color(0xFFDEE1FF)
-private val LightSecondaryFixedDim = Color(0xFFB9C3FF)
-private val LightOnSecondaryFixed = Color(0xFF001258)
-private val LightOnSecondaryFixedVariant = Color(0xFF0033C2)
-private val LightTertiaryFixed = Color(0xFFFFDDB4)
-private val LightTertiaryFixedDim = Color(0xFFFFB955)
-private val LightOnTertiaryFixed = Color(0xFF291800)
-private val LightOnTertiaryFixedVariant = Color(0xFF633F00)
-private val LightBackground = Color(0xFFFBF8FF)
-private val LightOnBackground = Color(0xFF191A2B)
-private val LightSurfaceVariant = Color(0xFFE1E0F9)
+// ============================================================================
+// PALETTE TOKENS
+// ============================================================================
+// Raw color values organized by hue family.
+// These are NEVER used directly in composables — only referenced here
+// to build the semantic color schemes below.
+// ============================================================================
 
-private val DarkSurface = Color(0xFF101419)
-private val DarkSurfaceDim = Color(0xFF101419)
-private val DarkSurfaceBright = Color(0xFF363940)
-private val DarkSurfaceContainerLowest = Color(0xFF0B0E14)
-private val DarkSurfaceContainerLow = Color(0xFF181C22)
-private val DarkSurfaceContainer = Color(0xFF1C2026)
-private val DarkSurfaceContainerHigh = Color(0xFF272A30)
-private val DarkSurfaceContainerHighest = Color(0xFF31353B)
-private val DarkOnSurface = Color(0xFFE0E2EB)
-private val DarkOnSurfaceVariant = Color(0xFFC0C7D4)
-private val DarkInverseSurface = Color(0xFFE0E2EB)
-private val DarkInverseOnSurface = Color(0xFF2D3037)
-private val DarkOutline = Color(0xFF8B919E)
-private val DarkOutlineVariant = Color(0xFF414752)
-private val DarkSurfaceTint = Color(0xFFA4C8FF)
-private val DarkPrimary = Color(0xFFA4C8FF)
-private val DarkOnPrimary = Color(0xFF00315E)
-private val DarkPrimaryContainer = Color(0xFF4B9EFF)
-private val DarkOnPrimaryContainer = Color(0xFF003463)
-private val DarkInversePrimary = Color(0xFF005FAD)
-private val DarkSecondary = Color(0xFFC7C5D5)
-private val DarkOnSecondary = Color(0xFF2F2F3C)
-private val DarkSecondaryContainer = Color(0xFF464553)
-private val DarkOnSecondaryContainer = Color(0xFFB5B3C4)
-private val DarkTertiary = Color(0xFFFFB869)
-private val DarkOnTertiary = Color(0xFF482900)
-private val DarkTertiaryContainer = Color(0xFFDE8800)
-private val DarkOnTertiaryContainer = Color(0xFF4D2C00)
-private val DarkError = Color(0xFFFFB4AB)
-private val DarkOnError = Color(0xFF690005)
-private val DarkErrorContainer = Color(0xFF93000A)
-private val DarkOnErrorContainer = Color(0xFFFFDAD6)
-private val DarkPrimaryFixed = Color(0xFFD4E3FF)
-private val DarkPrimaryFixedDim = Color(0xFFA4C8FF)
-private val DarkOnPrimaryFixed = Color(0xFF001C3A)
-private val DarkOnPrimaryFixedVariant = Color(0xFF004784)
-private val DarkSecondaryFixed = Color(0xFFE3E0F2)
-private val DarkSecondaryFixedDim = Color(0xFFC7C5D5)
-private val DarkOnSecondaryFixed = Color(0xFF1A1A26)
-private val DarkOnSecondaryFixedVariant = Color(0xFF464553)
-private val DarkTertiaryFixed = Color(0xFFFFDCBB)
-private val DarkTertiaryFixedDim = Color(0xFFFFB869)
-private val DarkOnTertiaryFixed = Color(0xFF2C1700)
-private val DarkOnTertiaryFixedVariant = Color(0xFF683D00)
-private val DarkBackground = Color(0xFF101419)
-private val DarkOnBackground = Color(0xFFE0E2EB)
-private val DarkSurfaceVariant = Color(0xFF31353B)
+// — Brand / Primary (Deep Navy Blue) —
+private object PrimaryPalette {
+    val primary10 = Color(0xFF080C14)
+    val primary20 = Color(0xFF0B1220)
+    val primary30 = Color(0xFF0F172A) // #0F172A (Primary: Trust & Depth - Deep Navy Blue)
+    val primary40 = Color(0xFF1E2E4F)
+    val primary50 = Color(0xFF2C4373)
+    val primary60 = Color(0xFF3B5998)
+    val primary70 = Color(0xFF627CAD)
+    val primary80 = Color(0xFF8FA1C4)
+    val primary90 = Color(0xFFC7D1E5)
+    val primary95 = Color(0xFFE3E8F2)
+    val primary99 = Color(0xFFF5F7FA)
+}
+
+// — Secondary (Vibrant Safety Orange) —
+private object SecondaryPalette {
+    val secondary10 = Color(0xFF3E0A00)
+    val secondary20 = Color(0xFF671100)
+    val secondary30 = Color(0xFF9E1F00)
+    val secondary40 = Color(0xFFD03D0D)
+    val secondary50 = Color(0xFFFF5722) // #FF5722 (Secondary: Speed & Alertness - Vibrant Safety Orange)
+    val secondary60 = Color(0xFFFF784E)
+    val secondary70 = Color(0xFFFF997A)
+    val secondary80 = Color(0xFFFFBBA7)
+    val secondary90 = Color(0xFFFFDDD3)
+    val secondary95 = Color(0xFFFFF0EC)
+    val secondary99 = Color(0xFFFFFDFD)
+}
+
+// — Tertiary (Electric Blue Accent) —
+private object TertiaryPalette {
+    val tertiary10 = Color(0xFF00123D)
+    val tertiary20 = Color(0xFF002275)
+    val tertiary30 = Color(0xFF0038A8)
+    val tertiary40 = Color(0xFF1D4ED8)
+    val tertiary50 = Color(0xFF2563EB) // #2563EB (Accent: Modern Tech - Electric Blue)
+    val tertiary60 = Color(0xFF3B82F6)
+    val tertiary70 = Color(0xFF60A5FA)
+    val tertiary80 = Color(0xFF93C5FD)
+    val tertiary90 = Color(0xFFDBEAFE)
+    val tertiary95 = Color(0xFFEFF6FF)
+    val tertiary99 = Color(0xFFF8FAFC)
+}
+
+// — Neutral (Cool Slate / Navy Grays, Crisp Ice White & Dark Charcoal) —
+private object NeutralPalette {
+    val neutral0 = Color(0xFF000000)
+    val neutral4 = Color(0xFF080C14)
+    val neutral6 = Color(0xFF0F172A) // Sleek Deep Navy dark mode background base (#0F172A)
+    val neutral10 = Color(0xFF1E293B) // #1E293B (Text / Dark Neutral: Dark Charcoal)
+    val neutral12 = Color(0xFF242E42)
+    val neutral17 = Color(0xFF2E3B52)
+    val neutral20 = Color(0xFF334155)
+    val neutral22 = Color(0xFF3E4E68)
+    val neutral24 = Color(0xFF475569)
+    val neutral30 = Color(0xFF64748B)
+    val neutral40 = Color(0xFF708090)
+    val neutral50 = Color(0xFF8A9BA8)
+    val neutral60 = Color(0xFF94A3B8)
+    val neutral70 = Color(0xFFCBD5E1)
+    val neutral80 = Color(0xFFE2E8F0)
+    val neutral87 = Color(0xFFEDF2F7)
+    val neutral90 = Color(0xFFF1F5F9)
+    val neutral92 = Color(0xFFF4F6F9)
+    val neutral94 = Color(0xFFF5F7FA)
+    val neutral95 = Color(0xFFF8FAFC) // #F8FAFC (Background / Light Neutral: Crisp Ice White)
+    val neutral96 = Color(0xFFF9FAFB)
+    val neutral98 = Color(0xFFFAFBFC)
+    val neutral99 = Color(0xFFFCFDFE)
+    val neutral100 = Color(0xFFFFFFFF) // Pure Solid White Background for surfaces/cards
+}
+
+// — Neutral Variant (Outline Grays) —
+private object NeutralVariantPalette {
+    val nv10 = Color(0xFF0F172A)
+    val nv20 = Color(0xFF1E293B)
+    val nv30 = Color(0xFF334155)
+    val nv40 = Color(0xFF475569)
+    val nv50 = Color(0xFF64748B)
+    val nv60 = Color(0xFF94A3B8)
+    val nv70 = Color(0xFFCBD5E1)
+    val nv80 = Color(0xFFE2E8F0)
+    val nv90 = Color(0xFFF1F5F9)
+    val nv95 = Color(0xFFF8FAFC)
+}
+
+// — Semantic Status Colors —
+private object StatusPalette {
+    // Error (Red)
+    val error10 = Color(0xFF410002)
+    val error20 = Color(0xFF690005)
+    val error30 = Color(0xFF93000A)
+    val error40 = Color(0xFFBA1A1A)
+    val error80 = Color(0xFFFFB4AB)
+    val error90 = Color(0xFFFFDAD6)
+    val error95 = Color(0xFFFFEDEA)
+
+    // Success (Green)
+    val success10 = Color(0xFF002209)
+    val success20 = Color(0xFF053916)
+    val success30 = Color(0xFF0E5C29)
+    val success40 = Color(0xFF27AE60) // #27AE60 (Target success)
+    val success80 = Color(0xFF72D594)
+    val success90 = Color(0xFFA3E9B9)
+    val success95 = Color(0xFFD1F6DC)
+
+    // Warning (Amber)
+    val warning10 = Color(0xFF261A00)
+    val warning20 = Color(0xFF402D00)
+    val warning30 = Color(0xFF5C4200)
+    val warning40 = Color(0xFF7A5900)
+    val warning80 = Color(0xFFF9BD48)
+    val warning90 = Color(0xFFFFDEA1)
+    val warning95 = Color(0xFFFFEED3)
+
+    // Info (Blue)
+    val info10 = Color(0xFF001D35)
+    val info20 = Color(0xFF003356)
+    val info30 = Color(0xFF004A79)
+    val info40 = Color(0xFF00639E)
+    val info80 = Color(0xFF96CCFF)
+    val info90 = Color(0xFFCEE5FF)
+    val info95 = Color(0xFFE8F1FF)
+}
+
+// ============================================================================
+// EXTENDED SEMANTIC COLORS
+// ============================================================================
+// Custom semantic colors that extend beyond Material 3's built-in scheme.
+// Accessed via `CargoTheme.extendedColors`.
+// ============================================================================
+
+@Immutable
+data class ExtendedColorScheme(
+    // — Status —
+    val success: Color,
+    val onSuccess: Color,
+    val successContainer: Color,
+    val onSuccessContainer: Color,
+    val warning: Color,
+    val onWarning: Color,
+    val warningContainer: Color,
+    val onWarningContainer: Color,
+    val info: Color,
+    val onInfo: Color,
+    val infoContainer: Color,
+    val onInfoContainer: Color,
+
+    // — Semantic Surface Roles —
+    val cardBackground: Color,
+    val textPrimary: Color,
+    val textSecondary: Color,
+    val textTertiary: Color,
+    val textDisabled: Color,
+    val border: Color,
+    val borderVariant: Color,
+    val divider: Color,
+    val shimmer: Color,
+    val overlay: Color,
+
+    // — Brand —
+    val brandAccent: Color,
+    val onBrandAccent: Color,
+)
+
+val LightExtendedColors = ExtendedColorScheme(
+    // Status
+    success = StatusPalette.success40,
+    onSuccess = NeutralPalette.neutral100,
+    successContainer = StatusPalette.success90,
+    onSuccessContainer = StatusPalette.success10,
+    warning = StatusPalette.warning40,
+    onWarning = NeutralPalette.neutral100,
+    warningContainer = StatusPalette.warning90,
+    onWarningContainer = StatusPalette.warning10,
+    info = StatusPalette.info40,
+    onInfo = NeutralPalette.neutral100,
+    infoContainer = StatusPalette.info90,
+    onInfoContainer = StatusPalette.info10,
+
+    // Semantic Surface
+    cardBackground = NeutralPalette.neutral100,
+    textPrimary = NeutralPalette.neutral10,
+    textSecondary = NeutralPalette.neutral40,
+    textTertiary = NeutralPalette.neutral50,
+    textDisabled = NeutralPalette.neutral70,
+    border = NeutralVariantPalette.nv80,
+    borderVariant = NeutralVariantPalette.nv90,
+    divider = NeutralVariantPalette.nv90,
+    shimmer = NeutralPalette.neutral90,
+    overlay = Color(0x52000000),
+
+    // Brand
+    brandAccent = TertiaryPalette.tertiary50,
+    onBrandAccent = NeutralPalette.neutral100,
+)
+
+val DarkExtendedColors = ExtendedColorScheme(
+    // Status
+    success = StatusPalette.success80,
+    onSuccess = StatusPalette.success20,
+    successContainer = StatusPalette.success30,
+    onSuccessContainer = StatusPalette.success90,
+    warning = StatusPalette.warning80,
+    onWarning = StatusPalette.warning20,
+    warningContainer = StatusPalette.warning30,
+    onWarningContainer = StatusPalette.warning90,
+    info = StatusPalette.info80,
+    onInfo = StatusPalette.info20,
+    infoContainer = StatusPalette.info30,
+    onInfoContainer = StatusPalette.info90,
+
+    // Semantic Surface
+    cardBackground = NeutralPalette.neutral12,
+    textPrimary = NeutralPalette.neutral90,
+    textSecondary = NeutralPalette.neutral60,
+    textTertiary = NeutralPalette.neutral50,
+    textDisabled = NeutralPalette.neutral30,
+    border = NeutralVariantPalette.nv30,
+    borderVariant = NeutralVariantPalette.nv20,
+    divider = NeutralVariantPalette.nv20,
+    shimmer = NeutralPalette.neutral17,
+    overlay = Color(0x99000000),
+
+    // Brand
+    brandAccent = TertiaryPalette.tertiary80,
+    onBrandAccent = TertiaryPalette.tertiary20,
+)
+
+val LocalExtendedColors = staticCompositionLocalOf { LightExtendedColors }
+
+// ============================================================================
+// MATERIAL 3 COLOR SCHEMES
+// ============================================================================
+// Maps palette tokens → Material 3 ColorScheme roles.
+// ============================================================================
 
 val LightColorScheme: ColorScheme = lightColorScheme(
-    primary = LightPrimary,
-    onPrimary = LightOnPrimary,
-    primaryContainer = LightPrimaryContainer,
-    onPrimaryContainer = LightOnPrimaryContainer,
-    inversePrimary = LightInversePrimary,
-    secondary = LightSecondary,
-    onSecondary = LightOnSecondary,
-    secondaryContainer = LightSecondaryContainer,
-    onSecondaryContainer = LightOnSecondaryContainer,
-    tertiary = LightTertiary,
-    onTertiary = LightOnTertiary,
-    tertiaryContainer = LightTertiaryContainer,
-    onTertiaryContainer = LightOnTertiaryContainer,
-    error = LightError,
-    onError = LightOnError,
-    errorContainer = LightErrorContainer,
-    onErrorContainer = LightOnErrorContainer,
-    background = LightBackground,
-    onBackground = LightOnBackground,
-    surface = LightSurface,
-    onSurface = LightOnSurface,
-    surfaceVariant = LightSurfaceVariant,
-    onSurfaceVariant = LightOnSurfaceVariant,
-    outline = LightOutline,
-    outlineVariant = LightOutlineVariant,
-    scrim = Color(0x99000000),
-    inverseSurface = LightInverseSurface,
-    inverseOnSurface = LightInverseOnSurface,
-    surfaceDim = LightSurfaceDim,
-    surfaceBright = LightSurfaceBright,
-    surfaceContainerLowest = LightSurfaceContainerLowest,
-    surfaceContainerLow = LightSurfaceContainerLow,
-    surfaceContainer = LightSurfaceContainer,
-    surfaceContainerHigh = LightSurfaceContainerHigh,
-    surfaceContainerHighest = LightSurfaceContainerHighest,
-    surfaceTint = LightSurfaceTint,
+    primary = PrimaryPalette.primary30,
+    onPrimary = NeutralPalette.neutral100,
+    primaryContainer = PrimaryPalette.primary90,
+    onPrimaryContainer = PrimaryPalette.primary10,
+    inversePrimary = PrimaryPalette.primary80,
+
+    secondary = SecondaryPalette.secondary50,
+    onSecondary = NeutralPalette.neutral100,
+    secondaryContainer = SecondaryPalette.secondary90,
+    onSecondaryContainer = SecondaryPalette.secondary10,
+
+    tertiary = TertiaryPalette.tertiary50,
+    onTertiary = NeutralPalette.neutral100,
+    tertiaryContainer = TertiaryPalette.tertiary90,
+    onTertiaryContainer = TertiaryPalette.tertiary10,
+
+    error = StatusPalette.error40,
+    onError = NeutralPalette.neutral100,
+    errorContainer = StatusPalette.error90,
+    onErrorContainer = StatusPalette.error10,
+
+    background = NeutralPalette.neutral95,
+    onBackground = NeutralPalette.neutral10,
+
+    surface = NeutralPalette.neutral95,
+    onSurface = NeutralPalette.neutral10,
+    surfaceVariant = NeutralVariantPalette.nv95,
+    onSurfaceVariant = NeutralVariantPalette.nv30,
+
+    outline = NeutralVariantPalette.nv50,
+    outlineVariant = NeutralVariantPalette.nv80,
+    scrim = NeutralPalette.neutral0.copy(alpha = 0.38f),
+
+    inverseSurface = NeutralPalette.neutral20,
+    inverseOnSurface = NeutralPalette.neutral95,
+
+    surfaceDim = NeutralPalette.neutral95,
+    surfaceBright = NeutralPalette.neutral100,
+    surfaceContainerLowest = NeutralPalette.neutral100,
+    surfaceContainerLow = NeutralPalette.neutral98,
+    surfaceContainer = NeutralPalette.neutral96,
+    surfaceContainerHigh = NeutralPalette.neutral94,
+    surfaceContainerHighest = NeutralPalette.neutral92,
+    surfaceTint = PrimaryPalette.primary30,
 )
 
 val DarkColorScheme: ColorScheme = darkColorScheme(
-    primary = DarkPrimary,
-    onPrimary = DarkOnPrimary,
-    primaryContainer = DarkPrimaryContainer,
-    onPrimaryContainer = DarkOnPrimaryContainer,
-    inversePrimary = DarkInversePrimary,
-    secondary = DarkSecondary,
-    onSecondary = DarkOnSecondary,
-    secondaryContainer = DarkSecondaryContainer,
-    onSecondaryContainer = DarkOnSecondaryContainer,
-    tertiary = DarkTertiary,
-    onTertiary = DarkOnTertiary,
-    tertiaryContainer = DarkTertiaryContainer,
-    onTertiaryContainer = DarkOnTertiaryContainer,
-    error = DarkError,
-    onError = DarkOnError,
-    errorContainer = DarkErrorContainer,
-    onErrorContainer = DarkOnErrorContainer,
-    background = DarkBackground,
-    onBackground = DarkOnBackground,
-    surface = DarkSurface,
-    onSurface = DarkOnSurface,
-    surfaceVariant = DarkSurfaceVariant,
-    onSurfaceVariant = DarkOnSurfaceVariant,
-    outline = DarkOutline,
-    outlineVariant = DarkOutlineVariant,
-    scrim = Color(0xB3000000),
-    inverseSurface = DarkInverseSurface,
-    inverseOnSurface = DarkInverseOnSurface,
-    surfaceDim = DarkSurfaceDim,
-    surfaceBright = DarkSurfaceBright,
-    surfaceContainerLowest = DarkSurfaceContainerLowest,
-    surfaceContainerLow = DarkSurfaceContainerLow,
-    surfaceContainer = DarkSurfaceContainer,
-    surfaceContainerHigh = DarkSurfaceContainerHigh,
-    surfaceContainerHighest = DarkSurfaceContainerHighest,
-    surfaceTint = DarkSurfaceTint,
-)
+    primary = PrimaryPalette.primary80,
+    onPrimary = PrimaryPalette.primary20,
+    primaryContainer = PrimaryPalette.primary30,
+    onPrimaryContainer = PrimaryPalette.primary90,
+    inversePrimary = PrimaryPalette.primary40,
 
-@Immutable
-data class ThemeExtraColors(
-    val brandBlue: Color,
-    val cardShadow: Color,
-    val glassOverlay: Color,
-    val divider: Color,
-)
+    secondary = SecondaryPalette.secondary80,
+    onSecondary = SecondaryPalette.secondary20,
+    secondaryContainer = SecondaryPalette.secondary30,
+    onSecondaryContainer = SecondaryPalette.secondary90,
 
-val LightExtraColors = ThemeExtraColors(
-    brandBlue = LightSecondary,
-    cardShadow = Color(0x0F000000),
-    glassOverlay = Color(0x80FFFFFF),
-    divider = LightOutlineVariant,
-)
+    tertiary = TertiaryPalette.tertiary80,
+    onTertiary = TertiaryPalette.tertiary20,
+    tertiaryContainer = TertiaryPalette.tertiary30,
+    onTertiaryContainer = TertiaryPalette.tertiary90,
 
-val DarkExtraColors = ThemeExtraColors(
-    brandBlue = DarkPrimaryContainer,
-    cardShadow = Color(0x33000000),
-    glassOverlay = Color(0x1AFFFFFF),
-    divider = DarkOutlineVariant,
-)
+    error = StatusPalette.error80,
+    onError = StatusPalette.error20,
+    errorContainer = StatusPalette.error30,
+    onErrorContainer = StatusPalette.error90,
 
-val LocalThemeExtraColors = staticCompositionLocalOf { LightExtraColors }
+    background = NeutralPalette.neutral6,
+    onBackground = NeutralPalette.neutral90,
+
+    surface = NeutralPalette.neutral6,
+    onSurface = NeutralPalette.neutral90,
+    surfaceVariant = NeutralVariantPalette.nv30,
+    onSurfaceVariant = NeutralVariantPalette.nv80,
+
+    outline = NeutralVariantPalette.nv60,
+    outlineVariant = NeutralVariantPalette.nv30,
+    scrim = NeutralPalette.neutral0.copy(alpha = 0.60f),
+
+    inverseSurface = NeutralPalette.neutral90,
+    inverseOnSurface = NeutralPalette.neutral20,
+
+    surfaceDim = NeutralPalette.neutral6,
+    surfaceBright = NeutralPalette.neutral24,
+    surfaceContainerLowest = NeutralPalette.neutral4,
+    surfaceContainerLow = NeutralPalette.neutral10,
+    surfaceContainer = NeutralPalette.neutral12,
+    surfaceContainerHigh = NeutralPalette.neutral17,
+    surfaceContainerHighest = NeutralPalette.neutral22,
+    surfaceTint = PrimaryPalette.primary80,
+)

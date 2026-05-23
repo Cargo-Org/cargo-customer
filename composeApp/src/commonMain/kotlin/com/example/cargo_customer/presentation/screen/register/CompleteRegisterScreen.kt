@@ -33,7 +33,8 @@ import cargo_customer.composeapp.generated.resources.send_otp
 import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.component.WelcomeHeader
-import com.example.cargo_customer.presentation.theme.AppTheme
+import com.example.cargo_customer.presentation.theme.CargoCustomerTheme
+import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -51,12 +52,12 @@ private fun CompleteRegisterProfileScreenContent(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(AppTheme.colors.background),
+            .background(CargoTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ){
         Column(
-            modifier = modifier.padding(horizontal = AppTheme.dimens.pageMargin),
-            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.xs),
+            modifier = modifier.padding(horizontal = CargoTheme.dimens.maxContentWidth),
+            verticalArrangement = Arrangement.spacedBy(CargoTheme.dimens.maxContentWidth),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             WelcomeHeader(
@@ -64,7 +65,7 @@ private fun CompleteRegisterProfileScreenContent(
                 headerTitle = stringResource(Res.string.complete_your_profile),
                 subTitle = stringResource(Res.string.complete_profile_subtitle)
             )
-            Spacer(modifier = Modifier.height(AppTheme.dimens.xs))
+            Spacer(modifier = Modifier.height(CargoTheme.dimens.maxContentWidth))
             InputField(
                 modifier = Modifier.fillMaxWidth(),
                 value = name,
@@ -89,7 +90,7 @@ private fun CompleteRegisterProfileScreenContent(
                 placeholder = stringResource(Res.string.email_placeholder),
                 leadingIconRes = Res.drawable.ic_email
             )
-            Spacer(modifier = Modifier.height(AppTheme.dimens.md))
+            Spacer(modifier = Modifier.height(CargoTheme.dimens.maxContentWidth))
             ColoredActionButton(
                 modifier = modifier,
                 onClick = {},

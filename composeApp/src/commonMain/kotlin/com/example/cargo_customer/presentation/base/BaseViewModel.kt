@@ -18,15 +18,16 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.contracts.Effect
 import kotlin.coroutines.cancellation.CancellationException
 
 
 abstract class BaseViewModel<State, Effect>(
-    initialValue: State
+    initialValue: State? = null
 ): ViewModel() {
 
-    private val _state: MutableStateFlow<State> = MutableStateFlow(initialValue)
-    val state: StateFlow<State> = _state.asStateFlow()
+    private val _state: MutableStateFlow<State?> = MutableStateFlow(initialValue)
+    val state: StateFlow<State?> = _state.asStateFlow()
 
     private val _effect: MutableSharedFlow<Effect> = MutableSharedFlow()
     val effect: SharedFlow<Effect> = _effect.asSharedFlow()
@@ -38,7 +39,7 @@ abstract class BaseViewModel<State, Effect>(
         }
     }
 
-    protected fun updateState(reducer: State.() -> State){
+    protected fun updateState(reducer: State?.() -> State){
         _state.update { it.reducer() }
     }
 

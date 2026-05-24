@@ -46,6 +46,7 @@ private fun LoginScreenContent(
     val focusManager = LocalFocusManager.current
     val emailFocusRequester = remember { FocusRequester() }
     val passwordFocusRequester = remember { FocusRequester() }
+    var isLoading by remember { mutableStateOf(false) }
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -80,7 +81,7 @@ private fun LoginScreenContent(
                 placeholder = stringResource(Res.string.password_placeholder),
                 leadingIconRes = Res.drawable.ic_lock,
                 keyboardType = KeyboardType.Password,
-                isPasswordField = true,
+                isPasswordField = isLoading,
                 isPasswordVisible = passwordVisible,
                 onVisibilityChange = {
                     passwordVisible = !passwordVisible

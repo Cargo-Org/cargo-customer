@@ -17,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import cargo_customer.composeapp.generated.resources.*
@@ -41,6 +43,9 @@ private fun LoginScreenContent(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+    val focusManager = LocalFocusManager.current
+    val emailFocusRequester = remember { FocusRequester() }
+    val passwordFocusRequester = remember { FocusRequester() }
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -64,7 +69,9 @@ private fun LoginScreenContent(
                 label = stringResource(Res.string.email_label),
                 placeholder = stringResource(Res.string.email_placeholder),
                 leadingIconRes = Res.drawable.ic_email,
-                keyboardType = KeyboardType.Email
+                keyboardType = KeyboardType.Email,
+                focusRequester = emailFocusRequester,
+                onNext = { passwordFocusRequester.requestFocus() }
             )
             InputField(
                 value = password,
@@ -77,9 +84,11 @@ private fun LoginScreenContent(
                 isPasswordVisible = passwordVisible,
                 onVisibilityChange = {
                     passwordVisible = !passwordVisible
-                }
+                },
+                focusRequester = passwordFocusRequester,
+                onDone = { focusManager.clearFocus() }
             )
-            TextButton(onClick = {}) {
+            TextButton(onClick = { focusManager.clearFocus() }) {
                 Text(
                     text = stringResource(Res.string.forget_password),
                     style = CargoTheme.typography.labelMedium,
@@ -89,7 +98,7 @@ private fun LoginScreenContent(
             ColoredActionButton(
                 text = stringResource(Res.string.sign_in_action),
                 isLoading = true,
-                onClick = {}
+                onClick = { focusManager.clearFocus() }
             )
             OrDivider(
                 modifier = Modifier.padding(vertical = CargoTheme.dimens.spacing.lg),

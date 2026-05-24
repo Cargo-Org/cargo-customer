@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -12,7 +13,11 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -34,7 +39,10 @@ fun InputField(
     isPasswordField: Boolean = false,
     isPasswordVisible: Boolean = false,
     onVisibilityChange: (() -> Unit)? = null,
-    keyboardType: KeyboardType = KeyboardType.Text
+    keyboardType: KeyboardType = KeyboardType.Text,
+    focusRequester: FocusRequester = remember { FocusRequester() },
+    onNext: (() -> Unit)? = null,
+    onDone: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -50,7 +58,7 @@ fun InputField(
         OutlinedTextField(
             value = value,
             onValueChange = onValueChanged,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().focusRequester(focusRequester),
             visualTransformation =
                 if (isPasswordField && !isPasswordVisible)
                     PasswordVisualTransformation()
@@ -63,7 +71,18 @@ fun InputField(
                     color = CargoTheme.colorScheme.onSurfaceVariant
                 )
             },
-            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType,
+                imeAction = when {
+                    onNext != null -> ImeAction.Next
+                    onDone != null -> ImeAction.Done
+                    else -> ImeAction.Default
+                }
+            ),
+            keyboardActions = KeyboardActions(
+                onNext = { onNext?.invoke() },
+                onDone = { onDone?.invoke() }
+            ),
             leadingIcon = leadingIconRes?.let { icon ->
                 {
                     Icon(

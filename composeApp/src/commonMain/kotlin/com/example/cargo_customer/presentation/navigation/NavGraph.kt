@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cargo_customer.presentation.login.LoginScreen
+import com.example.cargo_customer.presentation.screen.splash.SplashScreen
 
 
 @Composable
@@ -26,6 +27,7 @@ fun NavGraph(
             startDestination = startDestination,
             modifier = modifier
         ) {
+            composable<Route.SplashRoute> { SplashScreen() }
             composable<Route.LoginRoute> { LoginScreen() }
         }
     }

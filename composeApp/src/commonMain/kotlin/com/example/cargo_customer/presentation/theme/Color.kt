@@ -36,7 +36,8 @@ private object SecondaryPalette {
     val secondary20 = Color(0xFF671100)
     val secondary30 = Color(0xFF9E1F00)
     val secondary40 = Color(0xFFD03D0D)
-    val secondary50 = Color(0xFFFF5722) // #FF5722 (Secondary: Speed & Alertness - Vibrant Safety Orange)
+    val secondary50 =
+        Color(0xFFFF5722) // #FF5722 (Secondary: Speed & Alertness - Vibrant Safety Orange)
     val secondary60 = Color(0xFFFF784E)
     val secondary70 = Color(0xFFFF997A)
     val secondary80 = Color(0xFFFFBBA7)
@@ -141,111 +142,6 @@ private object StatusPalette {
     val info95 = Color(0xFFE8F1FF)
 }
 
-// ============================================================================
-// EXTENDED SEMANTIC COLORS
-// ============================================================================
-// Custom semantic colors that extend beyond Material 3's built-in scheme.
-// Accessed via `CargoTheme.extendedColors`.
-// ============================================================================
-
-@Immutable
-data class ExtendedColorScheme(
-    // — Status —
-    val success: Color,
-    val onSuccess: Color,
-    val successContainer: Color,
-    val onSuccessContainer: Color,
-    val warning: Color,
-    val onWarning: Color,
-    val warningContainer: Color,
-    val onWarningContainer: Color,
-    val info: Color,
-    val onInfo: Color,
-    val infoContainer: Color,
-    val onInfoContainer: Color,
-
-    // — Semantic Surface Roles —
-    val cardBackground: Color,
-    val textPrimary: Color,
-    val textSecondary: Color,
-    val textTertiary: Color,
-    val textDisabled: Color,
-    val border: Color,
-    val borderVariant: Color,
-    val divider: Color,
-    val shimmer: Color,
-    val overlay: Color,
-
-    // — Brand —
-    val brandAccent: Color,
-    val onBrandAccent: Color,
-)
-
-val LightExtendedColors = ExtendedColorScheme(
-    // Status
-    success = StatusPalette.success40,
-    onSuccess = NeutralPalette.neutral100,
-    successContainer = StatusPalette.success90,
-    onSuccessContainer = StatusPalette.success10,
-    warning = StatusPalette.warning40,
-    onWarning = NeutralPalette.neutral100,
-    warningContainer = StatusPalette.warning90,
-    onWarningContainer = StatusPalette.warning10,
-    info = StatusPalette.info40,
-    onInfo = NeutralPalette.neutral100,
-    infoContainer = StatusPalette.info90,
-    onInfoContainer = StatusPalette.info10,
-
-    // Semantic Surface
-    cardBackground = NeutralPalette.neutral100,
-    textPrimary = NeutralPalette.neutral10,
-    textSecondary = NeutralPalette.neutral40,
-    textTertiary = NeutralPalette.neutral50,
-    textDisabled = NeutralPalette.neutral70,
-    border = NeutralVariantPalette.nv80,
-    borderVariant = NeutralVariantPalette.nv90,
-    divider = NeutralVariantPalette.nv90,
-    shimmer = NeutralPalette.neutral90,
-    overlay = Color(0x52000000),
-
-    // Brand
-    brandAccent = TertiaryPalette.tertiary50,
-    onBrandAccent = NeutralPalette.neutral100,
-)
-
-val DarkExtendedColors = ExtendedColorScheme(
-    // Status
-    success = StatusPalette.success80,
-    onSuccess = StatusPalette.success20,
-    successContainer = StatusPalette.success30,
-    onSuccessContainer = StatusPalette.success90,
-    warning = StatusPalette.warning80,
-    onWarning = StatusPalette.warning20,
-    warningContainer = StatusPalette.warning30,
-    onWarningContainer = StatusPalette.warning90,
-    info = StatusPalette.info80,
-    onInfo = StatusPalette.info20,
-    infoContainer = StatusPalette.info30,
-    onInfoContainer = StatusPalette.info90,
-
-    // Semantic Surface
-    cardBackground = NeutralPalette.neutral12,
-    textPrimary = NeutralPalette.neutral90,
-    textSecondary = NeutralPalette.neutral60,
-    textTertiary = NeutralPalette.neutral50,
-    textDisabled = NeutralPalette.neutral30,
-    border = NeutralVariantPalette.nv30,
-    borderVariant = NeutralVariantPalette.nv20,
-    divider = NeutralVariantPalette.nv20,
-    shimmer = NeutralPalette.neutral17,
-    overlay = Color(0x99000000),
-
-    // Brand
-    brandAccent = TertiaryPalette.tertiary80,
-    onBrandAccent = TertiaryPalette.tertiary20,
-)
-
-val LocalExtendedColors = staticCompositionLocalOf { LightExtendedColors }
 
 // ============================================================================
 // MATERIAL 3 COLOR SCHEMES
@@ -346,3 +242,135 @@ val DarkColorScheme: ColorScheme = darkColorScheme(
     surfaceContainerHighest = NeutralPalette.neutral22,
     surfaceTint = PrimaryPalette.primary80,
 )
+
+// ============================================================================
+// EXTENDED SEMANTIC COLORS
+// ============================================================================
+// Custom semantic colors that extend beyond Material 3's built-in scheme.
+// Accessed via `CargoTheme.extendedColors`.
+// ============================================================================
+
+@Immutable
+data class CargoLogoColors(
+    val truckChassisColor: Color,
+    val truckWheelsColor: Color,
+    val cargoSymbolColor: Color,
+    val speedTrailsColor: Color
+)
+
+@Immutable
+data class ExtendedColorScheme(
+    // — Status —
+    val success: Color,
+    val onSuccess: Color,
+    val successContainer: Color,
+    val onSuccessContainer: Color,
+    val warning: Color,
+    val onWarning: Color,
+    val warningContainer: Color,
+    val onWarningContainer: Color,
+    val info: Color,
+    val onInfo: Color,
+    val infoContainer: Color,
+    val onInfoContainer: Color,
+
+    // — Semantic Surface Roles —
+    val cardBackground: Color,
+    val textPrimary: Color,
+    val textSecondary: Color,
+    val textTertiary: Color,
+    val textDisabled: Color,
+    val border: Color,
+    val borderVariant: Color,
+    val divider: Color,
+    val shimmer: Color,
+    val overlay: Color,
+
+    // — Brand —
+    val brandAccent: Color,
+    val onBrandAccent: Color,
+
+    // -- Logo colors --
+    val canvasDot: Color,
+    val cargoLogoColors: CargoLogoColors
+)
+
+val LightExtendedColors = ExtendedColorScheme(
+    // Status
+    success = StatusPalette.success40,
+    onSuccess = NeutralPalette.neutral100,
+    successContainer = StatusPalette.success90,
+    onSuccessContainer = StatusPalette.success10,
+    warning = StatusPalette.warning40,
+    onWarning = NeutralPalette.neutral100,
+    warningContainer = StatusPalette.warning90,
+    onWarningContainer = StatusPalette.warning10,
+    info = StatusPalette.info40,
+    onInfo = NeutralPalette.neutral100,
+    infoContainer = StatusPalette.info90,
+    onInfoContainer = StatusPalette.info10,
+
+    // Semantic Surface
+    cardBackground = NeutralPalette.neutral100,
+    textPrimary = NeutralPalette.neutral10,
+    textSecondary = NeutralPalette.neutral40,
+    textTertiary = NeutralPalette.neutral50,
+    textDisabled = NeutralPalette.neutral70,
+    border = NeutralVariantPalette.nv80,
+    borderVariant = NeutralVariantPalette.nv90,
+    divider = NeutralVariantPalette.nv90,
+    shimmer = NeutralPalette.neutral90,
+    overlay = Color(0x52000000),
+
+    // Brand
+    brandAccent = TertiaryPalette.tertiary50,
+    onBrandAccent = NeutralPalette.neutral100,
+    canvasDot = Color(0xff2E2F41),
+    CargoLogoColors(
+        truckChassisColor = LightColorScheme.onBackground,
+        truckWheelsColor = LightColorScheme.onBackground,
+        cargoSymbolColor = Color(0xFFFDB22E),
+        speedTrailsColor = Color(0xFFFDB22E)
+    )
+)
+
+val DarkExtendedColors = ExtendedColorScheme(
+    // Status
+    success = StatusPalette.success80,
+    onSuccess = StatusPalette.success20,
+    successContainer = StatusPalette.success30,
+    onSuccessContainer = StatusPalette.success90,
+    warning = StatusPalette.warning80,
+    onWarning = StatusPalette.warning20,
+    warningContainer = StatusPalette.warning30,
+    onWarningContainer = StatusPalette.warning90,
+    info = StatusPalette.info80,
+    onInfo = StatusPalette.info20,
+    infoContainer = StatusPalette.info30,
+    onInfoContainer = StatusPalette.info90,
+
+    // Semantic Surface
+    cardBackground = NeutralPalette.neutral12,
+    textPrimary = NeutralPalette.neutral90,
+    textSecondary = NeutralPalette.neutral60,
+    textTertiary = NeutralPalette.neutral50,
+    textDisabled = NeutralPalette.neutral30,
+    border = NeutralVariantPalette.nv30,
+    borderVariant = NeutralVariantPalette.nv20,
+    divider = NeutralVariantPalette.nv20,
+    shimmer = NeutralPalette.neutral17,
+    overlay = Color(0x99000000),
+
+    // Brand
+    brandAccent = TertiaryPalette.tertiary80,
+    onBrandAccent = TertiaryPalette.tertiary20,
+    canvasDot = Color(0xFF2E2F41),
+    CargoLogoColors(
+        truckChassisColor = DarkColorScheme.onBackground,
+        truckWheelsColor = DarkColorScheme.onBackground,
+        cargoSymbolColor = Color(0xFFFDB22E),
+        speedTrailsColor = Color(0xFFFDB22E)
+    )
+)
+
+val LocalExtendedColors = staticCompositionLocalOf { LightExtendedColors }

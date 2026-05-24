@@ -9,7 +9,7 @@ import com.example.cargo_customer.presentation.theme.CargoCustomerTheme
 fun App() {
     CargoCustomerTheme {
         NavGraph(
-            startDestination = Route.LoginRoute //this will change according to start screen
+            startDestination = Route.SplashRoute
         )
     }
 }

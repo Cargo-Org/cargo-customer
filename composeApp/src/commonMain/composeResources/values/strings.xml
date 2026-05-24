@@ -36,4 +36,14 @@ to your email address.</string>
     <string name="front_face_capture_instruction">Tap to Take Front Face Pic.</string>
     <string name="back_face_capture_instruction">Tap to Take Back Face Pic.</string>
     <string name="face_illustration_description">Face Illustration Scanner Overlay</string>
+    <string name="upload_docs_title">Upload Documents</string>
+    <string name="upload_docs_subtitle">Please provide clear photos of the front and back of your National ID.</string>
+    <string name="upload_docs_tips_heading">Tips for a clear scan</string>
+    <string name="upload_docs_tip_lighting">Ensure good lighting and avoid glare from flash.</string>
+    <string name="upload_docs_tip_corners">Keep all 4 corners of the ID inside the frame.</string>
+    <string name="upload_docs_tip_readable">Make sure the text is sharp and easily readable.</string>
+    <string name="identity_verification_title">Identity Verification</string>
+    <string name="identity_verification_subtitle">Please position your face within the frame and ensure you are in a well-lit environment.</string>
+    <string name="identity_verification_tip_lighting">Good lighting</string>
+    <string name="identity_verification_tip_glasses">No glasses</string>
 </resources>

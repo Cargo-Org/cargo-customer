@@ -81,7 +81,7 @@ private fun LoginScreenContent(
                 placeholder = stringResource(Res.string.password_placeholder),
                 leadingIconRes = Res.drawable.ic_lock,
                 keyboardType = KeyboardType.Password,
-                isPasswordField = isLoading,
+                isPasswordField = true,
                 isPasswordVisible = passwordVisible,
                 onVisibilityChange = {
                     passwordVisible = !passwordVisible
@@ -98,7 +98,7 @@ private fun LoginScreenContent(
             }
             ColoredActionButton(
                 text = stringResource(Res.string.sign_in_action),
-                isLoading = true,
+                isLoading = isLoading,
                 onClick = { focusManager.clearFocus() }
             )
             OrDivider(

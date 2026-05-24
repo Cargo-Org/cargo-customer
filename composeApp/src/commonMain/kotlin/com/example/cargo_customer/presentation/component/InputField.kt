@@ -7,12 +7,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import cargo_customer.composeapp.generated.resources.Res
+import cargo_customer.composeapp.generated.resources.ic_visibility
+import cargo_customer.composeapp.generated.resources.ic_visibility_off
 import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -25,6 +31,9 @@ fun InputField(
     label: String,
     placeholder: String,
     leadingIconRes: DrawableResource? = null,
+    isPasswordField: Boolean = false,
+    isPasswordVisible: Boolean = false,
+    onVisibilityChange: (() -> Unit)? = null,
     keyboardType: KeyboardType = KeyboardType.Text
 ) {
     Column(
@@ -42,6 +51,11 @@ fun InputField(
             value = value,
             onValueChange = onValueChanged,
             modifier = Modifier.fillMaxWidth(),
+            visualTransformation =
+                if (isPasswordField && !isPasswordVisible)
+                    PasswordVisualTransformation()
+                else
+                    VisualTransformation.None,
             placeholder = {
                 Text(
                     text = placeholder,
@@ -60,6 +74,25 @@ fun InputField(
                     )
                 }
             },
+            trailingIcon = {
+                if (isPasswordField) {
+                    IconButton(
+                        onClick = { onVisibilityChange?.invoke() }
+                    ) {
+                        Icon(
+                            painter =
+                                if (isPasswordVisible)
+                                   painterResource(Res.drawable.ic_visibility)
+                                else
+                                    painterResource( Res.drawable.ic_visibility_off),
+                            tint = CargoTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(CargoTheme.dimens.sizing.iconMd),
+                            contentDescription = null
+                        )
+                    }
+                }
+            },
+
             shape = CargoTheme.shapes.small,
             textStyle = CargoTheme.typography.bodyMedium,
             singleLine = true,

@@ -40,6 +40,7 @@ private fun LoginScreenContent(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -71,7 +72,12 @@ private fun LoginScreenContent(
                 label = stringResource(Res.string.password_label),
                 placeholder = stringResource(Res.string.password_placeholder),
                 leadingIconRes = Res.drawable.ic_lock,
-                keyboardType = KeyboardType.Password
+                keyboardType = KeyboardType.Password,
+                isPasswordField = true,
+                isPasswordVisible = passwordVisible,
+                onVisibilityChange = {
+                    passwordVisible = !passwordVisible
+                }
             )
             TextButton(onClick = {}) {
                 Text(

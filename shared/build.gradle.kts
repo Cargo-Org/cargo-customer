@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.androidLint)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -68,14 +69,18 @@ kotlin {
 
                 // Koin Core
                 implementation(libs.koin.core)
+                implementation(libs.koin.compose)
                 //Logger
                 implementation(libs.kermit)
                 // Ktor
-                implementation(libs.ktor.client.core.v313)
-                implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.bundles.ktor)
                 // IO
                 implementation(libs.kotlinx.io.core)
+                // DataStore library
+                implementation(libs.androidx.datastore)
+                // The Preferences DataStore library
+                implementation(libs.androidx.datastore.preferences)
+
             }
         }
 

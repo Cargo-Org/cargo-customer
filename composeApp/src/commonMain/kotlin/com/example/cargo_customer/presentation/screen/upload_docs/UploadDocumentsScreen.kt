@@ -30,6 +30,8 @@ import com.example.cargo_customer.presentation.screen.upload_docs.component.Conn
 import com.example.cargo_customer.presentation.screen.upload_docs.component.FaceDetectionCard
 import com.example.cargo_customer.presentation.screen.upload_docs.component.TipRow
 import com.example.cargo_customer.presentation.theme.CargoTheme
+import cargo_customer.composeapp.generated.resources.Res
+import cargo_customer.composeapp.generated.resources.continue_button
 
 
 @Composable
@@ -40,7 +42,7 @@ fun UploadDocumentsScreen() {
     Scaffold(
         containerColor = CargoTheme.colorScheme.background, floatingActionButton = {
             ColoredActionButton(
-                modifier = Modifier.padding(horizontal = 8.dp), text = "Continue", onClick = {
+                modifier = Modifier.padding(horizontal = CargoTheme.dimens.spacing.sm), text = stringResource(Res.string.continue_button), onClick = {
                     stepIndex = ++stepIndex % stepCount
                 })
         }, floatingActionButtonPosition = FabPosition.Center
@@ -49,7 +51,7 @@ fun UploadDocumentsScreen() {
         val currentTop = paddingValues.calculateTopPadding()
         val currentBottom = paddingValues.calculateBottomPadding()
         val screenPadding =
-            PaddingValues(top = currentTop, bottom = currentBottom, start = 16.dp, end = 16.dp)
+            PaddingValues(top = currentTop, bottom = currentBottom, start = CargoTheme.dimens.spacing.lg, end = CargoTheme.dimens.spacing.lg)
 
         UploadScreenContent(screenPadding, stepIndex, stepCount)
     }
@@ -63,12 +65,12 @@ private fun UploadScreenContent(
         modifier = Modifier.padding(screenPadding).fillMaxWidth(),
     ) {
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(CargoTheme.dimens.spacing.lg))
 
         ConnectedFluidStepper(
             currentIndex = currentStepIndex,
             stepCount = stepCount,
-            modifier = Modifier.fillMaxWidth().height(8.dp)
+            modifier = Modifier.fillMaxWidth().height(CargoTheme.dimens.spacing.sm)
         )
 
         when(currentStepIndex) {

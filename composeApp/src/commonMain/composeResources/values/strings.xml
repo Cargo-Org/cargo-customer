@@ -46,4 +46,5 @@ to your email address.</string>
     <string name="identity_verification_subtitle">Please position your face within the frame and ensure you are in a well-lit environment.</string>
     <string name="identity_verification_tip_lighting">Good lighting</string>
     <string name="identity_verification_tip_glasses">No glasses</string>
+    <string name="continue_button">Continue</string>
 </resources>

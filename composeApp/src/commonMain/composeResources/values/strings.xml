@@ -31,4 +31,12 @@ to your email address.</string>
     <string name="cargo">Cargo</string>
     <string name="splash_loading">Initializing...</string>
     <string name="splash_slogan">Logistics &amp; Transit</string>
+
+    <string name="onboardingOneTitle">Choose Your Vehicle</string>
+    <string name="onboardingOneSubtitle">Description: Select the perfect vehicle type that fits your delivery or transportation needs with ease.</string>
+    <string name="onboardingTwoTitle">Track Your Order</string>
+    <string name="onboardingTwoSubtitle">Follow your delivery in real-time with an interactive map and get live updates straight to your phone.</string>
+    <string name="onboardingThreeTitle">Fast Delivery &amp; Secure Payment</string>
+    <string name="onboardingThreeSubtitle">Receive your items safely right at your doorstep and pay with your preferred secure payment method.</string>
+
 </resources>

@@ -14,9 +14,10 @@ import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.graphics.vector.PathParser
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import com.example.cargo_customer.presentation.theme.CargoTheme
 
-private val Orange = Color(0xFFFDB22E)
-private val White = Color(0xFFFFFFFF)
+private val Orange = CargoTheme.colorScheme.primary
+private val White = CargoTheme.colorScheme.onBackground
 
 private const val VP_W = 2396f
 private const val VP_H = 1792f

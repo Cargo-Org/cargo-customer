@@ -1,6 +1,7 @@
 package com.example.cargo_customer
 
 import com.cargo.customer.shared.di.iosModules
+import com.example.cargo_customer.presentation.di.presentationModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import platform.UIKit.UIDevice
@@ -14,6 +15,6 @@ actual fun getPlatform(): Platform = IOSPlatform()
 actual fun initKoin(koinDeclaration: KoinAppDeclaration?) {
     startKoin {
         koinDeclaration?.invoke(this)
-        modules(iosModules)
+        modules(iosModules + presentationModule)
     }
 }

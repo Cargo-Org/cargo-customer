@@ -7,9 +7,7 @@ class OnboardingViewModel(
     private val setOnboardingFirstTimeUseCase: SetOnboardingFirstTimeUseCase,
 ) : BaseViewModel<Unit, OnboardingEffect>(),OnboardingInteractionListener{
 
-    override fun onSkipClick() = completeOnboarding()
-
-    override fun onFinishClick() = completeOnboarding()
+    override fun onGetStartedClick() = completeOnboarding()
 
     private fun completeOnboarding(){
         tryToExecute(

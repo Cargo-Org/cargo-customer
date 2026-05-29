@@ -3,9 +3,11 @@ package com.example.cargo_customer.presentation.component
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
@@ -44,6 +46,7 @@ fun GoogleButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
                 modifier = Modifier.size(CargoTheme.dimens.sizing.iconMd),
                 tint = Color.Unspecified
             )
+            Spacer(modifier= modifier.width(CargoTheme.dimens.spacing.sm))
             Text(
                 modifier = Modifier.padding(vertical = CargoTheme.dimens.spacing.md),
                 text = stringResource(Res.string.google_login),

@@ -1,5 +1,6 @@
 package com.example.cargo_customer.presentation.screen.login.viewmodel
 
+import com.cargo.customer.shared.domain.result.ApiResult
 import com.cargo.customer.shared.domain.usecase.LoginUseCase
 import com.example.cargo_customer.presentation.base.BaseViewModel
 
@@ -22,6 +23,23 @@ class LoginViewModel(
 
     }
     private fun loginEmailAndPassword() {
-
+        val email = state.value.email
+        val password = state.value.password
+        if(!loginUseCase.isCredentialsValid(email,password)){
+            updateState { copy(errorMessage = "Invalid email or password") }
+            return
+        }
+        tryToExecute(
+            block = {loginUseCase(email, password)},
+            onStart = {updateState { copy(isLoading = true)}},
+            onSuccess = { result ->
+                when(result){
+                    is ApiResult.Success -> sendEffect(LoginEffect.NavigateToHome)
+                    is ApiResult.Error -> updateState {  copy(errorMessage = result.exception.message) }
+                }
+            },
+            onError = { updateState { copy(errorMessage = "Something went wrong")}},
+            onEnd = {updateState { copy(isLoading = false)}}
+        )
     }
 }

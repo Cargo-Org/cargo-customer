@@ -9,7 +9,7 @@ class LoginUseCase(
     suspend operator fun invoke(email: String, password: String) =
         authRepository.login(LoginRequestDto(email, password))
 
-    private fun isCredentialsValid(email: String, password: String): Boolean {
+    fun isCredentialsValid(email: String, password: String): Boolean {
         return isEmailValid(email) && isPasswordValid(password)
     }
 

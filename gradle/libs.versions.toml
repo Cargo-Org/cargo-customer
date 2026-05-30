@@ -22,6 +22,7 @@ koin = "4.2.1"
 datastore = "1.2.1"
 datastorePreferences = "1.2.1"
 ktor = "3.5.0"
+lucide-icons = "2.2.1"
 
 [libraries]
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
@@ -45,6 +46,7 @@ compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-previ
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
+lucide-icons = { module = "com.composables:icons-lucide-cmp", version.ref = "lucide-icons" }
 
 # Koin
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }

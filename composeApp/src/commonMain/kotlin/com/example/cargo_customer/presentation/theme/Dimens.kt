@@ -5,6 +5,22 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * Global layout spacing tokens.
+ *
+ * @property none 0.dp
+ * @property xxs 2.dp
+ * @property xs 4.dp
+ * @property sm 8.dp
+ * @property md 12.dp
+ * @property lg 16.dp
+ * @property xl 20.dp
+ * @property xxl 24.dp
+ * @property xxxl 32.dp
+ * @property huge 40.dp
+ * @property massive 48.dp
+ * @property colossal 64.dp
+ */
 @Immutable
 data class AppSpacing(
     val none: Dp = 0.dp,
@@ -21,7 +37,26 @@ data class AppSpacing(
     val colossal: Dp = 64.dp,
 )
 
-
+/**
+ * Standard element and component sizing tokens.
+ *
+ * @property iconXs 16.dp
+ * @property iconSm 20.dp
+ * @property iconMd 24.dp
+ * @property iconLg 32.dp
+ * @property iconXl 40.dp
+ * @property avatarSm 32.dp
+ * @property avatarMd 40.dp
+ * @property avatarLg 56.dp
+ * @property avatarXl 80.dp
+ * @property buttonHeightSm 36.dp
+ * @property buttonHeightMd 44.dp
+ * @property buttonHeightLg 52.dp
+ * @property buttonHeightXl 56.dp
+ * @property minTouchTarget 48.dp (Accessibility standard)
+ * @property topBarHeight 56.dp
+ * @property bottomBarHeight 80.dp
+ */
 @Immutable
 data class AppSizing(
     val iconXs: Dp = 16.dp,
@@ -46,7 +81,18 @@ data class AppSizing(
     val bottomBarHeight: Dp = 80.dp,
 )
 
-
+/**
+ * Structural page layout and padding rules.
+ *
+ * @property screenPaddingHorizontal 16.dp
+ * @property screenPaddingVertical 16.dp
+ * @property cardPadding 16.dp
+ * @property cardPaddingLarge 20.dp
+ * @property listItemSpacing 12.dp
+ * @property gridSpacing 16.dp
+ * @property sectionGap 24.dp
+ * @property maxContentWidth 600.dp (Tablet/Desktop container limit)
+ */
 @Immutable
 data class AppDimensions(
     val spacing: AppSpacing = AppSpacing(),
@@ -62,4 +108,7 @@ data class AppDimensions(
     val maxContentWidth: Dp = 600.dp,
 )
 
+/**
+ * CompositionLocal for injecting UI dimensions across layouts.
+ */
 val LocalAppDimensions = staticCompositionLocalOf { AppDimensions() }

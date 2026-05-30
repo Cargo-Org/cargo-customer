@@ -49,6 +49,7 @@ kotlin {
 
             implementation(libs.navigation.compose)
             implementation(libs.kermit)
+            implementation(libs.lucide.icons)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

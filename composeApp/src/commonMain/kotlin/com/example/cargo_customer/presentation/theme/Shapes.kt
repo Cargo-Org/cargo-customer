@@ -7,6 +7,19 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+
+/**
+ * Custom design system shape tokens.
+ *
+ * @property extraSmall 4.dp
+ * @property small 8.dp
+ * @property medium 12.dp
+ * @property large 16.dp
+ * @property extraLarge 24.dp
+ * @property extraExtraLarge 28.dp
+ * @property circle Full circular clipping boundary
+ * @property pill Pill container shape (50 percent rounded edge)
+ */
 @Immutable
 data class AppShapes(
     val extraSmall: RoundedCornerShape = RoundedCornerShape(4.dp),
@@ -19,6 +32,9 @@ data class AppShapes(
     val pill: RoundedCornerShape = RoundedCornerShape(percent = 50),
 )
 
+/**
+ * Material 3 subsystem compatible fallback shape definitions.
+ */
 val AppMaterialShapes = Shapes(
     extraSmall = RoundedCornerShape(4.dp),
     small = RoundedCornerShape(8.dp),
@@ -27,4 +43,7 @@ val AppMaterialShapes = Shapes(
     extraLarge = RoundedCornerShape(24.dp),
 )
 
+/**
+ * CompositionLocal for injecting UI shapes across layouts.
+ */
 val LocalAppShapes = staticCompositionLocalOf { AppShapes() }

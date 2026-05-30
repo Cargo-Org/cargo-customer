@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.login
+package com.example.cargo_customer.presentation.screen.login.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

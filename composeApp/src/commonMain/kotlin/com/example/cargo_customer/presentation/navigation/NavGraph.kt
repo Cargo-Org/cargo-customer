@@ -8,8 +8,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.cargo_customer.presentation.screen.splash.SplashScreen
 import com.example.cargo_customer.presentation.screen.login.LoginScreen
+import com.example.cargo_customer.presentation.screen.register.RegisterScreen
+import com.example.cargo_customer.presentation.screen.splash.SplashScreen
 import com.example.cargo_customer.presentation.screen.upload_docs.UploadDocumentsScreen
 
 
@@ -30,6 +31,7 @@ fun NavGraph(
         ) {
             composable<Route.SplashRoute> { SplashScreen() }
             composable<Route.LoginRoute> { LoginScreen() }
+            composable<Route.RegisterRoute> { RegisterScreen() }
             composable<Route.UploadDocs> { UploadDocumentsScreen() }
         }
     }

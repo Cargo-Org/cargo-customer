@@ -10,38 +10,34 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.get_started
 import cargo_customer.composeapp.generated.resources.onboarding1
-import cargo_customer.composeapp.generated.resources.onboarding2
-import cargo_customer.composeapp.generated.resources.onboarding3
 import cargo_customer.composeapp.generated.resources.onboardingOneSubtitle
 import cargo_customer.composeapp.generated.resources.onboardingOneTitle
-import cargo_customer.composeapp.generated.resources.onboardingThreeSubtitle
-import cargo_customer.composeapp.generated.resources.onboardingThreeTitle
-import cargo_customer.composeapp.generated.resources.onboardingTwoSubtitle
-import cargo_customer.composeapp.generated.resources.onboardingTwoTitle
 import com.example.cargo_customer.presentation.base.ObserveAsEffect
 import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.navigation.LocalNavController
 import com.example.cargo_customer.presentation.navigation.Route
+import com.example.cargo_customer.presentation.screen.onboarding.viewmodel.OnBoardingPage
 import com.example.cargo_customer.presentation.screen.onboarding.viewmodel.OnboardingEffect
 import com.example.cargo_customer.presentation.screen.onboarding.viewmodel.OnboardingViewModel
 import com.example.cargo_customer.presentation.theme.CargoTheme
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun OnboardingScreen(
-    viewModel : OnboardingViewModel = koinViewModel(),
-){
+    viewModel: OnboardingViewModel = koinViewModel(),
+) {
     val navController = LocalNavController.current
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     ObserveAsEffect(viewModel.effect) { effect ->
         when (effect) {
@@ -50,21 +46,21 @@ fun OnboardingScreen(
     }
 
     OnboardingScreenContent(
-        onGetStartedClick = viewModel::onGetStartedClick
+        data = state.data, onGetStartedClick = viewModel::onGetStartedClick
     )
 }
 
 @Composable
 private fun OnboardingScreenContent(
-    onGetStartedClick: () -> Unit ,
+    data: List<OnBoardingPage>,
+    onGetStartedClick: () -> Unit,
     modifier: Modifier = Modifier
-){
-    val pages = remember { getPages() }
+) {
+    val pages = remember { data }
     val pagerState = rememberPagerState { pages.size }
 
     Column(
-        modifier = modifier.fillMaxSize()
-            .background(CargoTheme.colorScheme.background)
+        modifier = modifier.fillMaxSize().background(CargoTheme.colorScheme.background)
             .padding(horizontal = CargoTheme.dimens.screenPaddingHorizontal),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -72,8 +68,7 @@ private fun OnboardingScreenContent(
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.fillMaxWidth().weight(0.7f),
-            key = { index -> index }
-        ) { pageIndex ->
+            key = { index -> index }) { pageIndex ->
             OnboardingPage(
                 item = pages[pageIndex],
                 currentPage = pagerState.currentPage,
@@ -95,36 +90,17 @@ private fun OnboardingScreenContent(
     }
 }
 
-data class OnBoardingPage(
-    val imageRes: DrawableResource,
-    val title: StringResource,
-    val subtitle: StringResource
-)
-
-private fun getPages(): List<OnBoardingPage> {
-    return listOf(
-        OnBoardingPage(
-            imageRes = Res.drawable.onboarding1,
-            title = Res.string.onboardingOneTitle,
-            subtitle = Res.string.onboardingOneSubtitle
-        ),
-        OnBoardingPage(
-            imageRes = Res.drawable.onboarding2,
-            title = Res.string.onboardingTwoTitle,
-            subtitle =Res.string.onboardingTwoSubtitle
-        ),
-        OnBoardingPage(
-            imageRes = Res.drawable.onboarding3,
-            title = Res.string.onboardingThreeTitle,
-            subtitle = Res.string.onboardingThreeSubtitle
-        )
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-private fun Preview(){
+private fun Preview() {
     OnboardingScreenContent(
+        data = listOf(
+            OnBoardingPage(
+                imageRes = Res.drawable.onboarding1,
+                title = Res.string.onboardingOneTitle,
+                subtitle = Res.string.onboardingOneSubtitle
+            )
+        ),
         onGetStartedClick = {}
     )
 }

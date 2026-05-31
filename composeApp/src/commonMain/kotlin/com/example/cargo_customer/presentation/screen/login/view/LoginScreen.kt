@@ -60,6 +60,11 @@ fun LoginScreen(
             }
         }
     }
+    LaunchedEffect(state.errorMessage) {
+        state.errorMessage?.let {
+            println("Error: $it")
+        }
+    }
     LoginScreenContent(
         state = state,
         onAction = viewModel::onAction
@@ -100,7 +105,7 @@ private fun LoginScreenContent(
                 leadingIconRes = Res.drawable.ic_email,
                 keyboardType = KeyboardType.Email,
                 focusRequester = emailFocusRequester,
-                errorMessage = state.errorMessage,
+                errorMessage = state.emailError,
                 onNext = { passwordFocusRequester.requestFocus() }
             )
             InputField(
@@ -114,7 +119,7 @@ private fun LoginScreenContent(
                 isPasswordVisible = state.isPasswordVisible,
                 onVisibilityChange = { onAction(LoginInteraction.OnPasswordVisibilityToggled) },
                 focusRequester = passwordFocusRequester,
-                errorMessage = state.errorMessage,
+                errorMessage = state.passwordError,
                 onDone = { focusManager.clearFocus() }
             )
             TextButton(onClick = { focusManager.clearFocus() }) {

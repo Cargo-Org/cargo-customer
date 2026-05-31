@@ -10,8 +10,8 @@ class LoginViewModel(
 
     fun onAction(action: LoginInteraction) {
         when (action) {
-            is LoginInteraction.OnEmailChanged -> updateState { copy(email = action.email) }
-            is LoginInteraction.OnPasswordChanged -> updateState { copy(password = action.password) }
+            is LoginInteraction.OnEmailChanged -> updateState { copy(email = action.email , emailError = null , errorMessage = null) }
+            is LoginInteraction.OnPasswordChanged -> updateState { copy(password = action.password , passwordError = null , errorMessage = null) }
             is LoginInteraction.OnPasswordVisibilityToggled -> updateState { copy(isPasswordVisible = !isPasswordVisible) }
             is LoginInteraction.OnLoginClicked -> loginEmailAndPassword()
             is LoginInteraction.OnGoogleClicked ->loginWithGoogle()
@@ -23,19 +23,25 @@ class LoginViewModel(
 
     }
     private fun loginEmailAndPassword() {
-        val email = state.value.email
+        val email = state.value.email.trim()
         val password = state.value.password
-        if(!loginUseCase.isCredentialsValid(email,password)){
-            updateState { copy(errorMessage = "Invalid email or password") }
-            return
+        var hasError = false
+        if (!loginUseCase.isEmailValid(email)) {
+            updateState { copy(emailError = "Invalid email format") }
+            hasError = true
         }
+        if (!loginUseCase.isPasswordValid(password)) {
+            updateState { copy(passwordError = "Password must be at least 8 characters") }
+            hasError = true
+        }
+        if (hasError) return
         tryToExecute(
             block = {loginUseCase(email, password)},
-            onStart = {updateState { copy(isLoading = true)}},
+            onStart = {updateState { copy(isLoading = true , errorMessage = null)}},
             onSuccess = { result ->
                 when(result){
                     is ApiResult.Success -> sendEffect(LoginEffect.NavigateToHome)
-                    is ApiResult.Error -> updateState {  copy(errorMessage = result.exception.message) }
+                    is ApiResult.Error -> updateState {  copy(errorMessage = result.exception.message ?: "Login failed") }
                 }
             },
             onError = { updateState { copy(errorMessage = "Something went wrong")}},

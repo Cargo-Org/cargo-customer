@@ -22,5 +22,8 @@ sealed interface Route {
     object SplashRoute : Route
 
     @Serializable
+    object HomeRoute : Route
+
+    @Serializable
     object UploadDocs : Route
 }

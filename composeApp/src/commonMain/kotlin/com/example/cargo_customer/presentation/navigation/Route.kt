@@ -23,5 +23,6 @@ sealed interface Route {
 
     @Serializable
     object OnboardingRoute : Route
+    @Serializable
     object UploadDocs : Route
 }

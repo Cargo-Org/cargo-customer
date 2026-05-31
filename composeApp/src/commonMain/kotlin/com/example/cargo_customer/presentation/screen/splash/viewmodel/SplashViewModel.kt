@@ -5,13 +5,22 @@ import com.example.cargo_customer.presentation.base.BaseViewModel
 
 class SplashViewModel (
     private val isOnboardingFirstTimeUseCase: IsOnboardingFirstTimeUseCase,
-): BaseViewModel<Unit, SplashEffect>() {
+): BaseViewModel<SplashState, SplashEffect>(SplashState()) {
 
-    fun determineNextDestination(){
+    fun determineNextDestination() {
+        updateState { copy(isLoading = true) }
+
         tryToExecute(
             onSuccess = {
-                if(it) sendEffect(SplashEffect.NavigateToOnboarding)
-                else sendEffect(SplashEffect.NavigateToLogin) //TODO will change when implement login logic and check if go to login or home
+                updateState { copy(isLoading = false) }
+                if (it) {
+                    sendEffect(SplashEffect.NavigateToOnboarding)
+                } else {
+                    sendEffect(SplashEffect.NavigateToLogin)
+                }
+            },
+            onError = {
+                updateState { copy(isLoading = false) }
             },
             block = { isOnboardingFirstTimeUseCase() }
         )

@@ -19,11 +19,11 @@ val sharedModule = module {
 
     //datasource
     single<AuthRemoteDataSource> {
-        AuthRemoteDataSourceImpl(get(), get())
+        AuthRemoteDataSourceImpl(get())
     }
 
     single<AuthLocalDataSource> {
-        AuthLocalDataSourceImp()
+        AuthLocalDataSourceImp(get())
     }
 
     //repo

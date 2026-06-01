@@ -53,16 +53,16 @@ fun LoginScreen(
     LaunchedEffect(viewModel){
         viewModel.effect.collect{effect ->
             when(effect){
-                is LoginEffect.NavigateToHome -> navController.navigate(Route.HomeRoute)
+                is LoginEffect.NavigateToHome -> navController.navigate(Route.HomeRoute) {
+                    popUpTo(Route.LoginRoute) {
+                        inclusive = true
+                    }
+                }
                 is LoginEffect.NavigateToRegister -> navController.navigate(Route.RegisterRoute)
                 is LoginEffect.NavigateToForgetPassword -> { }
+                is LoginEffect.ShowError -> { /*show the error*/ }
                 // one for verify
             }
-        }
-    }
-    LaunchedEffect(state.errorMessage) {
-        state.errorMessage?.let {
-            println("Error: $it")
         }
     }
     LoginScreenContent(
@@ -139,7 +139,7 @@ private fun LoginScreenContent(
             )
             OrDivider(
                 modifier = Modifier.padding(vertical = CargoTheme.dimens.spacing.lg),
-                centerText = stringResource(Res.string.or_sign_up)
+                centerText = stringResource(Res.string.or_sign_in)
             )
             GoogleButton(
                 onClick = { onAction(LoginInteraction.OnGoogleClicked) }

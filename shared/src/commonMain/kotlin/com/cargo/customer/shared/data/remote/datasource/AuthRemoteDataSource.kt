@@ -5,7 +5,7 @@ import com.cargo.customer.shared.data.remote.dto.LoginResponseDto
 import com.cargo.customer.shared.domain.result.ApiResult
 
 interface AuthRemoteDataSource {
-    suspend fun login(
+    suspend fun loginWithEmailAndPassword(
         loginRequest : LoginRequestDto
     ): ApiResult<LoginResponseDto>
 }

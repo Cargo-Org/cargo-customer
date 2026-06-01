@@ -11,17 +11,11 @@ import io.ktor.client.request.setBody
 
 class AuthRemoteDataSourceImpl(
     private val client: NetworkClient,
-    private val tokenStorage: TokenStorage
 ) : AuthRemoteDataSource {
-    override suspend fun login(loginRequest: LoginRequestDto): ApiResult<LoginResponseDto> {
+    override suspend fun loginWithEmailAndPassword(loginRequest: LoginRequestDto): ApiResult<LoginResponseDto> {
         return safeApiCall<LoginResponseDto> {
             client.post(ApiConstants.LOGIN_ENDPOINT) {
                 setBody(loginRequest)
-            }
-        }.also { result ->
-            if (result is ApiResult.Success) {
-                tokenStorage.saveAccessToken(result.data.accessToken)
-                tokenStorage.saveRefreshToken(result.data.refreshToken)
             }
         }
     }

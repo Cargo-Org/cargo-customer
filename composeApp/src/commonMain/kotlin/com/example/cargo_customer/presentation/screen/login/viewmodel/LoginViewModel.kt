@@ -41,7 +41,13 @@ class LoginViewModel(
             onSuccess = { result ->
                 when(result){
                     is ApiResult.Success -> sendEffect(LoginEffect.NavigateToHome)
-                    is ApiResult.Error -> updateState {  copy(errorMessage = result.exception.message ?: "Login failed") }
+                    is ApiResult.Error -> updateState {
+                        copy(
+                            errorMessage = result.exception.message ?: "Login failed",
+                            emailError = result.exception.message,
+                            passwordError = result.exception.message
+                        )
+                    }
                 }
             },
             onError = { updateState { copy(errorMessage = "Something went wrong")}},

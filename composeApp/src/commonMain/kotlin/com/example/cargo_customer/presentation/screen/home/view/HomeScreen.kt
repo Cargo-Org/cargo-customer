@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.cargo_customer.presentation.screen.login.view.LoginScreen
 import com.example.cargo_customer.presentation.theme.CargoTheme
 
 @Composable

@@ -7,7 +7,7 @@ class LoginUseCase(
     private val authRepository: AuthRepository
 ) {
     suspend operator fun invoke(email: String, password: String) =
-        authRepository.login(LoginRequestDto(email, password))
+        authRepository.loginWithEmailAndPassword(LoginRequestDto(email, password))
 
 
     fun isEmailValid(email: String): Boolean {

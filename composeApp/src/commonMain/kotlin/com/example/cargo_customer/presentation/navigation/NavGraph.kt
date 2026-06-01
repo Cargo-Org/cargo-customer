@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cargo_customer.presentation.screen.home.view.HomeScreen
 import com.example.cargo_customer.presentation.screen.login.view.LoginScreen
+import com.example.cargo_customer.presentation.screen.onboarding.view.OnboardingScreen
 import com.example.cargo_customer.presentation.screen.register.RegisterScreen
 import com.example.cargo_customer.presentation.screen.splash.SplashScreen
 import com.example.cargo_customer.presentation.screen.upload_docs.UploadDocumentsScreen
@@ -18,7 +19,6 @@ import com.example.cargo_customer.presentation.screen.upload_docs.UploadDocument
 @Composable
 fun NavGraph(
     modifier: Modifier = Modifier,
-    startDestination: Route
 ){
     val navController = rememberNavController()
 
@@ -27,10 +27,11 @@ fun NavGraph(
     ) {
         NavHost(
             navController = navController,
-            startDestination = startDestination,
+            startDestination = Route.SplashRoute,
             modifier = modifier
         ) {
             composable<Route.SplashRoute> { SplashScreen() }
+            composable<Route.OnboardingRoute> { OnboardingScreen() }
             composable<Route.LoginRoute> { LoginScreen() }
             composable<Route.RegisterRoute> { RegisterScreen() }
             composable<Route.UploadDocs> { UploadDocumentsScreen() }

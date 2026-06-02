@@ -12,16 +12,20 @@ class AuthRepositoryImp (
     private val local: AuthLocalDataSource
 ): AuthRepository {
     override suspend fun loginWithEmailAndPassword(loginRequestDto: LoginRequestDto): ApiResult<LoginResponseDto> {
-        return when (
-            val result = remote.loginWithEmailAndPassword(loginRequestDto)
-        ) {
+        val result = remote.loginWithEmailAndPassword(loginRequestDto)
+        when (result) {
             is ApiResult.Success -> {
                 local.saveAccessToken(result.data.accessToken)
                 local.saveRefreshToken(result.data.refreshToken)
-                result
             }
-            is ApiResult.Error -> result
+            is ApiResult.Error -> { println("LOGIN ERROR") }
         }
+        return result
     }
-
+    override suspend fun getAccessToken(): String? {
+        return local.getAccessToken()
+    }
+    override suspend fun clearTokens() {
+        local.clearTokens()
+    }
 }

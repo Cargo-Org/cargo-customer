@@ -19,3 +19,4 @@ class LoginUseCase(
         return password.length >= 8
     }
 }
+// email , phone , password , full name

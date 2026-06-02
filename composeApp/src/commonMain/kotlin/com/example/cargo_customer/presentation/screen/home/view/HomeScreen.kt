@@ -9,16 +9,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.cargo.customer.shared.data.local.datastore.TokenStorage
+import com.cargo.customer.shared.data.local.datastore.TokenStorageImpl
 import com.example.cargo_customer.presentation.theme.CargoTheme
 
 @Composable
-fun HomeScreen (){
-    Column (
-        modifier = Modifier.fillMaxSize().background(CargoTheme.colorScheme.background),
+fun HomeScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(CargoTheme.colorScheme.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        Text("Home View")
+    ) {
+        Text(text = "Welcome!")
+        Text(
+            text = "test",
+            color = CargoTheme.colorScheme.primary
+        )
     }
 }
 @Preview(showBackground = true, showSystemUi = true)

@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val presentationModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { OnboardingViewModel(get()) }
-    viewModel { SplashViewModel(get()) }
+    viewModel { SplashViewModel(get() ,get ()) }
 }

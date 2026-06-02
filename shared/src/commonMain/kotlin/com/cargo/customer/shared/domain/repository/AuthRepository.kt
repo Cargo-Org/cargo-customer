@@ -6,4 +6,6 @@ import com.cargo.customer.shared.domain.result.ApiResult
 
 interface AuthRepository {
     suspend fun loginWithEmailAndPassword(loginRequestDto: LoginRequestDto): ApiResult<LoginResponseDto>
+    suspend fun getAccessToken(): String?
+    suspend fun clearTokens()
 }

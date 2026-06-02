@@ -12,7 +12,7 @@ import com.example.cargo_customer.presentation.screen.home.view.HomeScreen
 import com.example.cargo_customer.presentation.screen.login.view.LoginScreen
 import com.example.cargo_customer.presentation.screen.onboarding.view.OnboardingScreen
 import com.example.cargo_customer.presentation.screen.register.RegisterScreen
-import com.example.cargo_customer.presentation.screen.splash.SplashScreen
+import com.example.cargo_customer.presentation.screen.splash.view.SplashScreen
 import com.example.cargo_customer.presentation.screen.upload_docs.UploadDocumentsScreen
 
 

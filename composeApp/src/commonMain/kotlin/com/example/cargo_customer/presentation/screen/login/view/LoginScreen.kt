@@ -5,28 +5,23 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cargo_customer.composeapp.generated.resources.*
-import com.example.cargo_customer.presentation.base.BaseViewModel
+import com.example.cargo_customer.presentation.base.ObserveAsEffect
 import com.example.cargo_customer.presentation.component.AuthFooterText
 import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.component.GoogleButton
@@ -40,7 +35,6 @@ import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginInter
 import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginUiState
 import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginViewModel
 import com.example.cargo_customer.presentation.theme.CargoTheme
-import kotlinx.coroutines.flow.collect
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -50,19 +44,17 @@ fun LoginScreen(
 ) {
     val navController = LocalNavController.current
     val state by viewModel.state.collectAsStateWithLifecycle()
-    LaunchedEffect(viewModel){
-        viewModel.effect.collect{effect ->
-            when(effect){
-                is LoginEffect.NavigateToHome -> navController.navigate(Route.HomeRoute) {
-                    popUpTo(Route.LoginRoute) {
-                        inclusive = true
-                    }
+    ObserveAsEffect(viewModel.effect) { effects ->
+        when(effects){
+            is LoginEffect.NavigateToHome -> navController.navigate(Route.HomeRoute) {
+                popUpTo(Route.LoginRoute) {
+                    inclusive = true
                 }
-                is LoginEffect.NavigateToRegister -> navController.navigate(Route.RegisterRoute)
-                is LoginEffect.NavigateToForgetPassword -> { }
-                is LoginEffect.ShowError -> { /*show the error*/ }
-                // one for verify
             }
+            is LoginEffect.NavigateToRegister -> navController.navigate(Route.RegisterRoute)
+            is LoginEffect.NavigateToForgetPassword -> { }
+            is LoginEffect.ShowError -> { /*show the error*/ }
+            // one for verify to do in the future improvement
         }
     }
     LoginScreenContent(
@@ -122,6 +114,16 @@ private fun LoginScreenContent(
                 errorMessage = state.passwordError,
                 onDone = { focusManager.clearFocus() }
             )
+            if (state.errorMessage != null) {
+                Text(
+                    text = state.errorMessage,
+                    style = CargoTheme.typography.labelMedium,
+                    color = CargoTheme.colorScheme.error,
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(start = CargoTheme.dimens.spacing.xs)
+                        .align(Alignment.End)
+                )
+            }
             TextButton(onClick = { focusManager.clearFocus() }) {
                 Text(
                     text = stringResource(Res.string.forget_password),

@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.splash
+package com.example.cargo_customer.presentation.screen.splash.view
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -42,7 +42,7 @@ import com.example.cargo_customer.presentation.component.AnimatedProgressBar
 import com.example.cargo_customer.presentation.component.AnimatedThreeDotsBar
 import com.example.cargo_customer.presentation.navigation.LocalNavController
 import com.example.cargo_customer.presentation.navigation.Route
-import com.example.cargo_customer.presentation.screen.splash.SplashAnim.SPLASH_DURATION_MS
+import com.example.cargo_customer.presentation.screen.splash.view.SplashAnim.SPLASH_DURATION_MS
 import com.example.cargo_customer.presentation.screen.splash.viewmodel.SplashEffect
 import com.example.cargo_customer.presentation.screen.splash.viewmodel.SplashViewModel
 import com.example.cargo_customer.presentation.theme.CargoTheme
@@ -64,9 +64,21 @@ fun SplashScreen(
 
     ObserveAsEffect(viewModel.effect) { effects ->
         when (effects) {
-            SplashEffect.NavigateToOnboarding -> navController.navigate(Route.OnboardingRoute)
-            SplashEffect.NavigateToLogin -> navController.navigate(Route.LoginRoute)
-            SplashEffect.NavigateToHome -> { /* TODO */ }
+            SplashEffect.NavigateToOnboarding -> {
+                navController.navigate(Route.OnboardingRoute) {
+                    popUpTo(Route.SplashRoute) { inclusive = true }
+                }
+            }
+            SplashEffect.NavigateToLogin -> {
+                navController.navigate(Route.LoginRoute) {
+                    popUpTo(Route.SplashRoute) { inclusive = true }
+                }
+            }
+            SplashEffect.NavigateToHome -> {
+                navController.navigate(Route.HomeRoute) {
+                    popUpTo(Route.SplashRoute) { inclusive = true }
+                }
+            }
         }
     }
 

@@ -10,8 +10,8 @@ class LoginViewModel(
 
     fun onAction(action: LoginInteraction) {
         when (action) {
-            is LoginInteraction.OnEmailChanged -> updateState { copy(email = action.email , emailError = null , errorMessage = null) }
-            is LoginInteraction.OnPasswordChanged -> updateState { copy(password = action.password , passwordError = null , errorMessage = null) }
+            is LoginInteraction.OnEmailChanged -> updateState { copy(email = action.email , emailError = null , passwordError = null ,errorMessage = null) }
+            is LoginInteraction.OnPasswordChanged -> updateState { copy(password = action.password , passwordError = null ,emailError = null, errorMessage = null) }
             is LoginInteraction.OnPasswordVisibilityToggled -> updateState { copy(isPasswordVisible = !isPasswordVisible) }
             is LoginInteraction.OnLoginClicked -> loginEmailAndPassword()
             is LoginInteraction.OnGoogleClicked ->loginWithGoogle()
@@ -40,13 +40,9 @@ class LoginViewModel(
             onStart = {updateState { copy(isLoading = true , errorMessage = null)}},
             onSuccess = { result ->
                 when(result){
-                    is ApiResult.Success -> sendEffect(LoginEffect.NavigateToHome)
+                    is ApiResult.Success -> sendEffect(LoginEffect.NavigateToHome(email))
                     is ApiResult.Error -> updateState {
-                        copy(
-                            errorMessage = result.exception.message ?: "Login failed",
-                            emailError = result.exception.message,
-                            passwordError = result.exception.message
-                        )
+                        copy(errorMessage = result.exception.message ?: "Login failed")
                     }
                 }
             },

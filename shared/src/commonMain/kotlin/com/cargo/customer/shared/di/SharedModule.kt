@@ -11,6 +11,7 @@ import com.cargo.customer.shared.data.repository.OnboardingRepositoryImp
 import com.cargo.customer.shared.domain.repository.AuthRepository
 import com.cargo.customer.shared.domain.usecase.LoginUseCase
 import com.cargo.customer.shared.domain.repository.OnboardingRepository
+import com.cargo.customer.shared.domain.usecase.IsLoginUseCase
 import com.cargo.customer.shared.domain.usecase.IsOnboardingFirstTimeUseCase
 import com.cargo.customer.shared.domain.usecase.SetOnboardingFirstTimeUseCase
 import org.koin.dsl.module
@@ -40,6 +41,8 @@ val sharedModule = module {
     }
     //usecase
     factory { LoginUseCase(get()) }
+
+    factory { IsLoginUseCase(get()) }
 
     single <OnboardingRepository>{ OnboardingRepositoryImp(get()) }
 

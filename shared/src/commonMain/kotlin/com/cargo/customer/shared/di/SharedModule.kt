@@ -6,6 +6,7 @@ import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSource
 import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSourceImpl
 import com.cargo.customer.shared.data.repository.AuthRepositoryImp
 import com.cargo.customer.shared.domain.repository.AuthRepository
+import com.cargo.customer.shared.domain.usecase.auth.RegisterUseCase
 import org.koin.dsl.module
 
 
@@ -31,5 +32,9 @@ val sharedModule = module {
             remote = get(),
             local = get()
         )
+    }
+
+    factory {
+        RegisterUseCase(get())
     }
 }

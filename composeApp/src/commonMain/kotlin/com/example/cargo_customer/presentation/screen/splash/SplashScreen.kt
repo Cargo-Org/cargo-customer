@@ -36,110 +36,146 @@ import androidx.compose.ui.unit.sp
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.cargo
 import cargo_customer.composeapp.generated.resources.splash_slogan
+import com.example.cargo_customer.presentation.base.ObserveAsEffect
+import com.example.cargo_customer.presentation.component.AnimatedCargoLogo
 import com.example.cargo_customer.presentation.component.AnimatedProgressBar
 import com.example.cargo_customer.presentation.component.AnimatedThreeDotsBar
+import com.example.cargo_customer.presentation.navigation.LocalNavController
+import com.example.cargo_customer.presentation.navigation.Route
+import com.example.cargo_customer.presentation.screen.splash.SplashAnim.SPLASH_DURATION_MS
+import com.example.cargo_customer.presentation.screen.splash.viewmodel.SplashEffect
+import com.example.cargo_customer.presentation.screen.splash.viewmodel.SplashViewModel
 import com.example.cargo_customer.presentation.theme.CargoTheme
 import com.example.cargo_customer.presentation.theme.CargoTheme.dimens
-import com.example.cargo_customer.presentation.component.AnimatedCargoLogo
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    viewModel: SplashViewModel = koinViewModel()
+) {
+    val navController = LocalNavController.current
+
+    LaunchedEffect(Unit) {
+        delay(SPLASH_DURATION_MS)
+        viewModel.determineNextDestination()
+    }
+
+    ObserveAsEffect(viewModel.effect) { effects ->
+        when (effects) {
+            SplashEffect.NavigateToOnboarding -> navController.navigate(Route.OnboardingRoute)
+            SplashEffect.NavigateToLogin -> navController.navigate(Route.LoginRoute)
+            SplashEffect.NavigateToHome -> { /* TODO */ }
+        }
+    }
+
     SplashScreenContent()
 }
 
 @Composable
 private fun SplashScreenContent() {
 
-    var logoOffsetX by remember { mutableStateOf(-150f) }
+    var logoOffsetX by remember { mutableStateOf(SplashAnim.LOGO_START_X) }
 
-    var cargoOffset by remember { mutableStateOf(50f) }
-    var cargoAlpha by remember { mutableStateOf(0f) }
+    var cargoOffset by remember { mutableStateOf(SplashAnim.TEXT_START_OFFSET) }
+    var cargoAlpha by remember { mutableStateOf(SplashAnim.TITLE_ALPHA_START) }
 
-    var sloganOffset by remember { mutableStateOf(50f) }
-    var sloganAlpha by remember { mutableStateOf(0f) }
+    var sloganOffset by remember { mutableStateOf(SplashAnim.TEXT_START_OFFSET) }
+    var sloganAlpha by remember { mutableStateOf(SplashAnim.TITLE_ALPHA_START) }
 
     var progressAlpha by remember { mutableStateOf(0f) }
     var dotsAlpha by remember { mutableStateOf(0f) }
     var progress by remember { mutableStateOf(0f) }
     var dots by remember { mutableIntStateOf(0) }
 
-    val logoSlideMs = 700
-    val textSlideMs = 500
-    val fadeInMs = 400
-    val dotsFadeMs = 300
-    val dotStepMs = 300L
-    val progressFillMs = (dotStepMs * 6).toInt()
-
     LaunchedEffect(Unit) {
         logoOffsetX = 0f
-        delay(logoSlideMs.toLong())
+        delay(SplashAnim.LOGO_SLIDE_MS.toLong())
 
         cargoOffset = 0f
         cargoAlpha = 1f
-        delay(textSlideMs.toLong())
+        delay(SplashAnim.TEXT_SLIDE_MS.toLong())
 
         sloganOffset = 0f
         sloganAlpha = 1f
-        delay(textSlideMs.toLong())
+        delay(SplashAnim.TEXT_SLIDE_MS.toLong())
 
         progressAlpha = 1f
         dotsAlpha = 1f
-        progress = 1f
+        progress = SplashAnim.PROGRESS_MAX
 
-        ++dots; delay(dotStepMs)
-        ++dots; delay(dotStepMs)
-        ++dots; delay(dotStepMs)
-        ++dots; delay(dotStepMs)
-        ++dots
+        repeat(SplashAnim.DOTS_COUNT) {
+            dots++
+            delay(SplashAnim.DOT_STEP_MS)
+        }
     }
 
     val animatedLogoOffsetX by animateFloatAsState(
-        targetValue = logoOffsetX, animationSpec = tween(logoSlideMs), label = "logo offset"
+        targetValue = logoOffsetX,
+        animationSpec = tween(SplashAnim.LOGO_SLIDE_MS),
+        label = "logo offset"
     )
 
     val cargoTextOffset by animateFloatAsState(
-        targetValue = cargoOffset, animationSpec = tween(textSlideMs), label = "cargo offset"
+        targetValue = cargoOffset,
+        animationSpec = tween(SplashAnim.TEXT_SLIDE_MS),
+        label = "cargo offset"
     )
+
     val cargoTextAlpha by animateFloatAsState(
-        targetValue = cargoAlpha, animationSpec = tween(textSlideMs), label = "cargo alpha"
+        targetValue = cargoAlpha,
+        animationSpec = tween(SplashAnim.TEXT_SLIDE_MS),
+        label = "cargo alpha"
     )
 
     val sloganTextOffset by animateFloatAsState(
-        targetValue = sloganOffset, animationSpec = tween(textSlideMs), label = "slogan offset"
+        targetValue = sloganOffset,
+        animationSpec = tween(SplashAnim.TEXT_SLIDE_MS),
+        label = "slogan offset"
     )
+
     val sloganTextAlpha by animateFloatAsState(
-        targetValue = sloganAlpha, animationSpec = tween(textSlideMs), label = "slogan alpha"
+        targetValue = sloganAlpha,
+        animationSpec = tween(SplashAnim.TEXT_SLIDE_MS),
+        label = "slogan alpha"
     )
 
     val progressAlphaAnim by animateFloatAsState(
-        targetValue = progressAlpha, animationSpec = tween(fadeInMs), label = "progress alpha"
+        targetValue = progressAlpha,
+        animationSpec = tween(SplashAnim.PROGRESS_FADE_MS),
+        label = "progress alpha"
     )
 
     val dotsAlphaAnim by animateFloatAsState(
-        targetValue = dotsAlpha, animationSpec = tween(dotsFadeMs), label = "dots alpha"
+        targetValue = dotsAlpha,
+        animationSpec = tween(SplashAnim.DOTS_FADE_MS),
+        label = "dots alpha"
     )
 
     val animatedProgress by animateFloatAsState(
-        targetValue = progress, animationSpec = tween(progressFillMs), label = "progress fill"
+        targetValue = progress,
+        animationSpec = tween((SplashAnim.DOT_STEP_MS * SplashAnim.DOTS_COUNT).toInt()),
+        label = "progress fill"
     )
 
     Box(
         modifier = Modifier.fillMaxSize().background(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        CargoTheme.colorScheme.background.copy(alpha = 0.95f),
+                        CargoTheme.colorScheme.background.copy(alpha = SplashAnim.BACKGROUND_ALPHA),
                         CargoTheme.colorScheme.background,
                     )
                 )
             ).padding(vertical = dimens.spacing.colossal)
     ) {
+
         Column(
             modifier = Modifier.matchParentSize(),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Column(
                 modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(
                     dimens.spacing.md, Alignment.CenterVertically
@@ -192,6 +228,27 @@ private fun SplashScreenContent() {
             )
         }
     }
+}
+
+private object SplashAnim {
+
+    const val LOGO_SLIDE_MS = 700
+    const val LOGO_START_X = -150f
+
+    const val TEXT_SLIDE_MS = 500
+    const val TEXT_START_OFFSET = 50f
+
+    const val TITLE_ALPHA_START = 0f
+    const val SPLASH_DURATION_MS = 3700L
+
+    const val PROGRESS_FADE_MS = 400
+    const val PROGRESS_MAX = 1f
+
+    const val DOTS_FADE_MS = 300
+    const val DOT_STEP_MS = 300L
+    const val DOTS_COUNT = 5
+
+    const val BACKGROUND_ALPHA = 0.95f
 }
 
 @Preview(showSystemUi = true, showBackground = true, uiMode = UI_MODE_NIGHT_YES)

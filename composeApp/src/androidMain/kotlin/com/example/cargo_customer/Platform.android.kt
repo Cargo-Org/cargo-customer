@@ -2,7 +2,7 @@ package com.example.cargo_customer
 
 import android.os.Build
 import com.cargo.customer.shared.di.androidModule
-import com.example.cargo_customer.di.presentationModule
+import com.example.cargo_customer.presentation.di.presentationModule
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration

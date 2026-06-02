@@ -8,8 +8,6 @@ import com.example.cargo_customer.presentation.theme.CargoCustomerTheme
 @Composable
 fun App() {
     CargoCustomerTheme {
-        NavGraph(
-            startDestination = Route.RegisterRoute
-        )
+        NavGraph()
     }
 }

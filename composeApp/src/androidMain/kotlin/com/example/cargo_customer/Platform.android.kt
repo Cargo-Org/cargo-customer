@@ -17,6 +17,6 @@ actual fun initKoin(koinDeclaration: KoinAppDeclaration?) {
     startKoin {
         androidLogger()
         koinDeclaration?.invoke(this)
-        modules(androidModule+ presentationModule)
+        modules(androidModule + presentationModule)
     }
 }

@@ -18,6 +18,10 @@ sealed interface Route {
 
     @Serializable
     object RegisterRoute : Route
+
+    @Serializable
+    object VerifyEmail : Route
+
     @Serializable
     object SplashRoute : Route
 

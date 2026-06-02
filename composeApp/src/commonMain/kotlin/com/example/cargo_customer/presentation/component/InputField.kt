@@ -105,7 +105,7 @@ fun InputField(
                         Icon(
                             painter =
                                 if (isPasswordVisible)
-                                   painterResource(Res.drawable.ic_visibility)
+                                    painterResource(Res.drawable.ic_visibility)
                                 else
                                     painterResource( Res.drawable.ic_visibility_off),
                             tint = CargoTheme.colorScheme.onSurfaceVariant,

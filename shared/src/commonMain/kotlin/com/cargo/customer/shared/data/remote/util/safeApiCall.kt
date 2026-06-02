@@ -1,6 +1,9 @@
 package com.cargo.customer.shared.data.remote.util
 
+import com.cargo.customer.shared.data.remote.dto.ApiErrorResponse
+import com.cargo.customer.shared.data.remote.dto.ValidationErrorResponse
 import com.cargo.customer.shared.domain.exception.CargoException
+import com.cargo.customer.shared.domain.exception.ConflictException
 import com.cargo.customer.shared.domain.exception.NoInternetException
 import com.cargo.customer.shared.domain.exception.NotFoundException
 import com.cargo.customer.shared.domain.exception.ServerException
@@ -35,6 +38,17 @@ suspend inline fun <reified T> safeApiCall(
 
             HttpStatusCode.NotFound.value -> {
                 ApiResult.Error(NotFoundException())
+            }
+
+            in 400..499 -> {
+                val errorBody = try {
+                    response.body<ApiErrorResponse>()
+                } catch (e: Exception) {
+                    response.body<ValidationErrorResponse>()
+                }
+                ApiResult.Error(
+                    ConflictException(errorResponse = errorBody)
+                )
             }
 
             in 500..599 -> {

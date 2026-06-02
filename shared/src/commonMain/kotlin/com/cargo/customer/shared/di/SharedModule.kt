@@ -14,6 +14,7 @@ import com.cargo.customer.shared.domain.repository.OnboardingRepository
 import com.cargo.customer.shared.domain.usecase.IsLoginUseCase
 import com.cargo.customer.shared.domain.usecase.IsOnboardingFirstTimeUseCase
 import com.cargo.customer.shared.domain.usecase.SetOnboardingFirstTimeUseCase
+import com.cargo.customer.shared.domain.usecase.auth.RegisterUseCase
 import org.koin.dsl.module
 
 
@@ -49,4 +50,6 @@ val sharedModule = module {
     factory { SetOnboardingFirstTimeUseCase(get()) }
 
     factory { IsOnboardingFirstTimeUseCase(get()) }
+
+    factory { RegisterUseCase(get()) }
 }

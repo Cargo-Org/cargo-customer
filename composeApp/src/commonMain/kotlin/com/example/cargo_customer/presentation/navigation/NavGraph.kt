@@ -14,6 +14,7 @@ import com.example.cargo_customer.presentation.screen.onboarding.view.Onboarding
 import com.example.cargo_customer.presentation.screen.register.RegisterScreen
 import com.example.cargo_customer.presentation.screen.splash.view.SplashScreen
 import com.example.cargo_customer.presentation.screen.upload_docs.UploadDocumentsScreen
+import com.example.cargo_customer.presentation.screen.verify_email.EmailVerificationScreen
 
 
 @Composable
@@ -34,6 +35,7 @@ fun NavGraph(
             composable<Route.OnboardingRoute> { OnboardingScreen() }
             composable<Route.LoginRoute> { LoginScreen() }
             composable<Route.RegisterRoute> { RegisterScreen() }
+            composable<Route.VerifyEmail> { EmailVerificationScreen() }
             composable<Route.UploadDocs> { UploadDocumentsScreen() }
             composable<Route.HomeRoute> { HomeScreen() }
         }

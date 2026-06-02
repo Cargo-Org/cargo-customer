@@ -31,6 +31,8 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
 
+            //Logger
+            implementation(libs.kermit)
             // Koin
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)

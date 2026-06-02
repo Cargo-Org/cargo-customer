@@ -9,7 +9,7 @@ import com.example.cargo_customer.presentation.theme.CargoCustomerTheme
 fun App() {
     CargoCustomerTheme {
         NavGraph(
-            startDestination = Route.LoginRoute
+            startDestination = Route.RegisterRoute
         )
     }
 }

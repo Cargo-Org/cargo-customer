@@ -2,6 +2,7 @@ package com.example.cargo_customer
 
 import android.os.Build
 import com.cargo.customer.shared.di.androidModule
+import com.example.cargo_customer.di.presentationModule
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -16,6 +17,6 @@ actual fun initKoin(koinDeclaration: KoinAppDeclaration?) {
     startKoin {
         androidLogger()
         koinDeclaration?.invoke(this)
-        modules(androidModule)
+        modules(androidModule + presentationModule)
     }
 }

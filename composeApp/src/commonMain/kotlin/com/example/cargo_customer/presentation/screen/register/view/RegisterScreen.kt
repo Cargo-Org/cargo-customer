@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.register
+package com.example.cargo_customer.presentation.screen.register.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,8 +23,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
 import cargo_customer.composeapp.generated.resources.*
+import com.example.cargo_customer.presentation.base.ObserveAsEffect
 import com.example.cargo_customer.presentation.core.ui.asString
 import com.example.cargo_customer.presentation.component.AuthFooterText
 import com.example.cargo_customer.presentation.component.ColoredActionButton
@@ -33,6 +33,10 @@ import com.example.cargo_customer.presentation.component.OrDivider
 import com.example.cargo_customer.presentation.component.WelcomeHeader
 import com.example.cargo_customer.presentation.navigation.LocalNavController
 import com.example.cargo_customer.presentation.navigation.Route
+import com.example.cargo_customer.presentation.screen.register.viewmodel.RegisterInteraction
+import com.example.cargo_customer.presentation.screen.register.viewmodel.RegisterUiEffect
+import com.example.cargo_customer.presentation.screen.register.viewmodel.RegisterUiState
+import com.example.cargo_customer.presentation.screen.register.viewmodel.RegisterViewModel
 import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -44,26 +48,24 @@ fun RegisterScreen() {
     val state by viewModel.state.collectAsState()
     val navController = LocalNavController.current
 
-    LaunchedEffect(key1 = 1) {
-        viewModel.effect.collectLatest { effect ->
-            when (effect) {
-                is RegisterUiEffect.NavigateToVerifyEmail -> {
-                    navController.navigate(Route.VerifyEmail){
-                        popUpTo(Route.RegisterRoute){
-                            inclusive = true
-                        }
+    ObserveAsEffect(viewModel.effect){ effect ->
+        when (effect) {
+            is RegisterUiEffect.NavigateToVerifyEmail -> {
+                navController.navigate(Route.VerifyEmail){
+                    popUpTo(Route.RegisterRoute){
+                        inclusive = true
                     }
                 }
-                is RegisterUiEffect.NavigateToLogin -> {
-                    navController.navigate(Route.LoginRoute){
-                        popUpTo(Route.RegisterRoute){
-                            inclusive = true
-                        }
+            }
+            is RegisterUiEffect.NavigateToLogin -> {
+                navController.navigate(Route.LoginRoute){
+                    popUpTo(Route.RegisterRoute){
+                        inclusive = true
                     }
                 }
-                is RegisterUiEffect.ShowToast -> {
+            }
+            is RegisterUiEffect.ShowToast -> {
 
-                }
             }
         }
     }

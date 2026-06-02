@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.register
+package com.example.cargo_customer.presentation.screen.register.viewmodel
 
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.already_registered

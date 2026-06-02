@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.register
+package com.example.cargo_customer.presentation.screen.register.viewmodel
 
 sealed interface RegisterUiEffect {
     object NavigateToVerifyEmail : RegisterUiEffect

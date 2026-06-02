@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.register
+package com.example.cargo_customer.presentation.screen.register.viewmodel
 
 import com.example.cargo_customer.presentation.core.ui.UiText
 

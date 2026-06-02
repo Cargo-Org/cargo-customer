@@ -155,7 +155,7 @@ private fun RegisterScreenContent(
             if (state.error != null) {
                 Text(
                     text = state.error.asString(),
-                    color = Color.Red,
+                    color = CargoTheme.colorScheme.error,
                     style = CargoTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = CargoTheme.dimens.spacing.xs)
                 )

@@ -52,7 +52,7 @@ abstract class BaseViewModel<State, Effect>(
         scope: CoroutineScope = viewModelScope
     ): Job {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            onError(ErrorState.UnknownError(throwable.message))
+            // call exception
         }
 
         return scope.launch(dispatcher + exceptionHandler) {
@@ -64,7 +64,7 @@ abstract class BaseViewModel<State, Effect>(
                 onSuccess(result)
             }.onFailure { throwable ->
                 if (throwable !is CancellationException) {
-                    onError(ErrorState.UnknownError(throwable.message))
+                    // call exception
                 }
             }
 

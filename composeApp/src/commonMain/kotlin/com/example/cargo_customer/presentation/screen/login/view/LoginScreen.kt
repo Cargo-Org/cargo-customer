@@ -28,6 +28,7 @@ import com.example.cargo_customer.presentation.component.GoogleButton
 import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.component.OrDivider
 import com.example.cargo_customer.presentation.component.WelcomeHeader
+import com.example.cargo_customer.presentation.core.ui.asString
 import com.example.cargo_customer.presentation.navigation.LocalNavController
 import com.example.cargo_customer.presentation.navigation.Route
 import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginEffect
@@ -53,8 +54,8 @@ fun LoginScreen(
             }
             is LoginEffect.NavigateToRegister -> navController.navigate(Route.RegisterRoute)
             is LoginEffect.NavigateToForgetPassword -> { }
+            is LoginEffect.NavigateToVerifyEmail -> {navController.navigate(Route.VerifyEmail)}
             is LoginEffect.ShowError -> { /*show the error*/ }
-            // one for verify to do in the future improvement
         }
     }
     LoginScreenContent(
@@ -97,7 +98,7 @@ private fun LoginScreenContent(
                 leadingIconRes = Res.drawable.ic_email,
                 keyboardType = KeyboardType.Email,
                 focusRequester = emailFocusRequester,
-                errorMessage = state.emailError,
+                errorMessage = state.emailError?.asString(),
                 onNext = { passwordFocusRequester.requestFocus() }
             )
             InputField(
@@ -111,12 +112,12 @@ private fun LoginScreenContent(
                 isPasswordVisible = state.isPasswordVisible,
                 onVisibilityChange = { onAction(LoginInteraction.OnPasswordVisibilityToggled) },
                 focusRequester = passwordFocusRequester,
-                errorMessage = state.passwordError,
+                errorMessage = state.passwordError?.asString(),
                 onDone = { focusManager.clearFocus() }
             )
             if (state.errorMessage != null) {
                 Text(
-                    text = state.errorMessage,
+                    text = state.errorMessage.asString(),
                     style = CargoTheme.typography.labelMedium,
                     color = CargoTheme.colorScheme.error,
                     modifier = Modifier.fillMaxWidth()

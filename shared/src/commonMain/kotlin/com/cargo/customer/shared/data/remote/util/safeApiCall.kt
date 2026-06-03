@@ -32,14 +32,6 @@ suspend inline fun <reified T> safeApiCall(
                 )
             }
 
-            HttpStatusCode.Unauthorized.value -> {
-                ApiResult.Error(UnauthorizedException())
-            }
-
-            HttpStatusCode.NotFound.value -> {
-                ApiResult.Error(NotFoundException())
-            }
-
             in 400..499 -> {
                 val errorBody = try {
                     response.body<ApiErrorResponse>()

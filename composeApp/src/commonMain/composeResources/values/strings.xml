@@ -68,4 +68,6 @@ to your email address.</string>
     <string name="password_needs_number">Password must contain at least one number</string>
     <string name="password_needs_letter">Password must contain at least one letter</string>
     <string name="invalid_phone">Please enter a valid phone number</string>
+    <string name="invalid_credentials">Invalid email or password.</string>
+    <string name="email_not_verify">Your email address has not been verified.</string>
 </resources>

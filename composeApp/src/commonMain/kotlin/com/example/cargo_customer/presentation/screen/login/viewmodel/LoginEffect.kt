@@ -3,5 +3,6 @@ sealed interface LoginEffect {
     data class NavigateToHome(val email: String) : LoginEffect
     data object NavigateToRegister : LoginEffect
     data object NavigateToForgetPassword : LoginEffect
+    data object NavigateToVerifyEmail : LoginEffect
     data class ShowError(val message: String) : LoginEffect
 }

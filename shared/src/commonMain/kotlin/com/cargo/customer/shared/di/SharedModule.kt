@@ -10,8 +10,11 @@ import com.cargo.customer.shared.data.repository.AuthRepositoryImp
 import com.cargo.customer.shared.data.repository.OnboardingRepositoryImp
 import com.cargo.customer.shared.domain.repository.AuthRepository
 import com.cargo.customer.shared.domain.repository.OnboardingRepository
+import com.cargo.customer.shared.domain.usecase.GetUploadUrlUseCase
 import com.cargo.customer.shared.domain.usecase.IsOnboardingFirstTimeUseCase
 import com.cargo.customer.shared.domain.usecase.SetOnboardingFirstTimeUseCase
+import com.cargo.customer.shared.domain.usecase.SubmitDocumentInfoUseCase
+import com.cargo.customer.shared.domain.usecase.UploadDocumentUseCase
 import org.koin.dsl.module
 
 
@@ -44,4 +47,10 @@ val sharedModule = module {
     factory { SetOnboardingFirstTimeUseCase(get()) }
 
     factory { IsOnboardingFirstTimeUseCase(get()) }
+
+    factory { GetUploadUrlUseCase(get()) }
+
+    factory { SubmitDocumentInfoUseCase(get())  }
+
+    factory { UploadDocumentUseCase(get()) }
 }

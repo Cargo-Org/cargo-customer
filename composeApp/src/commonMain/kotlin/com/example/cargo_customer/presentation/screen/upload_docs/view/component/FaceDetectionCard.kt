@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.upload_docs.component
+package com.example.cargo_customer.presentation.screen.upload_docs.view.component
 
 import androidx.compose.animation.core.EaseInOutSine
 import androidx.compose.animation.core.RepeatMode

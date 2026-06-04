@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.upload_docs
+package com.example.cargo_customer.presentation.screen.upload_docs.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -8,16 +8,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import cargo_customer.composeapp.generated.resources.Res
+import cargo_customer.composeapp.generated.resources.identity_verification_subtitle
+import cargo_customer.composeapp.generated.resources.identity_verification_tip_glasses
+import cargo_customer.composeapp.generated.resources.identity_verification_tip_lighting
+import cargo_customer.composeapp.generated.resources.identity_verification_title
 import com.composables.icons.lucide.Glasses
 import com.composables.icons.lucide.Lightbulb
 import com.composables.icons.lucide.Lucide
-import cargo_customer.composeapp.generated.resources.Res
-import cargo_customer.composeapp.generated.resources.identity_verification_title
-import cargo_customer.composeapp.generated.resources.identity_verification_subtitle
-import cargo_customer.composeapp.generated.resources.identity_verification_tip_lighting
-import cargo_customer.composeapp.generated.resources.identity_verification_tip_glasses
-import com.example.cargo_customer.presentation.screen.upload_docs.component.FaceDetectionCard
-import com.example.cargo_customer.presentation.screen.upload_docs.component.TipRow
+import com.example.cargo_customer.presentation.screen.upload_docs.view.component.FaceDetectionCard
+import com.example.cargo_customer.presentation.screen.upload_docs.view.component.TipRow
 import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 

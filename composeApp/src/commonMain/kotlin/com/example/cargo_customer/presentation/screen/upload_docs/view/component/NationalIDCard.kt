@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.screen.upload_docs.component
+package com.example.cargo_customer.presentation.screen.upload_docs.view.component
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.Animatable

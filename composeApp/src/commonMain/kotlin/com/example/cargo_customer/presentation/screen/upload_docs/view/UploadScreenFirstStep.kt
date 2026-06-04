@@ -1,28 +1,33 @@
-package com.example.cargo_customer.presentation.screen.upload_docs
+package com.example.cargo_customer.presentation.screen.upload_docs.view
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import cargo_customer.composeapp.generated.resources.Res
+import cargo_customer.composeapp.generated.resources.upload_docs_subtitle
+import cargo_customer.composeapp.generated.resources.upload_docs_tip_corners
+import cargo_customer.composeapp.generated.resources.upload_docs_tip_lighting
+import cargo_customer.composeapp.generated.resources.upload_docs_tip_readable
+import cargo_customer.composeapp.generated.resources.upload_docs_tips_heading
+import cargo_customer.composeapp.generated.resources.upload_docs_title
 import com.composables.icons.lucide.Crop
 import com.composables.icons.lucide.FileCheckCorner
 import com.composables.icons.lucide.Lightbulb
 import com.composables.icons.lucide.Lucide
-import cargo_customer.composeapp.generated.resources.Res
-import cargo_customer.composeapp.generated.resources.upload_docs_title
-import cargo_customer.composeapp.generated.resources.upload_docs_subtitle
-import cargo_customer.composeapp.generated.resources.upload_docs_tips_heading
-import cargo_customer.composeapp.generated.resources.upload_docs_tip_lighting
-import cargo_customer.composeapp.generated.resources.upload_docs_tip_corners
-import cargo_customer.composeapp.generated.resources.upload_docs_tip_readable
-import com.example.cargo_customer.presentation.screen.upload_docs.component.NationalIDCard
-import com.example.cargo_customer.presentation.screen.upload_docs.component.TipRow
+import com.example.cargo_customer.presentation.screen.upload_docs.view.component.NationalIDCard
+import com.example.cargo_customer.presentation.screen.upload_docs.view.component.TipRow
 import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun UploadScreenFirstStep(nationalIDCardIndex: Int, onNationalIDIndexChanged: (Int) -> Unit) {
+fun UploadScreenFirstStep(
+    nationalIDCardIndex: Int,
+    onNationalIDIndexChanged: (Int) -> Unit,
+    onFrontClick: () -> Unit,
+    onBackClick: () -> Unit,
+) {
     val dimens = CargoTheme.dimens
     val spacing = dimens.spacing
 
@@ -48,8 +53,8 @@ fun UploadScreenFirstStep(nationalIDCardIndex: Int, onNationalIDIndexChanged: (I
         currentIndex = nationalIDCardIndex,
         frontImage = null,
         backImage = null,
-        onFrontClick = {},
-        onBackClick = {},
+        onFrontClick = onFrontClick,
+        onBackClick = onBackClick,
         onIndexChanged = onNationalIDIndexChanged
     )
 

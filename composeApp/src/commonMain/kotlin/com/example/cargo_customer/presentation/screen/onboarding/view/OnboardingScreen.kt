@@ -41,7 +41,9 @@ fun OnboardingScreen(
 
     ObserveAsEffect(viewModel.effect) { effect ->
         when (effect) {
-            is OnboardingEffect.NavigateToLogin -> navController.navigate(Route.LoginRoute)
+            is OnboardingEffect.NavigateToLogin -> navController.navigate(Route.LoginRoute){
+                popUpTo(Route.SplashRoute) { inclusive = true }
+            }
         }
     }
 

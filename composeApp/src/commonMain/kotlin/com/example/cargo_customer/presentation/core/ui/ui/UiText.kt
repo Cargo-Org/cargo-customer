@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.core.ui
+package com.example.cargo_customer.presentation.core.ui.ui
 
 import org.jetbrains.compose.resources.StringResource
 

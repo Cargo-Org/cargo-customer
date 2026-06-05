@@ -23,9 +23,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
 import cargo_customer.composeapp.generated.resources.*
-import com.example.cargo_customer.presentation.core.ui.asString
+import com.example.cargo_customer.presentation.core.ui.ui.asString
 import com.example.cargo_customer.presentation.component.AuthFooterText
 import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.component.InputField

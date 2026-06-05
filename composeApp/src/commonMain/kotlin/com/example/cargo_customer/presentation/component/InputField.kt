@@ -43,6 +43,7 @@ fun InputField(
     focusRequester: FocusRequester = remember { FocusRequester() },
     onNext: (() -> Unit)? = null,
     onDone: (() -> Unit)? = null,
+    errorMessage: String? = null,
 ) {
     Column(
         modifier = modifier
@@ -88,7 +89,10 @@ fun InputField(
                     Icon(
                         painter = painterResource(icon),
                         contentDescription = null,
-                        tint = CargoTheme.colorScheme.onSurfaceVariant,
+                        tint = if (errorMessage != null)
+                            CargoTheme.colorScheme.error
+                        else
+                            CargoTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(CargoTheme.dimens.sizing.iconMd)
                     )
                 }
@@ -101,7 +105,7 @@ fun InputField(
                         Icon(
                             painter =
                                 if (isPasswordVisible)
-                                   painterResource(Res.drawable.ic_visibility)
+                                    painterResource(Res.drawable.ic_visibility)
                                 else
                                     painterResource( Res.drawable.ic_visibility_off),
                             tint = CargoTheme.colorScheme.onSurfaceVariant,
@@ -111,7 +115,7 @@ fun InputField(
                     }
                 }
             },
-
+            isError = errorMessage != null,
             shape = CargoTheme.shapes.small,
             textStyle = CargoTheme.typography.bodyMedium,
             singleLine = true,
@@ -124,8 +128,19 @@ fun InputField(
                 unfocusedTextColor = CargoTheme.colorScheme.onSurface,
                 focusedPlaceholderColor = CargoTheme.colorScheme.onSurfaceVariant,
                 unfocusedPlaceholderColor = CargoTheme.colorScheme.onSurfaceVariant,
+                errorBorderColor = CargoTheme.colorScheme.error,
+                errorContainerColor = CargoTheme.colorScheme.surface,
+                errorTextColor = CargoTheme.colorScheme.onSurface,
                 cursorColor = CargoTheme.colorScheme.primary
             )
         )
+        if (errorMessage != null) {
+            Text(
+                text = errorMessage,
+                style = CargoTheme.typography.labelMedium,
+                color = CargoTheme.colorScheme.error,
+                modifier = Modifier.padding(start = CargoTheme.dimens.spacing.xs)
+            )
+        }
     }
 }

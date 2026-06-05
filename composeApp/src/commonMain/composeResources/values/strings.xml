@@ -55,4 +55,19 @@ to your email address.</string>
     <string name="identity_verification_tip_lighting">Good lighting</string>
     <string name="identity_verification_tip_glasses">No glasses</string>
     <string name="continue_button">Continue</string>
+    <string name="invalid_full_name">Please enter a valid full name containing both first and last name, for example: "Ahmed Ali".</string>
+    <string name="fill_all_fields">Please fill in all fields.</string>
+    <string name="unexpected_error">An unexpected error occurred.</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="already_registered">Email or phone number is already registered</string>
+    <string name="service_not_found">Service not found</string>
+    <string name="internal_server_error">Internal server error</string>
+    <string name="resolve_issues">Please resolve the following issues:</string>
+    <string name="invalid_email">Please enter a valid email address</string>
+    <string name="weak_password">Password must be at least 8 characters</string>
+    <string name="password_needs_number">Password must contain at least one number</string>
+    <string name="password_needs_letter">Password must contain at least one letter</string>
+    <string name="invalid_phone">Please enter a valid phone number</string>
+    <string name="invalid_credentials">Invalid email or password.</string>
+    <string name="email_not_verify">Your email address has not been verified.</string>
 </resources>

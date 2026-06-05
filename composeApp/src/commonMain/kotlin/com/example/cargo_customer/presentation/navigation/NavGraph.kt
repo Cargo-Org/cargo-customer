@@ -26,15 +26,21 @@ fun NavGraph(
         composable<Route.SplashRoute> {
             SplashScreen(
                 navigationCallbacks = SplashNavigationCallbacks(
-                    onNavigateToOnboarding = { navController.navigate(Route.OnboardingRoute) },
-                    onNavigateToLogin = { navController.navigate(Route.LoginRoute) },
+                    onNavigateToOnboarding = { navController.navigate(Route.OnboardingRoute){
+                        popUpTo(Route.SplashRoute) { inclusive = true }
+                    } },
+                    onNavigateToLogin = { navController.navigate(Route.LoginRoute){
+                        popUpTo(Route.SplashRoute) { inclusive = true }
+                    } },
                     onNavigateToHome = { /* TODO to navigate to Home*/ })
             )
         }
         composable<Route.OnboardingRoute> {
             OnboardingScreen(
                 navigationCallbacks = OnboardingNavigationCallbacks(
-                    onNavigateToLogin = { navController.navigate(Route.LoginRoute) })
+                    onNavigateToLogin = { navController.navigate(Route.LoginRoute){
+                        popUpTo(Route.OnboardingRoute) { inclusive = true }
+                    } })
             )
         }
         composable<Route.LoginRoute> { LoginScreen() }

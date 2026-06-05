@@ -32,7 +32,7 @@ import com.example.cargo_customer.presentation.core.ui.asString
 import com.example.cargo_customer.presentation.navigation.LocalNavController
 import com.example.cargo_customer.presentation.navigation.Route
 import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginEffect
-import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginInteraction
+import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginInteractionListener
 import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginUiState
 import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginViewModel
 import com.example.cargo_customer.presentation.theme.CargoTheme
@@ -64,7 +64,7 @@ fun LoginScreen(
 private fun LoginScreenContent(
     modifier: Modifier = Modifier,
     state: LoginUiState,
-    onAction: (LoginInteraction)-> Unit,
+    onAction: (LoginInteractionListener)-> Unit,
 ) {
     val focusManager = LocalFocusManager.current
     val emailFocusRequester = remember { FocusRequester() }
@@ -88,7 +88,7 @@ private fun LoginScreenContent(
             )
             InputField(
                 value = state.email,
-                onValueChanged = { onAction(LoginInteraction.OnEmailChanged(it)) },
+                onValueChanged = { onAction(LoginInteractionListener.OnEmailChanged(it)) },
                 label = stringResource(Res.string.email_label),
                 placeholder = stringResource(Res.string.email_placeholder),
                 leadingIconRes = Res.drawable.ic_email,
@@ -99,14 +99,14 @@ private fun LoginScreenContent(
             )
             InputField(
                 value = state.password,
-                onValueChanged = { onAction(LoginInteraction.OnPasswordChanged(it)) },
+                onValueChanged = { onAction(LoginInteractionListener.OnPasswordChanged(it)) },
                 label = stringResource(Res.string.password_label),
                 placeholder = stringResource(Res.string.password_placeholder),
                 leadingIconRes = Res.drawable.ic_lock,
                 keyboardType = KeyboardType.Password,
                 isPasswordField = true,
                 isPasswordVisible = state.isPasswordVisible,
-                onVisibilityChange = { onAction(LoginInteraction.OnPasswordVisibilityToggled) },
+                onVisibilityChange = { onAction(LoginInteractionListener.OnPasswordVisibilityToggled) },
                 focusRequester = passwordFocusRequester,
                 errorMessage = state.passwordError?.asString(),
                 onDone = { focusManager.clearFocus() }
@@ -132,7 +132,7 @@ private fun LoginScreenContent(
                 text = stringResource(Res.string.sign_in_action),
                 isLoading = state.isLoading,
                 onClick = {
-                    onAction(LoginInteraction.OnLoginClicked)
+                    onAction(LoginInteractionListener.OnLoginClicked)
                     focusManager.clearFocus()
                 }
             )
@@ -141,12 +141,12 @@ private fun LoginScreenContent(
                 centerText = stringResource(Res.string.or_sign_in)
             )
             GoogleButton(
-                onClick = { onAction(LoginInteraction.OnGoogleClicked) }
+                onClick = { onAction(LoginInteractionListener.OnGoogleClicked) }
             )
             AuthFooterText(
                 promptText = stringResource(Res.string.already_have_account),
                 actionText = stringResource(Res.string.create_an_account),
-                onClick = { onAction(LoginInteraction.OnRegisterClicked) }
+                onClick = { onAction(LoginInteractionListener.OnRegisterClicked) }
             )
         }
     }

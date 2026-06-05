@@ -25,15 +25,15 @@ class LoginViewModel(
     private val loginUseCase: LoginUseCase,
 ) : BaseViewModel<LoginUiState, LoginEffect>(LoginUiState()) {
 
-    fun onAction(action: LoginInteraction) {
+    fun onAction(action: LoginInteractionListener) {
         when (action) {
-            is LoginInteraction.OnEmailChanged -> updateState { copy(email = action.email , emailError = null , passwordError = null ,errorMessage = null) }
-            is LoginInteraction.OnPasswordChanged -> updateState { copy(password = action.password , passwordError = null ,emailError = null, errorMessage = null) }
-            is LoginInteraction.OnPasswordVisibilityToggled -> updateState { copy(isPasswordVisible = !isPasswordVisible) }
-            is LoginInteraction.OnLoginClicked -> loginEmailAndPassword()
-            is LoginInteraction.OnGoogleClicked ->loginWithGoogle()
-            is LoginInteraction.OnForgotPasswordClicked -> sendEffect(LoginEffect.NavigateToForgetPassword)
-            is LoginInteraction.OnRegisterClicked -> sendEffect(LoginEffect.NavigateToRegister)
+            is LoginInteractionListener.OnEmailChanged -> updateState { copy(email = action.email , emailError = null , passwordError = null ,errorMessage = null) }
+            is LoginInteractionListener.OnPasswordChanged -> updateState { copy(password = action.password , passwordError = null ,emailError = null, errorMessage = null) }
+            is LoginInteractionListener.OnPasswordVisibilityToggled -> updateState { copy(isPasswordVisible = !isPasswordVisible) }
+            is LoginInteractionListener.OnLoginClicked -> loginEmailAndPassword()
+            is LoginInteractionListener.OnGoogleClicked ->loginWithGoogle()
+            is LoginInteractionListener.OnForgotPasswordClicked -> sendEffect(LoginEffect.NavigateToForgetPassword)
+            is LoginInteractionListener.OnRegisterClicked -> sendEffect(LoginEffect.NavigateToRegister)
         }
     }
     private fun loginWithGoogle(){

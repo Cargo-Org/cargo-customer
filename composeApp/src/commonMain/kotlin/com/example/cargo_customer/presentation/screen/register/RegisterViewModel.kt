@@ -18,8 +18,8 @@ import com.cargo.customer.shared.domain.exception.ServerException
 import com.cargo.customer.shared.domain.usecase.auth.RegisterUseCase
 import com.cargo.customer.shared.domain.validation.Validator
 import com.example.cargo_customer.presentation.base.BaseViewModel
-import com.example.cargo_customer.presentation.core.ui.ui.UiText
-import com.example.cargo_customer.presentation.core.ui.ui.toUiTextOrNull
+import com.example.cargo_customer.presentation.core.ui.UiText
+import com.example.cargo_customer.presentation.core.ui.toUiTextOrNull
 
 
 class RegisterViewModel(

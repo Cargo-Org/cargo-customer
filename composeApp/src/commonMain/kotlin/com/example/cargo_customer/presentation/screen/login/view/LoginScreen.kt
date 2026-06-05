@@ -28,7 +28,7 @@ import com.example.cargo_customer.presentation.component.GoogleButton
 import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.component.OrDivider
 import com.example.cargo_customer.presentation.component.WelcomeHeader
-import com.example.cargo_customer.presentation.core.ui.ui.asString
+import com.example.cargo_customer.presentation.core.ui.asString
 import com.example.cargo_customer.presentation.navigation.LocalNavController
 import com.example.cargo_customer.presentation.navigation.Route
 import com.example.cargo_customer.presentation.screen.login.viewmodel.LoginEffect

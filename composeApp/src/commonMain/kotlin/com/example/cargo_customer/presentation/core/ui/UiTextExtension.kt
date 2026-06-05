@@ -1,4 +1,4 @@
-package com.example.cargo_customer.presentation.core.ui.ui
+package com.example.cargo_customer.presentation.core.ui
 
 import androidx.compose.runtime.Composable
 import cargo_customer.composeapp.generated.resources.Res

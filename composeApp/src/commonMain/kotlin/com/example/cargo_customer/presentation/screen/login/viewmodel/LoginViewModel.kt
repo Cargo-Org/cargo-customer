@@ -11,7 +11,7 @@ import cargo_customer.composeapp.generated.resources.service_not_found
 import cargo_customer.composeapp.generated.resources.unexpected_error
 import cargo_customer.composeapp.generated.resources.weak_password
 import com.cargo.customer.shared.data.remote.dto.ApiErrorResponse
-import com.example.cargo_customer.presentation.core.ui.error.ApiErrorTitle
+import com.example.cargo_customer.presentation.core.error.ApiErrorTitle
 import com.cargo.customer.shared.domain.exception.ConflictException
 import com.cargo.customer.shared.domain.exception.NoInternetException
 import com.cargo.customer.shared.domain.exception.NotFoundException
@@ -20,7 +20,7 @@ import com.cargo.customer.shared.domain.exception.UnauthorizedException
 import com.cargo.customer.shared.domain.result.ApiResult
 import com.cargo.customer.shared.domain.usecase.LogInUseCase
 import com.example.cargo_customer.presentation.base.BaseViewModel
-import com.example.cargo_customer.presentation.core.ui.ui.UiText
+import com.example.cargo_customer.presentation.core.ui.UiText
 
 class LoginViewModel(
     private val loginUseCase: LogInUseCase,
@@ -70,7 +70,7 @@ class LoginViewModel(
                             is ConflictException ->
                                 when (val response = exception.errorResponse) {
                                     is ApiErrorResponse -> {
-                                        if(response.title == ApiErrorTitle.EMAIL_NOT_VERIFIED.name){
+                                        if(response.title == ApiErrorTitle.EMAIL_NOT_VERIFIED.value){
                                             sendEffect(LoginEffect.NavigateToVerifyEmail)
                                             UiText.Resource(Res.string.email_not_verify)
                                         }

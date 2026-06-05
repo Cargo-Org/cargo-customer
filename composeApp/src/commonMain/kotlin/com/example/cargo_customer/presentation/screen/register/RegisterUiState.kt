@@ -1,6 +1,6 @@
 package com.example.cargo_customer.presentation.screen.register
 
-import com.example.cargo_customer.presentation.core.ui.ui.UiText
+import com.example.cargo_customer.presentation.core.ui.UiText
 
 data class RegisterUiState(
     val name: String = "",

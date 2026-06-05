@@ -1,8 +1,11 @@
 package com.example.cargo_customer.presentation.screen.login.viewmodel
+
+import com.example.cargo_customer.presentation.core.ui.UiText
+
 sealed interface LoginEffect {
-    data object NavigateToHome : LoginEffect
-    data object NavigateToRegister : LoginEffect
-    data object NavigateToForgetPassword : LoginEffect
-    data object NavigateToVerifyEmail : LoginEffect
-    data class ShowError(val message: String) : LoginEffect
+    object NavigateToHome : LoginEffect
+    object NavigateToRegister : LoginEffect
+    object NavigateToForgetPassword : LoginEffect
+    object NavigateToVerifyEmail : LoginEffect
+    data class ShowError(val message: UiText) : LoginEffect
 }

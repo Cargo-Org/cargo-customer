@@ -1,12 +1,12 @@
 package com.example.cargo_customer.presentation.screen.splash.viewmodel
 
-import com.cargo.customer.shared.domain.usecase.IsLoginUseCase
+import com.cargo.customer.shared.domain.usecase.IsLoggedInUseCase
 import com.cargo.customer.shared.domain.usecase.IsOnboardingFirstTimeUseCase
 import com.example.cargo_customer.presentation.base.BaseViewModel
 
 class SplashViewModel (
     private val isOnboardingFirstTimeUseCase: IsOnboardingFirstTimeUseCase,
-    private val isLoginUseCase: IsLoginUseCase
+    private val isLoggedInUseCase: IsLoggedInUseCase
 ): BaseViewModel<SplashState, SplashEffect>(SplashState()) {
 
     fun determineNextDestination() {
@@ -27,7 +27,7 @@ class SplashViewModel (
             },
             block = {
                 val isFirstTime = isOnboardingFirstTimeUseCase()
-                val isLoggedIn = isLoginUseCase()
+                val isLoggedIn = isLoggedInUseCase()
                 Pair(isFirstTime, isLoggedIn)
             },
         )

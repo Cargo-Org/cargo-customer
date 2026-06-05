@@ -9,9 +9,9 @@ import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSourceImpl
 import com.cargo.customer.shared.data.repository.AuthRepositoryImp
 import com.cargo.customer.shared.data.repository.OnboardingRepositoryImp
 import com.cargo.customer.shared.domain.repository.AuthRepository
-import com.cargo.customer.shared.domain.usecase.LoginUseCase
+import com.cargo.customer.shared.domain.usecase.LogInUseCase
 import com.cargo.customer.shared.domain.repository.OnboardingRepository
-import com.cargo.customer.shared.domain.usecase.IsLoginUseCase
+import com.cargo.customer.shared.domain.usecase.IsLoggedInUseCase
 import com.cargo.customer.shared.domain.usecase.IsOnboardingFirstTimeUseCase
 import com.cargo.customer.shared.domain.usecase.SetOnboardingFirstTimeUseCase
 import com.cargo.customer.shared.domain.usecase.auth.RegisterUseCase
@@ -41,9 +41,9 @@ val sharedModule = module {
         )
     }
     //usecase
-    factory { LoginUseCase(get()) }
+    factory { LogInUseCase(get()) }
 
-    factory { IsLoginUseCase(get()) }
+    factory { IsLoggedInUseCase(get()) }
 
     single <OnboardingRepository>{ OnboardingRepositoryImp(get()) }
 

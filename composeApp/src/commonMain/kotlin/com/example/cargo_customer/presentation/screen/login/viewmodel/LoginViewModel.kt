@@ -17,12 +17,12 @@ import com.cargo.customer.shared.domain.exception.NotFoundException
 import com.cargo.customer.shared.domain.exception.ServerException
 import com.cargo.customer.shared.domain.exception.UnauthorizedException
 import com.cargo.customer.shared.domain.result.ApiResult
-import com.cargo.customer.shared.domain.usecase.LoginUseCase
+import com.cargo.customer.shared.domain.usecase.LogInUseCase
 import com.example.cargo_customer.presentation.base.BaseViewModel
 import com.example.cargo_customer.presentation.core.ui.UiText
 
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase,
+    private val loginUseCase: LogInUseCase,
 ) : BaseViewModel<LoginUiState, LoginEffect>(LoginUiState()) {
 
     fun onAction(action: LoginInteractionListener) {

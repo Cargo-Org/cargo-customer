@@ -47,13 +47,9 @@ fun LoginScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     ObserveAsEffect(viewModel.effect) { effects ->
         when(effects){
-            is LoginEffect.NavigateToHome -> navController.navigate(Route.HomeRoute) {
-                popUpTo(Route.LoginRoute) {
-                    inclusive = true
-                }
-            }
+            is LoginEffect.NavigateToHome -> { /*Navigate to the home screen*/}
             is LoginEffect.NavigateToRegister -> navController.navigate(Route.RegisterRoute)
-            is LoginEffect.NavigateToForgetPassword -> { }
+            is LoginEffect.NavigateToForgetPassword -> {/*Navigate to the forget password*/ }
             is LoginEffect.NavigateToVerifyEmail -> {navController.navigate(Route.VerifyEmail)}
             is LoginEffect.ShowError -> { /*show the error*/ }
         }

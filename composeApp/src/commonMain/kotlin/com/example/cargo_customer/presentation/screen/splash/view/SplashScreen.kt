@@ -74,11 +74,7 @@ fun SplashScreen(
                     popUpTo(Route.SplashRoute) { inclusive = true }
                 }
             }
-            SplashEffect.NavigateToHome -> {
-                navController.navigate(Route.HomeRoute) {
-                    popUpTo(Route.SplashRoute) { inclusive = true }
-                }
-            }
+            SplashEffect.NavigateToHome -> {/*Navigate to home screen */}
         }
     }
 

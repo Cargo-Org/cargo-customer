@@ -60,7 +60,9 @@ class LoginViewModel(
             onStart = {updateState { copy(isLoading = true , errorMessage = null)}},
             onSuccess = { result ->
                 when(result){
-                    is ApiResult.Success -> sendEffect(LoginEffect.NavigateToHome(email))
+                    is ApiResult.Success -> {
+                        // send effect navigate to home screen
+                    }
                     is ApiResult.Error -> {
                         val errorMessage = when (val exception = result.exception){
                             is NoInternetException -> UiText.Resource(Res.string.no_internet_connection)

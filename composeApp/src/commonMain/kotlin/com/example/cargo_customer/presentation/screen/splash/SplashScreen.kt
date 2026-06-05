@@ -40,8 +40,7 @@ import com.example.cargo_customer.presentation.base.ObserveAsEffect
 import com.example.cargo_customer.presentation.component.AnimatedCargoLogo
 import com.example.cargo_customer.presentation.component.AnimatedProgressBar
 import com.example.cargo_customer.presentation.component.AnimatedThreeDotsBar
-import com.example.cargo_customer.presentation.navigation.LocalNavController
-import com.example.cargo_customer.presentation.navigation.Route
+import com.example.cargo_customer.presentation.navigation.callbacks.SplashNavigationCallbacks
 import com.example.cargo_customer.presentation.screen.splash.SplashAnim.SPLASH_DURATION_MS
 import com.example.cargo_customer.presentation.screen.splash.viewmodel.SplashEffect
 import com.example.cargo_customer.presentation.screen.splash.viewmodel.SplashViewModel
@@ -53,10 +52,9 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SplashScreen(
+    navigationCallbacks: SplashNavigationCallbacks,
     viewModel: SplashViewModel = koinViewModel()
 ) {
-    val navController = LocalNavController.current
-
     LaunchedEffect(Unit) {
         delay(SPLASH_DURATION_MS)
         viewModel.determineNextDestination()
@@ -64,9 +62,9 @@ fun SplashScreen(
 
     ObserveAsEffect(viewModel.effect) { effects ->
         when (effects) {
-            SplashEffect.NavigateToOnboarding -> navController.navigate(Route.OnboardingRoute)
-            SplashEffect.NavigateToLogin -> navController.navigate(Route.LoginRoute)
-            SplashEffect.NavigateToHome -> { /* TODO */ }
+            SplashEffect.NavigateToOnboarding -> navigationCallbacks.onNavigateToOnboarding()
+            SplashEffect.NavigateToLogin -> navigationCallbacks.onNavigateToLogin()
+            SplashEffect.NavigateToHome -> navigationCallbacks.onNavigateToHome()
         }
     }
 

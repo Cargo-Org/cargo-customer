@@ -11,7 +11,6 @@ import cargo_customer.composeapp.generated.resources.service_not_found
 import cargo_customer.composeapp.generated.resources.unexpected_error
 import cargo_customer.composeapp.generated.resources.weak_password
 import com.cargo.customer.shared.data.remote.dto.ApiErrorResponse
-import com.cargo.customer.shared.data.remote.dto.ValidationErrorResponse
 import com.cargo.customer.shared.domain.exception.ConflictException
 import com.cargo.customer.shared.domain.exception.NoInternetException
 import com.cargo.customer.shared.domain.exception.NotFoundException
@@ -21,8 +20,6 @@ import com.cargo.customer.shared.domain.result.ApiResult
 import com.cargo.customer.shared.domain.usecase.LoginUseCase
 import com.example.cargo_customer.presentation.base.BaseViewModel
 import com.example.cargo_customer.presentation.core.ui.UiText
-import com.example.cargo_customer.presentation.screen.login.view.LoginScreen
-import com.example.cargo_customer.presentation.screen.register.RegisterUiEffect
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,

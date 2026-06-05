@@ -23,8 +23,6 @@ class TokenStorageImpl(
     }
 
     override suspend fun getAccessToken(): String? {
-        println("refresh token"+dataStore.data.first()[REFRESH_TOKEN])
-        println("access token"+dataStore.data.first()[ACCESS_TOKEN])
         return dataStore.data.first()[ACCESS_TOKEN]
     }
 

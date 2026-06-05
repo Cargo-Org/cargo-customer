@@ -6,8 +6,6 @@ class IsLoginUseCase(
     private val authRepository: AuthRepository
 ) {
     suspend operator fun invoke(): Boolean {
-       // authRepository.clearTokens()
-        println(authRepository.getAccessToken() != null) // this print tme false
         return authRepository.getAccessToken() != null
     }
 }

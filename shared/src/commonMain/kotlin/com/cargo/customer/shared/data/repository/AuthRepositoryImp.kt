@@ -8,21 +8,31 @@ import com.cargo.customer.shared.domain.model.UploadUrlModel
 import com.cargo.customer.shared.domain.repository.AuthRepository
 import com.cargo.customer.shared.domain.result.ApiResult
 
-class AuthRepositoryImp (
+class AuthRepositoryImp(
     private val remote: AuthRemoteDataSource,
     private val local: AuthLocalDataSource
-): AuthRepository {
+) : AuthRepository {
 
-    override suspend fun getUploadUrl(): ApiResult<UploadUrlModel> {
-        return when(val result = remote.getUploadUrl()) {
-            is ApiResult.Success -> { ApiResult.Success(result.data.toDomain()) }
+    override suspend fun getUploadUrl(
+        documentType: Int,
+        contentType: String
+    ): ApiResult<UploadUrlModel> {
+        return when (val result =
+            remote.getUploadUrl(documentType = documentType, contentType = contentType)) {
+            is ApiResult.Success -> {
+                ApiResult.Success(result.data.toDomain())
+            }
+
             is ApiResult.Error -> result
         }
     }
 
     override suspend fun uploadImageToUrl(uploadUrl: String, bytes: ByteArray): ApiResult<Unit> {
-        return when(val result = remote.uploadImageToUrl(uploadUrl, bytes)) {
-            is ApiResult.Success -> { ApiResult.Success(Unit) }
+        return when (val result = remote.uploadImageToUrl(uploadUrl, bytes)) {
+            is ApiResult.Success -> {
+                ApiResult.Success(Unit)
+            }
+
             is ApiResult.Error -> result
         }
     }
@@ -34,15 +44,22 @@ class AuthRepositoryImp (
         contentType: String,
         fileSizeInByte: String
     ): ApiResult<Unit> {
-        return when(val result = remote.submitDocumentData(documentType, fileName, key,contentType ,fileSizeInByte)) {
-            is ApiResult.Success -> { ApiResult.Success(Unit) }
+        return when (val result =
+            remote.submitDocumentData(documentType, fileName, key, contentType, fileSizeInByte)) {
+            is ApiResult.Success -> {
+                ApiResult.Success(Unit)
+            }
+
             is ApiResult.Error -> result
         }
     }
 
     override suspend fun getDocuments(): ApiResult<List<DocumentModel>> {
-        return when(val result = remote.getDocuments()) {
-            is ApiResult.Success -> { ApiResult.Success(result.data.map { it.toDomain() }) }
+        return when (val result = remote.getDocuments()) {
+            is ApiResult.Success -> {
+                ApiResult.Success(result.data.map { it.toDomain() })
+            }
+
             is ApiResult.Error -> result
         }
     }

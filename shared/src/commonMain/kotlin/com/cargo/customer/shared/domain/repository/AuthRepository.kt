@@ -5,7 +5,7 @@ import com.cargo.customer.shared.domain.model.UploadUrlModel
 import com.cargo.customer.shared.domain.result.ApiResult
 
 interface AuthRepository {
-    suspend fun getUploadUrl(): ApiResult<UploadUrlModel>
+    suspend fun getUploadUrl(documentType:Int,contentType:String): ApiResult<UploadUrlModel>
     suspend fun uploadImageToUrl(
         uploadUrl: String,
         bytes: ByteArray

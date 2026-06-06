@@ -55,7 +55,7 @@ to your email address.</string>
     <string name="identity_verification_tip_lighting">Good lighting</string>
     <string name="identity_verification_tip_glasses">No glasses</string>
     <string name="continue_button">Continue</string>
-    <string name="invalid_full_name">Please enter a valid full name containing both first and last name, for example: "Ahmed Ali".</string>
+    <string name="invalid_full_name">Enter a valid full name (e.g. Ahmed Ali).</string>
     <string name="fill_all_fields">Please fill in all fields.</string>
     <string name="unexpected_error">An unexpected error occurred.</string>
     <string name="no_internet_connection">No internet connection</string>

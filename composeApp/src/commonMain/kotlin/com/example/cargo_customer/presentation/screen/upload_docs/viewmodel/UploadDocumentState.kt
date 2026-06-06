@@ -2,9 +2,15 @@ package com.example.cargo_customer.presentation.screen.upload_docs.viewmodel
 
 data class UploadDocumentState(
     @Suppress("ArrayInDataClass")
-    val selectedImage: ByteArray? = null,
+    val frontImageBytes: ByteArray? = null,
+    @Suppress("ArrayInDataClass")
+    val backImageBytes: ByteArray? = null,
+    @Suppress("ArrayInDataClass")
+    val faceImageBytes : ByteArray?=null,
     val isLoading: Boolean = false,
     val step: UploadStep = UploadStep.IDLE,
+    val stepIndex : Int = 0,
+    val nationalImageIndex : Int = 0,
     val selectedDocumentType: DocumentType = DocumentType.NationalIdFront,
     val uploadUrl: String? = null,
     val objectKey: String? = null,
@@ -28,5 +34,6 @@ enum class DocumentType (val value : Int)
 {
     NationalIdFront(0),
     NationalIdBack(1),
+    LiveFacePicture(3),
     Other (4)
 }

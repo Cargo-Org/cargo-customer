@@ -9,6 +9,7 @@ import com.cargo.customer.shared.domain.exception.UnknownException
 import com.cargo.customer.shared.domain.result.ApiResult
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import io.ktor.util.network.UnresolvedAddressException
 import kotlinx.io.IOException
@@ -20,6 +21,8 @@ suspend inline fun <reified T> safeApiCall(
     return try {
 
         val response = execute()
+
+        println("Response is "+ response.bodyAsText())
 
         when (response.status.value) {
 
@@ -59,7 +62,7 @@ suspend inline fun <reified T> safeApiCall(
         ApiResult.Error(e)
 
     } catch (e: Exception) {
-
+        e.printStackTrace()
         ApiResult.Error(UnknownException())
     }
 }

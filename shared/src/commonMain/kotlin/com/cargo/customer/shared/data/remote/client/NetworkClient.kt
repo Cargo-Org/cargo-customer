@@ -32,7 +32,10 @@ class NetworkClient(
     suspend fun get(
         path: String,
         block: HttpRequestBuilder.() -> Unit = {}
-    ): HttpResponse = client.get(path, block)
+    ): HttpResponse {
+        println("Request is $path$block")
+        return client.get(path, block)
+    }
 
     suspend fun post(
         path: String,

@@ -12,7 +12,7 @@ import com.example.cargo_customer.presentation.screen.login.LoginScreen
 import com.example.cargo_customer.presentation.screen.onboarding.view.OnboardingScreen
 import com.example.cargo_customer.presentation.screen.register.RegisterScreen
 import com.example.cargo_customer.presentation.screen.splash.SplashScreen
-import com.example.cargo_customer.presentation.screen.upload_docs.UploadDocumentsScreen
+import com.example.cargo_customer.presentation.screen.upload_docs.view.UploadDocumentsScreen
 
 
 @Composable
@@ -26,7 +26,7 @@ fun NavGraph(
     ) {
         NavHost(
             navController = navController,
-            startDestination = Route.SplashRoute,
+            startDestination = Route.UploadDocs,
             modifier = modifier
         ) {
             composable<Route.SplashRoute> { SplashScreen() }

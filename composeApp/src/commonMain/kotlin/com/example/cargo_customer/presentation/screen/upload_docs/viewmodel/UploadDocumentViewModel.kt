@@ -16,10 +16,46 @@ class UploadDocumentViewModel(
     fun onImageSelected(bytes: ByteArray, fileName: String, contentType: String) {
         updateState {
             copy(
-                selectedImage = bytes,
-                fileName = fileName,
-                contentType = contentType,
-                fileSizeBytes = bytes.size.toLong()
+                fileName = fileName, contentType = contentType, fileSizeBytes = bytes.size.toLong()
+            )
+        }
+
+        if (state.value.stepIndex == 0) {
+            when (state.value.nationalImageIndex) {
+                0 -> onFrontImageSelected(bytes)
+                1 -> onBackImageSelected(bytes)
+            }
+        } else {
+            onFaceDetectionImageSelected(bytes)
+        }
+    }
+
+    private fun onFrontImageSelected(bytes: ByteArray) {
+        updateState {
+            copy(
+                selectedDocumentType = DocumentType.NationalIdFront,
+                step = UploadStep.PICKED,
+                frontImageBytes = bytes
+            )
+        }
+    }
+
+    private fun onBackImageSelected(bytes: ByteArray) {
+        updateState {
+            copy(
+                selectedDocumentType = DocumentType.NationalIdBack,
+                step = UploadStep.PICKED,
+                backImageBytes = bytes
+            )
+        }
+    }
+
+    private fun onFaceDetectionImageSelected(bytes: ByteArray) {
+        updateState {
+            copy(
+                selectedDocumentType = DocumentType.LiveFacePicture,
+                step = UploadStep.PICKED,
+                faceImageBytes = bytes
             )
         }
     }
@@ -28,20 +64,39 @@ class UploadDocumentViewModel(
         sendEffect(UploadDocumentEffect.OpenImagePicker)
     }
 
+    override fun onNationalIndexChangeBySwap(index: Int) {
+        updateState {
+            copy(
+                nationalImageIndex = index
+            )
+        }
+    }
+
     override fun onNextStepClick() {
         tryToExecute(
             onStart = { updateState { copy(step = UploadStep.GETTING_URL, isLoading = true) } },
-            block = { getUploadUrlUseCase() },
+            block = {
+                getUploadUrlUseCase(
+                    contentType = state.value.contentType,
+                    documentType = state.value.selectedDocumentType.value
+                )
+            },
             onSuccess = { response ->
                 when (response) {
                     is ApiResult.Success -> {
                         onUploadUrlSuccess(response.data.uploadUrl, response.data.objectKey)
                     }
 
-                    is ApiResult.Error -> {}
+                    is ApiResult.Error -> {
+                        println("Error while Upload")
+                    }
                 }
             },
             onError = { updateState { copy(step = UploadStep.ERROR, error = "") } })
+    }
+
+    override fun onFaceDetectionClick() {
+        sendEffect(UploadDocumentEffect.OpenImagePicker) //choose camera
     }
 
     private fun onUploadUrlSuccess(uploadUrl: String, objectKey: String) {
@@ -50,16 +105,17 @@ class UploadDocumentViewModel(
                 uploadUrl = uploadUrl,
                 objectKey = objectKey,
                 step = UploadStep.UPLOADING,
+                stepIndex = 1
             )
         }
-        uploadFile(uploadUrl, objectKey)
+        uploadFile(uploadUrl, objectKey,getSelectedImage())
     }
 
-    private fun uploadFile(uploadUrl: String, objectKey: String) {
+    private fun uploadFile(uploadUrl: String, objectKey: String,selectedImage : ByteArray?) {
         tryToExecute(onStart = { updateState { copy(step = UploadStep.UPLOADING) } }, block = {
             uploadDocumentUseCase(
                 url = uploadUrl,
-                bytes = state.value.selectedImage!!, ///////////////////handle
+                bytes = selectedImage!!, ///////////////////handle
             )
         }, onSuccess = { submitDocument(objectKey) }, onError = {
             updateState {
@@ -68,8 +124,20 @@ class UploadDocumentViewModel(
         })
     }
 
+    private fun getSelectedImage(): ByteArray? {
+        return if (state.value.stepIndex == 0) {
+            when (state.value.nationalImageIndex) {
+                0 -> state.value.frontImageBytes
+                else -> state.value.backImageBytes
+            }
+        } else {
+            state.value.faceImageBytes
+        }
+    }
+
     private fun submitDocument(objectKey: String) {
-        tryToExecute(onStart = { updateState { copy(step = UploadStep.SUBMITTING) } }, block = {
+        tryToExecute(onStart = { updateState { copy(step = UploadStep.SUBMITTING) } },
+            block = {
             submitDocumentInfoUseCase(
                 documentType = state.value.selectedDocumentType.value,
                 fileName = state.value.fileName,
@@ -85,11 +153,17 @@ class UploadDocumentViewModel(
                     isLoading = false
                 )
             }
-            sendEffect(UploadDocumentEffect.NavigateToPendingScreen)
-        }, onError = { updateState { copy(step = UploadStep.ERROR, error = "") } })
+                sendEffect(UploadDocumentEffect.NavigateToPendingScreen)
+                println("Done Submit Files")
+
+        }, onError = {
+            updateState { copy(step = UploadStep.ERROR, error = "") }
+                println("Error while submit document data")
+
+        })
     }
 
     override fun onFinishClick() {
-        ///TODO navigate to pending screen
+        uploadFile(state.value.uploadUrl!!,state.value.objectKey!!,state.value.faceImageBytes)
     }
 }

@@ -28,28 +28,28 @@ class RegisterViewModel(
     initialValue = RegisterUiState()
 ) {
 
-    fun onInteraction(interaction: RegisterInteraction) {
+    fun onInteraction(interaction: RegisterInteractionListener) {
         when (interaction) {
 
-            is RegisterInteraction.OnNameChanged ->
+            is RegisterInteractionListener.OnNameChanged ->
                 updateState { copy(name = interaction.value, nameError = null) }
 
-            is RegisterInteraction.OnEmailChanged ->
+            is RegisterInteractionListener.OnEmailChanged ->
                 updateState { copy(email = interaction.value, emailError = null ) }
 
-            is RegisterInteraction.OnPhoneChanged ->
+            is RegisterInteractionListener.OnPhoneChanged ->
                 updateState { copy(phone = interaction.value, phoneError = null) }
 
-            is RegisterInteraction.OnPasswordChanged ->
+            is RegisterInteractionListener.OnPasswordChanged ->
                 updateState { copy(password = interaction.value, passwordError = null) }
 
-            is RegisterInteraction.OnTogglePasswordVisibility ->
+            is RegisterInteractionListener.OnTogglePasswordVisibility ->
                 updateState { copy(isPasswordVisible = !isPasswordVisible) }
 
-            is RegisterInteraction.OnRegisterClicked ->
+            is RegisterInteractionListener.OnRegisterClicked ->
                 onRegisterClicked()
 
-            is RegisterInteraction.OnSignInClicked ->
+            is RegisterInteractionListener.OnSignInClicked ->
                 sendEffect(RegisterUiEffect.NavigateToLogin)
         }
     }

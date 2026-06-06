@@ -23,8 +23,7 @@ import cargo_customer.composeapp.generated.resources.onboardingOneSubtitle
 import cargo_customer.composeapp.generated.resources.onboardingOneTitle
 import com.example.cargo_customer.presentation.base.ObserveAsEffect
 import com.example.cargo_customer.presentation.component.ColoredActionButton
-import com.example.cargo_customer.presentation.navigation.LocalNavController
-import com.example.cargo_customer.presentation.navigation.Route
+import com.example.cargo_customer.presentation.navigation.callbacks.OnboardingNavigationCallbacks
 import com.example.cargo_customer.presentation.screen.onboarding.viewmodel.OnBoardingPage
 import com.example.cargo_customer.presentation.screen.onboarding.viewmodel.OnboardingEffect
 import com.example.cargo_customer.presentation.screen.onboarding.viewmodel.OnboardingViewModel
@@ -34,14 +33,14 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun OnboardingScreen(
-    viewModel: OnboardingViewModel = koinViewModel(),
+    navigationCallbacks: OnboardingNavigationCallbacks,
+    viewModel: OnboardingViewModel = koinViewModel()
 ) {
-    val navController = LocalNavController.current
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ObserveAsEffect(viewModel.effect) { effect ->
         when (effect) {
-            is OnboardingEffect.NavigateToLogin -> navController.navigate(Route.LoginRoute)
+            is OnboardingEffect.NavigateToLogin -> navigationCallbacks.onNavigateToLogin()
         }
     }
 

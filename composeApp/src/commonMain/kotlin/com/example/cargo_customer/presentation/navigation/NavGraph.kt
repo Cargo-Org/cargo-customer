@@ -6,12 +6,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cargo_customer.presentation.navigation.callbacks.OnboardingNavigationCallbacks
+import com.example.cargo_customer.presentation.navigation.callbacks.RegisterNavigationCallbacks
 import com.example.cargo_customer.presentation.navigation.callbacks.SplashNavigationCallbacks
 import com.example.cargo_customer.presentation.screen.login.LoginScreen
 import com.example.cargo_customer.presentation.screen.onboarding.view.OnboardingScreen
 import com.example.cargo_customer.presentation.screen.register.view.RegisterScreen
 import com.example.cargo_customer.presentation.screen.splash.SplashScreen
 import com.example.cargo_customer.presentation.screen.upload_docs.UploadDocumentsScreen
+import com.example.cargo_customer.presentation.screen.verify_email.EmailVerificationScreen
 
 
 @Composable
@@ -40,11 +42,22 @@ fun NavGraph(
                 navigationCallbacks = OnboardingNavigationCallbacks(
                     onNavigateToLogin = { navController.navigate(Route.LoginRoute){
                         popUpTo(Route.OnboardingRoute) { inclusive = true }
-                    } })
+                    } }
+                )
             )
         }
         composable<Route.LoginRoute> { LoginScreen() }
-        composable<Route.RegisterRoute> { RegisterScreen() }
+        composable<Route.RegisterRoute> { RegisterScreen(
+            navigationCallbacks = RegisterNavigationCallbacks(
+                onNavigateToLogin = { navController.navigate(Route.LoginRoute){
+                    popUpTo(Route.RegisterRoute) { inclusive = true }
+                } },
+                onNavigateToVerifyEmail = { navController.navigate(Route.VerifyEmail){
+                    popUpTo(Route.RegisterRoute) { inclusive = true }
+                } }
+            )
+        ) }
         composable<Route.UploadDocs> { UploadDocumentsScreen() }
+        composable<Route.VerifyEmail> { EmailVerificationScreen() }
     }
 }

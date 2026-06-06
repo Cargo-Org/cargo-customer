@@ -29,8 +29,7 @@ import com.example.cargo_customer.presentation.component.ColoredActionButton
 import com.example.cargo_customer.presentation.component.InputField
 import com.example.cargo_customer.presentation.component.OrDivider
 import com.example.cargo_customer.presentation.component.WelcomeHeader
-import com.example.cargo_customer.presentation.navigation.LocalNavController
-import com.example.cargo_customer.presentation.navigation.Route
+import com.example.cargo_customer.presentation.navigation.callbacks.RegisterNavigationCallbacks
 import com.example.cargo_customer.presentation.screen.register.viewmodel.RegisterInteractionListener
 import com.example.cargo_customer.presentation.screen.register.viewmodel.RegisterUiEffect
 import com.example.cargo_customer.presentation.screen.register.viewmodel.RegisterUiState
@@ -40,29 +39,14 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun RegisterScreen(viewModel: RegisterViewModel = koinViewModel()) {
+fun RegisterScreen(navigationCallbacks: RegisterNavigationCallbacks, viewModel: RegisterViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val navController = LocalNavController.current
 
     ObserveAsEffect(viewModel.effect){ effect ->
         when (effect) {
-            is RegisterUiEffect.NavigateToVerifyEmail -> {
-                navController.navigate(Route.VerifyEmail){
-                    popUpTo(Route.RegisterRoute){
-                        inclusive = true
-                    }
-                }
-            }
-            is RegisterUiEffect.NavigateToLogin -> {
-                navController.navigate(Route.LoginRoute){
-                    popUpTo(Route.RegisterRoute){
-                        inclusive = true
-                    }
-                }
-            }
-            is RegisterUiEffect.ShowToast -> {
-
-            }
+            is RegisterUiEffect.NavigateToVerifyEmail -> navigationCallbacks.onNavigateToVerifyEmail()
+            is RegisterUiEffect.NavigateToLogin -> navigationCallbacks.onNavigateToLogin()
+            is RegisterUiEffect.ShowToast -> {}
         }
     }
 

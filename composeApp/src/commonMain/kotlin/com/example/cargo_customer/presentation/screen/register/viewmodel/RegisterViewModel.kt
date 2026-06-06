@@ -4,6 +4,7 @@ import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.already_registered
 import cargo_customer.composeapp.generated.resources.internal_server_error
 import cargo_customer.composeapp.generated.resources.no_internet_connection
+import cargo_customer.composeapp.generated.resources.please_resolve_the_following_issues
 import cargo_customer.composeapp.generated.resources.service_not_found
 import cargo_customer.composeapp.generated.resources.unexpected_error
 import com.cargo.customer.shared.data.remote.dto.ApiErrorResponse
@@ -16,14 +17,16 @@ import com.cargo.customer.shared.domain.exception.UnauthorizedException
 import com.cargo.customer.shared.domain.exception.NotFoundException
 import com.cargo.customer.shared.domain.exception.ServerException
 import com.cargo.customer.shared.domain.usecase.auth.RegisterUseCase
-import com.cargo.customer.shared.domain.validation.Validator
+import com.cargo.customer.shared.domain.usecase.auth.RegisterValidationUseCases
 import com.example.cargo_customer.presentation.base.BaseViewModel
 import com.example.cargo_customer.presentation.core.ui.UiText
 import com.example.cargo_customer.presentation.core.ui.toUiTextOrNull
+import com.example.cargo_customer.presentation.mapper.mapApiErrors
 
 
 class RegisterViewModel(
-    private val registerUseCase: RegisterUseCase
+    private val registerUseCase: RegisterUseCase,
+    private val validation: RegisterValidationUseCases
 ) : BaseViewModel<RegisterUiState, RegisterUiEffect>(
     initialValue = RegisterUiState()
 ) {
@@ -32,16 +35,16 @@ class RegisterViewModel(
         when (interaction) {
 
             is RegisterInteractionListener.OnNameChanged ->
-                updateState { copy(name = interaction.value, nameError = null) }
+                updateState { copy(name = interaction.value, nameError = null, error = null) }
 
             is RegisterInteractionListener.OnEmailChanged ->
-                updateState { copy(email = interaction.value, emailError = null ) }
+                updateState { copy(email = interaction.value, emailError = null, error = null) }
 
             is RegisterInteractionListener.OnPhoneChanged ->
-                updateState { copy(phone = interaction.value, phoneError = null) }
+                updateState { copy(phone = interaction.value, phoneError = null, error = null) }
 
             is RegisterInteractionListener.OnPasswordChanged ->
-                updateState { copy(password = interaction.value, passwordError = null) }
+                updateState { copy(password = interaction.value, passwordError = null, error = null) }
 
             is RegisterInteractionListener.OnTogglePasswordVisibility ->
                 updateState { copy(isPasswordVisible = !isPasswordVisible) }
@@ -58,16 +61,16 @@ class RegisterViewModel(
         val currentState = state.value
 
         val nameValidation =
-            Validator.validateName(currentState.name)
+            validation.validateName(currentState.name)
 
         val emailValidation =
-            Validator.validateEmail(currentState.email)
+            validation.validateEmail(currentState.email)
 
         val phoneValidation =
-            Validator.validatePhone(currentState.phone)
+            validation.validatePhone(currentState.phone)
 
         val passwordValidation =
-            Validator.validatePassword(currentState.password)
+            validation.validatePassword(currentState.password)
 
         val nameError = nameValidation.toUiTextOrNull()
         val emailError = emailValidation.toUiTextOrNull()
@@ -82,7 +85,6 @@ class RegisterViewModel(
         ).any { it != null }
 
         if (hasValidationError) {
-
             updateState {
                 copy(
                     nameError = nameError,

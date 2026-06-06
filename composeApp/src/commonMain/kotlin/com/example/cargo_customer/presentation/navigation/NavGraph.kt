@@ -31,7 +31,7 @@ fun NavGraph(
                     onNavigateToOnboarding = { navController.navigate(Route.OnboardingRoute){
                         popUpTo(Route.SplashRoute) { inclusive = true }
                     } },
-                    onNavigateToLogin = { navController.navigate(Route.LoginRoute){
+                    onNavigateToLogin = { navController.navigate(Route.RegisterRoute){
                         popUpTo(Route.SplashRoute) { inclusive = true }
                     } },
                     onNavigateToHome = { /* TODO to navigate to Home*/ })
@@ -40,7 +40,7 @@ fun NavGraph(
         composable<Route.OnboardingRoute> {
             OnboardingScreen(
                 navigationCallbacks = OnboardingNavigationCallbacks(
-                    onNavigateToLogin = { navController.navigate(Route.LoginRoute){
+                    onNavigateToLogin = { navController.navigate(Route.RegisterRoute){
                         popUpTo(Route.OnboardingRoute) { inclusive = true }
                     } }
                 )

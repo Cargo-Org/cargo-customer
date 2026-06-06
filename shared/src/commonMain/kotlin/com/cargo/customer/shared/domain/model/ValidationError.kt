@@ -1,4 +1,4 @@
-package com.cargo.customer.shared.domain.validation
+package com.cargo.customer.shared.domain.model
 
 sealed interface ValidationError {
     data object InvalidEmail : ValidationError

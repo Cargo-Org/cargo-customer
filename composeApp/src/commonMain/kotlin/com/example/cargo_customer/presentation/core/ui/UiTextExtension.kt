@@ -8,8 +8,8 @@ import cargo_customer.composeapp.generated.resources.invalid_phone
 import cargo_customer.composeapp.generated.resources.password_needs_letter
 import cargo_customer.composeapp.generated.resources.password_needs_number
 import cargo_customer.composeapp.generated.resources.weak_password
-import com.cargo.customer.shared.domain.validation.ValidationError
-import com.cargo.customer.shared.domain.validation.ValidationResult
+import com.cargo.customer.shared.domain.model.ValidationError
+import com.cargo.customer.shared.domain.result.ValidationResult
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -17,7 +17,27 @@ fun UiText.asString(): String {
     return when (this) {
         is UiText.Dynamic -> value
         is UiText.Resource -> stringResource(res)
-        is UiText.ResourceWithArgs -> stringResource(resource, *args.toTypedArray())
+        is UiText.ResourceWithArgs -> {
+            val resolvedArgs = args.map { arg ->
+                if (arg is UiText) {
+                    arg.asString()
+                } else {
+                    arg
+                }
+            }.toTypedArray()
+            stringResource(resource, *resolvedArgs)
+        }
+        is UiText.Joined -> {
+            val result = StringBuilder(prefix)
+            for (i in texts.indices) {
+                if (i > 0) {
+                    result.append(separator)
+                }
+                result.append(texts[i].asString())
+            }
+            result.append(postfix)
+            result.toString()
+        }
     }
 }
 

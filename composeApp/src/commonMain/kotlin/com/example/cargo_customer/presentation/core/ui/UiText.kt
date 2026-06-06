@@ -9,4 +9,10 @@ sealed interface UiText {
         val resource: StringResource,
         val args: List<Any>
     ) : UiText
+    data class Joined(
+        val texts: List<UiText>,
+        val separator: String = "\n",
+        val prefix: String = "",
+        val postfix: String = ""
+    ) : UiText
 }

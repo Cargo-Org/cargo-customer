@@ -132,14 +132,15 @@ class RegisterViewModel(
                                     }
 
                                     is ValidationErrorResponse -> {
-                                        UiText.Dynamic(
-                                            buildString {
-                                                appendLine("Please resolve the following issues:")
-                                                response.errors.values.flatten()
-                                                    .forEachIndexed { i, error ->
-                                                        appendLine("${i + 1}- $error")
-                                                    }
-                                            }
+                                        val errors = mapApiErrors(response.errors.values.flatten())
+                                        val joinedErrors = UiText.Joined(
+                                            texts = errors,
+                                            separator = "\n- ",
+                                            prefix = "\n- "
+                                        )
+                                        UiText.ResourceWithArgs(
+                                            Res.string.please_resolve_the_following_issues,
+                                            listOf(joinedErrors)
                                         )
                                     }
                                 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.upload_docs_subtitle
 import cargo_customer.composeapp.generated.resources.upload_docs_tip_corners
@@ -24,6 +25,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun UploadScreenFirstStep(
     nationalIDCardIndex: Int,
+    frontImage: ImageBitmap?,
+    backImage: ImageBitmap?,
     onNationalIDIndexChanged: (Int) -> Unit,
     onFrontClick: () -> Unit,
     onBackClick: () -> Unit,
@@ -51,8 +54,8 @@ fun UploadScreenFirstStep(
 
     NationalIDCard(
         currentIndex = nationalIDCardIndex,
-        frontImage = null,
-        backImage = null,
+        frontImage = frontImage,
+        backImage = backImage,
         onFrontClick = onFrontClick,
         onBackClick = onBackClick,
         onIndexChanged = onNationalIDIndexChanged
@@ -69,21 +72,18 @@ fun UploadScreenFirstStep(
     Spacer(Modifier.height(spacing.lg))
 
     TipRow(
-        text = stringResource(Res.string.upload_docs_tip_lighting),
-        icon = Lucide.Lightbulb
+        text = stringResource(Res.string.upload_docs_tip_lighting), icon = Lucide.Lightbulb
     )
 
     Spacer(Modifier.height(spacing.lg))
 
     TipRow(
-        text = stringResource(Res.string.upload_docs_tip_corners),
-        icon = Lucide.Crop
+        text = stringResource(Res.string.upload_docs_tip_corners), icon = Lucide.Crop
     )
 
     Spacer(Modifier.height(spacing.lg))
 
     TipRow(
-        text = stringResource(Res.string.upload_docs_tip_readable),
-        icon = Lucide.FileCheckCorner
+        text = stringResource(Res.string.upload_docs_tip_readable), icon = Lucide.FileCheckCorner
     )
 }

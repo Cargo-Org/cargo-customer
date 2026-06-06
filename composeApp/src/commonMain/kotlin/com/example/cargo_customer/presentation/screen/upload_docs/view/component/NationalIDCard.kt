@@ -9,7 +9,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,8 +33,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import cargo_customer.composeapp.generated.resources.Res
@@ -65,8 +64,8 @@ typealias OnFaceChange = (newIndex: Int) -> Unit
 fun NationalIDCard(
     currentIndex: Int,
     swipeToFlipEnabled: Boolean = true,
-    frontImage: Painter? = null,
-    backImage: Painter? = null,
+    frontImage: ImageBitmap?,
+    backImage: ImageBitmap?,
     onFrontClick: OnClickCallback,
     onBackClick: OnClickCallback,
     onIndexChanged: OnFaceChange,
@@ -102,8 +101,8 @@ fun NationalIDCard(
 private fun InteractiveFlipCard(
     currentIndex: Int,
     swipeToFlipEnabled: Boolean,
-    frontImage: Painter?,
-    backImage: Painter?,
+    frontImage: ImageBitmap?,
+    backImage: ImageBitmap?,
     onFrontClick: OnClickCallback,
     onBackClick: OnClickCallback,
     onIndexChanged: OnFaceChange,
@@ -188,7 +187,7 @@ private fun InteractiveFlipCard(
 
 @Composable
 private fun IdCardFrontFace(
-    image: Painter?, onClick: OnClickCallback
+    image: ImageBitmap?, onClick: OnClickCallback
 ) {
     val dimens = CargoTheme.dimens
     val spacing = dimens.spacing
@@ -200,10 +199,10 @@ private fun IdCardFrontFace(
 
     Box(
         modifier = Modifier.fillMaxSize().clip(shapes.large).background(cardBackground)
-            .clickable { onClick() }) {
+    ) {
         if (image != null) {
             Image(
-                painter = image,
+                bitmap = image,
                 contentDescription = stringResource(Res.string.front_face_image_description),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
@@ -247,14 +246,16 @@ private fun IdCardFrontFace(
             }
         }
         ClickableOverlay(
-            icon = Lucide.IdCard, text = stringResource(Res.string.front_face_capture_instruction)
-        ) {}
+            icon = Lucide.IdCard,
+            text = stringResource(Res.string.front_face_capture_instruction),
+            onClick = onClick
+        )
     }
 }
 
 @Composable
 private fun IdCardBackFace(
-    image: Painter?, onClick: OnClickCallback
+    image: ImageBitmap?, onClick: OnClickCallback
 ) {
     val dimens = CargoTheme.dimens
     val spacing = dimens.spacing
@@ -266,10 +267,10 @@ private fun IdCardBackFace(
 
     Box(
         modifier = Modifier.fillMaxSize().clip(shapes.large).background(cardBackground)
-            .clickable { onClick() }) {
+    ) {
         if (image != null) {
             Image(
-                painter = image,
+                bitmap = image,
                 contentDescription = stringResource(Res.string.back_face_image_description),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
@@ -316,7 +317,8 @@ private fun IdCardBackFace(
         ClickableOverlay(
             icon = Lucide.CreditCard,
             text = stringResource(Res.string.back_face_capture_instruction),
-        ) {}
+            onClick = onClick
+        )
 
 
     }

@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ImageBitmap
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.face_illustration_description
 import com.composables.icons.lucide.Lucide
@@ -32,7 +33,9 @@ private const val TargetPulseAlpha = 0.8f
 private const val PulseDurationMillis = 1200
 
 @Composable
-fun FaceDetectionCard(onClick: () -> Unit) {
+fun FaceDetectionCard(
+    image: ImageBitmap?, onClick: () -> Unit
+) {
     val dimens = CargoTheme.dimens
     val spacing = dimens.spacing
     val sizing = dimens.sizing
@@ -55,11 +58,19 @@ fun FaceDetectionCard(onClick: () -> Unit) {
             .background(colorScheme.surface).clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
-        Image(
-            imageVector = Lucide.ScanFace,
-            contentDescription = stringResource(Res.string.face_illustration_description),
-            modifier = Modifier.size(spacing.colossal + spacing.colossal + sizing.iconXs),
-            colorFilter = ColorFilter.tint(CargoTheme.extendedColors.shimmer.copy(alpha = overlayAlpha))
-        )
+        if (image == null) {
+            Image(
+                imageVector = Lucide.ScanFace,
+                contentDescription = stringResource(Res.string.face_illustration_description),
+                modifier = Modifier.size(spacing.colossal + spacing.colossal + sizing.iconXs),
+                colorFilter = ColorFilter.tint(CargoTheme.extendedColors.shimmer.copy(alpha = overlayAlpha))
+            )
+        } else {
+            Image(
+                bitmap = image,
+                contentDescription = stringResource(Res.string.face_illustration_description),
+                modifier = Modifier.size(spacing.colossal + spacing.colossal + sizing.iconXs)
+            )
+        }
     }
 }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import cargo_customer.composeapp.generated.resources.Res
 import cargo_customer.composeapp.generated.resources.identity_verification_subtitle
 import cargo_customer.composeapp.generated.resources.identity_verification_tip_glasses
@@ -22,7 +23,9 @@ import com.example.cargo_customer.presentation.theme.CargoTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun UploadScreenSecondStep() {
+fun UploadScreenSecondStep(
+    onFaceDetectionCardClick: () -> Unit, faceImage: ImageBitmap?
+) {
     val dimens = CargoTheme.dimens
     val spacing = dimens.spacing
     val colorScheme = CargoTheme.colorScheme
@@ -47,7 +50,8 @@ fun UploadScreenSecondStep() {
     Spacer(modifier = Modifier.height(spacing.xxxl))
 
     FaceDetectionCard(
-        onClick = { /* TODO: Trigger Camera/Capture */ }
+        image = faceImage,
+        onClick = { onFaceDetectionCardClick() },
     )
 
     Spacer(modifier = Modifier.height(spacing.xxl))

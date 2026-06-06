@@ -17,6 +17,7 @@ fun UiText.asString(): String {
     return when (this) {
         is UiText.Dynamic -> value
         is UiText.Resource -> stringResource(res)
+        is UiText.ResourceWithArgs -> stringResource(resource, *args.toTypedArray())
     }
 }
 

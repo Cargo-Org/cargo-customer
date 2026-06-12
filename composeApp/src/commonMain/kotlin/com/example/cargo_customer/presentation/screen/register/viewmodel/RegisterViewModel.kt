@@ -1,28 +1,16 @@
 package com.example.cargo_customer.presentation.screen.register.viewmodel
 
 import cargo_customer.composeapp.generated.resources.Res
-import cargo_customer.composeapp.generated.resources.already_registered
-import cargo_customer.composeapp.generated.resources.internal_server_error
-import cargo_customer.composeapp.generated.resources.no_internet_connection
-import cargo_customer.composeapp.generated.resources.please_resolve_the_following_issues
-import cargo_customer.composeapp.generated.resources.service_not_found
 import cargo_customer.composeapp.generated.resources.unexpected_error
-import com.cargo.customer.shared.data.remote.dto.ApiErrorResponse
-import com.cargo.customer.shared.data.remote.dto.RegisterRequest
-import com.cargo.customer.shared.data.remote.dto.ValidationErrorResponse
-import com.cargo.customer.shared.domain.exception.ConflictException
 import com.cargo.customer.shared.domain.result.ApiResult
-import com.cargo.customer.shared.domain.exception.NoInternetException
-import com.cargo.customer.shared.domain.exception.UnauthorizedException
-import com.cargo.customer.shared.domain.exception.NotFoundException
-import com.cargo.customer.shared.domain.exception.ServerException
 import com.cargo.customer.shared.domain.usecase.auth.RegisterUseCase
 import com.cargo.customer.shared.domain.usecase.auth.RegisterValidationUseCases
 import com.example.cargo_customer.presentation.base.BaseViewModel
 import com.example.cargo_customer.presentation.core.ui.UiText
-import com.example.cargo_customer.presentation.core.ui.toUiTextOrNull
-import com.example.cargo_customer.presentation.mapper.mapApiErrors
-
+import com.example.cargo_customer.presentation.mapper.hasErrors
+import com.example.cargo_customer.presentation.mapper.toRegisterRequest
+import com.example.cargo_customer.presentation.mapper.toRegisterUiError
+import com.example.cargo_customer.presentation.mapper.validate
 
 class RegisterViewModel(
     private val registerUseCase: RegisterUseCase,
@@ -33,7 +21,6 @@ class RegisterViewModel(
 
     fun onInteraction(interaction: RegisterInteractionListener) {
         when (interaction) {
-
             is RegisterInteractionListener.OnNameChanged ->
                 updateState { copy(name = interaction.value, nameError = null, error = null) }
 
@@ -57,56 +44,16 @@ class RegisterViewModel(
         }
     }
 
-    fun onRegisterClicked() {
+    private fun onRegisterClicked() {
         val currentState = state.value
+        val validatedState = currentState.validate(validation)
 
-        val nameValidation =
-            validation.validateName(currentState.name)
-
-        val emailValidation =
-            validation.validateEmail(currentState.email)
-
-        val phoneValidation =
-            validation.validatePhone(currentState.phone)
-
-        val passwordValidation =
-            validation.validatePassword(currentState.password)
-
-        val nameError = nameValidation.toUiTextOrNull()
-        val emailError = emailValidation.toUiTextOrNull()
-        val phoneError = phoneValidation.toUiTextOrNull()
-        val passwordError = passwordValidation.toUiTextOrNull()
-
-        val hasValidationError = listOf(
-            nameError,
-            emailError,
-            phoneError,
-            passwordError
-        ).any { it != null }
-
-        if (hasValidationError) {
-            updateState {
-                copy(
-                    nameError = nameError,
-                    emailError = emailError,
-                    phoneError = phoneError,
-                    passwordError = passwordError
-                )
-            }
+        if (validatedState.hasErrors()) {
+            updateState { validatedState }
             return
         }
 
-
-        val nameParts = currentState.name.trim().split(" ")
-        val firstName = nameParts.firstOrNull().orEmpty()
-        val lastName = nameParts.drop(1).joinToString(" ")
-        val request = RegisterRequest(
-            email = currentState.email,
-            password = currentState.password,
-            firstName = firstName,
-            lastName = lastName,
-            phoneNumber = currentState.phone
-        )
+        val request = currentState.toRegisterRequest()
 
         tryToExecute(
             block = { registerUseCase(request) },
@@ -120,35 +67,8 @@ class RegisterViewModel(
                     }
 
                     is ApiResult.Error -> {
-                        val errorMessage = when (val exception = result.exception) {
-                            is NoInternetException -> UiText.Resource(Res.string.no_internet_connection)
-                            is UnauthorizedException -> UiText.Resource(Res.string.already_registered)
-                            is NotFoundException -> UiText.Resource(Res.string.service_not_found)
-                            is ServerException -> UiText.Resource(Res.string.internal_server_error)
-                            is ConflictException ->
-                                when (val response = exception.errorResponse) {
-                                    is ApiErrorResponse -> {
-                                        UiText.Dynamic(response.detail)
-                                    }
-
-                                    is ValidationErrorResponse -> {
-                                        val errors = mapApiErrors(response.errors.values.flatten())
-                                        val joinedErrors = UiText.Joined(
-                                            texts = errors,
-                                            separator = "\n- ",
-                                            prefix = "\n- "
-                                        )
-                                        UiText.ResourceWithArgs(
-                                            Res.string.please_resolve_the_following_issues,
-                                            listOf(joinedErrors)
-                                        )
-                                    }
-                                }
-
-                            else ->
-                                UiText.Resource(Res.string.unexpected_error)
-                        }
-                        updateState { copy(error = errorMessage) }
+                        val errorText = result.exception.toRegisterUiError()
+                        updateState { copy(error = errorText) }
                     }
                 }
             },

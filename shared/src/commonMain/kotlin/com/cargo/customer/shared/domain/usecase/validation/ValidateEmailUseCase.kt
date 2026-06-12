@@ -5,17 +5,17 @@ import com.cargo.customer.shared.domain.result.ValidationResult
 
 
 class ValidateEmailUseCase {
-
-    private val regex =
-        "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$".toRegex()
-
     operator fun invoke(email: String): ValidationResult {
-        return if (email.matches(regex)) {
+        return if (email.trim().matches(EMAIL_REGEX)) {
             ValidationResult.Success
         } else {
             ValidationResult.Error(
                 ValidationError.InvalidEmail
             )
         }
+    }
+    companion object {
+        private val EMAIL_REGEX =
+            "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$".toRegex()
     }
 }

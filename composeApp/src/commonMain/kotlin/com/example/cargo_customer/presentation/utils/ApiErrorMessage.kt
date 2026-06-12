@@ -1,4 +1,4 @@
-package com.cargo.customer.shared.domain.model
+package com.example.cargo_customer.presentation.utils
 
 enum class ApiErrorMessage(val message: String) {
 

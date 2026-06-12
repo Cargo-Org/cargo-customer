@@ -10,7 +10,7 @@ import cargo_customer.composeapp.generated.resources.password_min_length
 import cargo_customer.composeapp.generated.resources.password_required
 import cargo_customer.composeapp.generated.resources.phone_required
 import cargo_customer.composeapp.generated.resources.unexpected_error
-import com.cargo.customer.shared.domain.model.ApiErrorMessage
+import com.example.cargo_customer.presentation.utils.ApiErrorMessage
 import com.example.cargo_customer.presentation.core.ui.UiText
 import org.jetbrains.compose.resources.StringResource
 

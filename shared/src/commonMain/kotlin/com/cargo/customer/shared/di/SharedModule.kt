@@ -9,9 +9,15 @@ import com.cargo.customer.shared.data.remote.datasource.AuthRemoteDataSourceImpl
 import com.cargo.customer.shared.data.repository.AuthRepositoryImp
 import com.cargo.customer.shared.data.repository.OnboardingRepositoryImp
 import com.cargo.customer.shared.domain.repository.AuthRepository
+import com.cargo.customer.shared.domain.usecase.auth.RegisterUseCase
 import com.cargo.customer.shared.domain.repository.OnboardingRepository
 import com.cargo.customer.shared.domain.usecase.IsOnboardingFirstTimeUseCase
 import com.cargo.customer.shared.domain.usecase.SetOnboardingFirstTimeUseCase
+import com.cargo.customer.shared.domain.usecase.auth.RegisterValidationUseCases
+import com.cargo.customer.shared.domain.usecase.validation.ValidateEmailUseCase
+import com.cargo.customer.shared.domain.usecase.validation.ValidateNameUseCase
+import com.cargo.customer.shared.domain.usecase.validation.ValidatePasswordUseCase
+import com.cargo.customer.shared.domain.usecase.validation.ValidatePhoneUseCase
 import org.koin.dsl.module
 
 
@@ -35,6 +41,19 @@ val sharedModule = module {
         AuthRepositoryImp(
             remote = get(),
             local = get()
+        )
+    }
+
+    factory {
+        RegisterUseCase(get())
+    }
+
+    single {
+        RegisterValidationUseCases(
+            validateName = ValidateNameUseCase(),
+            validateEmail = ValidateEmailUseCase(),
+            validatePassword = ValidatePasswordUseCase(),
+            validatePhone = ValidatePhoneUseCase()
         )
     }
 

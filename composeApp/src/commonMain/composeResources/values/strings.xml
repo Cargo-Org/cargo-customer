@@ -19,7 +19,7 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="sign_in_action">Sign In</string>
     <string name="create_an_account">Create An Account</string>
-    <string name="verify_identity">Verify Identity</string>">
+    <string name="verify_identity">Verify Identity</string>
     <string name="verify_identity_description">We've sent a 5-digit verification code
 to your email address.</string>
     <string name="resend_code">Resend Code</string>
@@ -55,4 +55,25 @@ to your email address.</string>
     <string name="identity_verification_tip_lighting">Good lighting</string>
     <string name="identity_verification_tip_glasses">No glasses</string>
     <string name="continue_button">Continue</string>
+    <string name="invalid_full_name">Enter a valid full name (e.g. Ahmed Ali).</string>
+    <string name="fill_all_fields">Please fill in all fields.</string>
+    <string name="unexpected_error">An unexpected error occurred.</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="already_registered">Email or phone number is already registered</string>
+    <string name="service_not_found">Service not found</string>
+    <string name="internal_server_error">Internal server error</string>
+    <string name="resolve_issues">Please resolve the following issues:</string>
+    <string name="invalid_email">Please enter a valid email address</string>
+    <string name="weak_password">Password must be at least 8 characters</string>
+    <string name="password_needs_number">Password must contain at least one number</string>
+    <string name="password_needs_letter">Password must contain at least one letter</string>
+    <string name="invalid_phone">Please enter a valid phone number</string>
+    <string name="please_resolve_the_following_issues">Please resolve the following issues: %1$s</string>
+    <string name="first_name_required">First name is required</string>
+    <string name="last_name_required">Last name is required</string>
+    <string name="email_required">Email is required</string>
+    <string name="password_required">Password is required</string>
+    <string name="password_min_length">Password must be at least 8 characters</string>
+    <string name="phone_required">Phone number is required</string>
+    <string name="invalid_phone_format">Phone number must be in E.164 format (e.g. +201012345678)</string>
 </resources>
